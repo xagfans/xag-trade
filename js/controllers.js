@@ -31,31 +31,3 @@ myApp.controller("FooterCtrl", [ '$scope', '$rootScope', '$translate', 'SettingF
     $scope.version = appinfo.version;
   }]);
 
-myApp.controller("HomeCtrl", ['$scope', '$rootScope',
-  function($scope, $rootScope) {
-  
-    if ($rootScope.runOnce) return;
-    
-    $scope.stopCountdown = function() {
-      clearInterval(timer);
-      $scope.stop = true;
-    }
-    
-    $scope.countdown = 6;
-    var timer = setInterval(function() {
-      $scope.$apply(function() {
-        $scope.countdown = $scope.countdown - 1;
-        if ($scope.countdown <= 0) {
-          $rootScope.goTo('balance');
-        }
-      });
-    }, 1000);
-  
-    $scope.$on("$destroy", function() {
-      console.log("$destroy");
-      $rootScope.runOnce = true;
-      clearInterval(timer);
-    });
-
-  }]);
-
