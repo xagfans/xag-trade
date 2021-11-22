@@ -1,0 +1,291 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height background: linear-gradient(10deg, #9291e0,#96dadb); */
+  margin-bottom: 60px;
+}
+
+.foximg {
+	background-image: linear-gradient(10deg, rgba(146, 145, 224, 0.85), rgba(150, 218, 219, 0.9)), url(../assets/foxripple.png);
+	background-repeat: no-repeat;
+	background-position: right bottom 60px;
+}
+
+.header {
+	margin-bottom: 20px;
+}
+.header nav {
+	margin-bottom: 0;
+}
+
+.topmenu {
+	background-color: #4169a4;
+  border-color: #4169a4;
+}
+
+.topmenu a {
+  color: #f0f0f0;
+  text-decoration: none;
+}
+
+.topmenu .navbar-nav > li > a:hover,
+.topmenu .navbar-nav > li > a:focus {
+  background-color: #3d73bc;
+}
+
+.topmenu .navbar-nav > .active > a,
+.topmenu .navbar-nav > .active > a:hover,
+.topmenu .navbar-nav > .active > a:focus {
+  background-color: #3d73bc;
+}
+
+.header .subnav {
+  background-color: #f3f3f3;
+  border-bottom: 1px solid #ccccca;
+}
+
+.header .subnav ul {
+  padding: 0;
+  margin: 0 0 0 52px;
+  list-style: none;
+}
+
+.header .subnav ul > li {
+  float: left;
+  min-width: 70px;
+  margin: 0 5px 0 0;
+  text-align: center;
+}
+
+.header .subnav ul > li a {
+  display: inline-block;
+  padding: 10px;
+  color: #888888;
+}
+
+.header .subnav ul > li a:hover,
+.header .subnav ul > li a:focus {
+  color: #1f1f1e;
+  text-decoration: none;
+  border-bottom: 2px solid #ccccca;
+}
+
+.header .subnav ul > li.active a {
+  font-family: 'OpenSansRegular';
+  border-bottom: 2px solid #888888;
+}
+
+.header .settings {
+	display:inline-block;
+	line-height: 50px;
+}
+
+.header .settings a {
+}
+
+.header .settings .dropdown-toggle {
+	font-size: 20px;
+}
+.header .settings .dropdown-menu a {
+	margin: 5px 0 5px 0;
+	font-size: 18px;
+}
+
+
+.header .online {
+	width: 40px; height: 40px; border: 3px solid #008f51; border-radius: 50%; background: white;
+}
+
+.header .offline {
+	width: 40px; height: 40px; border: 3px solid #d12; border-radius: 50%; background: white;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #e6e6e6;
+}
+
+.footer a {
+	margin-top: 10px;
+}
+
+a.danger {
+  color: #E40000;
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+
+
+/* Not required for template or sticky footer method. */
+
+body > .container {
+  padding: 10px 15px 0;
+}
+.container .text-muted {
+  margin: 20px 0;
+}
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+code {
+  font-size: 80%;
+}
+
+.settingPage a {
+  display: block;
+  padding: 10px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  margin: 0 0 3px;
+  background: #d1def1;
+  border-color : #c1cee7;
+}
+.settingPage a:hover,
+.settingPage a.active {
+  color: #d1def1;;
+  text-decoration: none;
+  background: #346aa9;
+}
+
+.row_bridge {
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	flex: 0;
+}
+
+.right {
+	text-align: right;
+}
+
+.center {
+  text-align: center;
+}
+
+.nowrap {
+	white-space:nowrap;
+}
+
+.pd {
+	padding: 15px;
+}
+
+.pdleft {
+	padding-left: 15px;
+}
+
+.pdtop {
+	padding-top: 10px;
+}
+
+.nopadding {
+	padding: 0 !important;
+}
+
+.marginleft {
+	margin-left: 15px;
+}
+
+.marginright {
+	margin-right: 15px;
+}
+
+.block {
+	display: block !important;
+}
+
+.dropdown .content {
+	line-height: 32px;
+	font-size: 16px;
+}
+
+.dropdown .currency {
+	display: inline-block;
+}
+
+.dropdown .dropdown-addon {
+	display: block;
+	float:right;
+	height: 100%;
+	background-color: #eee;
+	padding: 4px 15px 0 15px;
+	border-left: 1px solid #ccc;
+  border-radius: 4px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

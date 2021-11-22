@@ -1,0 +1,23 @@
+{
+  "name": "XagTrade",
+  "version": "1.0.0",
+  "description": "Xrpalike Gene Web Client",
+  "author": "XagLabs",
+  "license": "Apache",
+  "dependencies": {
+    "angular": "^1.7.9",
+    "angular-qrcode": "^7.2.0",
+    "angular-route": "^1.7.9",
+    "angular-translate": "^2.18.2",
+    "bignumber.js": "^9.0.0",
+    "bip39": "^3.0.2",
+    "bootstrap": "^3.4.1",
+    "ed25519-hd-key": "^1.1.2",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.5.0",
+    "lodash": "^4.17.21",
+    "qrcode-generator": "^1.4.4",
+    "ripple-lib": "^1.9.5",
+    "sjcl": "^1.0.8"
+  }
+}

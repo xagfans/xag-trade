@@ -1,0 +1,57 @@
+<ul ng-show="tx.effects" class="effects">
+		<li ng-repeat="effect in tx.effects" ng-switch="effect.type">
+			<span ng-switch-when="offer_bought">
+				{{ 'you_bought' | translate }}
+				<strong>{{effect.quantity.value | fmtnum}} {{effect.quantity.currency | rpcurrency:native.code}}</strong> 
+				{{ 'you_bought_for' | translate }}
+				<strong>{{effect.total.value | fmtnum}} {{effect.total.currency | rpcurrency:native.code}}</strong> 
+				({{ 'price' | translate }} <strong>{{effect.price | fmtnum}}</strong>)
+				<span ng-show="effect.filled">{{ 'order_filled' | translate}}</span>
+			</span>
+			<span ng-switch-when="offer_sold">
+				{{ 'you_sold' | translate }}
+				<strong>{{effect.quantity.value | fmtnum}} {{effect.quantity.currency | rpcurrency:native.code}}</strong> 
+				{{ 'you_sold_for' | translate }}
+				<strong>{{effect.total.value | fmtnum}} {{effect.total.currency | rpcurrency:native.code}}</strong> 
+				({{ 'price' | translate }} <strong>{{effect.price | fmtnum}}</strong>)
+				<span ng-show="effect.filled">{{ 'order_filled' | translate}}</span>
+			</span>
+
+			<span ng-switch-when="offer_cancel_buy">
+				<span ng-show="effect.force">{{ 'order_cancel_buy' | translate }}</span>
+				<span ng-hide="effect.force">{{ 'you_cancel_buy' | translate }}</span>				
+				<strong>{{effect.quantity.value | fmtnum}} {{effect.quantity.currency | rpcurrency:native.code}}</strong> 
+				{{ 'you_buy_for' | translate }}
+				<strong>{{effect.total.value | fmtnum}} {{effect.total.currency | rpcurrency:native.code}}</strong> 
+				({{ 'price' | translate }} <strong>{{effect.price | fmtnum}}</strong>)
+				<span ng-show="effect.force">{{ 'order_cancel_due' | translate }}</span>
+			</span>
+			<span ng-switch-when="offer_cancel_sell">
+				<span ng-show="effect.force">{{ 'order_cancel_sell' | translate }}</span>
+				<span ng-hide="effect.force">{{ 'you_cancel_sell' | translate }}</span>
+				<strong>{{effect.quantity.value | fmtnum}} {{effect.quantity.currency | rpcurrency:native.code}}</strong> 
+				{{ 'you_sell_for' | translate }}
+				<strong>{{effect.total.value | fmtnum}} {{effect.total.currency | rpcurrency:native.code}}</strong> 
+				({{ 'price' | translate }} <strong>{{effect.price | fmtnum}}</strong>)
+				<span ng-show="effect.force">{{ 'order_cancel_due' | translate }}</span>
+			</span>
+
+			<span ng-switch-when="offer_create_buy">
+				{{ 'you_buy' | translate }}
+				<strong>{{effect.quantity.value | fmtnum}} {{effect.quantity.currency | rpcurrency:native.code}}</strong> 
+				{{ 'you_buy_for' | translate }}
+				<strong>{{effect.total.value | fmtnum}} {{effect.total.currency | rpcurrency:native.code}}</strong> 
+				({{ 'price' | translate }} <strong>{{effect.price | fmtnum}}</strong>)
+			</span>
+			<span ng-switch-when="offer_create_sell">
+				{{ 'you_sell' | translate }}
+				<strong>{{effect.quantity.value | fmtnum}} {{effect.quantity.currency | rpcurrency:native.code}}</strong> 
+				{{ 'you_sell_for' | translate }}
+				<strong>{{effect.total.value | fmtnum}} {{effect.total.currency | rpcurrency:native.code}}</strong> 
+				({{ 'price' | translate }} <strong>{{effect.price | fmtnum}}</strong>)
+			</span>
+
+			<!-- ngSwitchWhen: exception -->
+			<span ng-switch-default>{{effect.type}} 未解析</span>
+		</li>
+</ul>

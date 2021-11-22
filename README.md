@@ -1,4 +1,12 @@
-# xag-trade
-XAG Web Client
+# XAG Trade
 
-The XAG web client is an open-source GUI for the Xrpalike Gene network that facilitates the peer-to-peer exchange of any store of value. It’s a powerful platform where you can trade between stores of value spanning fiat, cryptocurrencies, commodities, and unusual assets.
+XAG Trade is a web client for Xrpalike Gene network. It allows you to encrypt your mnemonic/secret key and store it as a file locally on your computer.
+
+## Key Features
+
+- No registration. Secret key and login information stored locally.
+- Sign transaction local and then submit.
+- Send/receive/convert XAG, assets and tokens.
+- Buy/sell XAG, assets and tokens.
+- Manage trust lines, account data.
+- View balances and history.

@@ -1,0 +1,16 @@
+<div class="row offercancel">
+	<div class="col-xs-3">
+		{{tx.transaction.date | date:'yyyy-MM-dd HH:mm:ss'}}
+	</div>
+	<div class="col-xs-9">
+		<div class="transaction">
+				<span>
+					{{ 'you_cancel' | translate }}
+					<strong>{{tx.transaction.seq}}</strong>
+				</span>
+				<effects></effects>
+		</div>
+		<div class="hash" ng-show="currentNetwork.networkType != 'xag'"> <a href="https://xrpscan.com/tx/{{tx.hash}}" target="_blank">{{tx.hash}}</a> </div>
+		<div class="hash" ng-show="currentNetwork.networkType == 'xag'"> <a href="https://scan.xrpgen.com/#!/tx?data={{tx.hash}}" target="_blank">{{tx.hash}}</a> </div>
+	</div>
+</div>

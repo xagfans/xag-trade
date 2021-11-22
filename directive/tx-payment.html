@@ -1,0 +1,32 @@
+<div class="row" ng-class="{sent:tx.transaction.type == 'sent', received:tx.transaction.type == 'received', exchange:tx.transaction.type == 'convert'}">
+	<div class="col-xs-3">
+		{{tx.transaction.date | date:'yyyy-MM-dd HH:mm:ss'}}
+	</div>
+	<div class="col-xs-9">
+		<div class="transaction">
+				<span ng-show="tx.transaction.type == 'sent'">
+					{{'you_sent' | translate}}
+					<strong>{{tx.transaction.delivered.value | fmtnum}} {{tx.transaction.delivered.currency | rpcurrency:native.code}}</strong>
+					{{'you_sent_to' | translate}}
+					<strong>{{tx.transaction.destination}}</strong>
+				</span>
+				<span ng-show="tx.transaction.type == 'received'">
+					<strong>{{tx.transaction.source}}</strong>
+					{{'sent_you' | translate}}
+					<strong>{{tx.transaction.delivered.value | fmtnum}} {{tx.transaction.delivered.currency | rpcurrency:native.code}}</strong>
+				</span>
+				<span ng-show="tx.transaction.type == 'convert'">
+					{{ 'you_convert' | translate }}
+					<strong>{{tx.transaction.spent.value | fmtnum}} {{tx.transaction.spent.currency | rpcurrency:native.code}}</strong>
+					{{ 'you_convert_to' | translate }}
+					<strong>{{tx.transaction.delivered.value | fmtnum}} {{tx.transaction.delivered.currency | rpcurrency:native.code}}</strong>
+				</span>
+				<span ng-show="tx.transaction.tag && tx.transaction.type">{{'tx_tag' | translate}} <strong>{{tx.transaction.tag}}</strong>)</span>
+
+				<effects></effects>
+		</div>
+		<div class="hash" ng-show="currentNetwork.networkType != 'xag'"> <a href="https://xrpscan.com/tx/{{tx.id}}" target="_blank">{{tx.id}}</a> </div>
+		<div class="hash" ng-show="currentNetwork.networkType == 'xag'"> <a href="https://scan.xrpgen.com/#!/tx?data={{tx.id}}" target="_blank">{{tx.id}}</a> </div>
+	</div>
+</div>
+              

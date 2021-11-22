@@ -1,0 +1,13 @@
+<div class="row">
+	<div class="col-xs-3">
+		{{tx.transaction.date | date:'yyyy-MM-dd HH:mm:ss'}}
+	</div>
+	<div class="col-xs-9">
+		<div class="transaction">
+			<span ng-show="tx.type == 'settings'" translate="accountset">Account details have been changed</span>
+			<effects></effects>
+		</div>
+		<div class="hash" ng-show="currentNetwork.networkType != 'xag'"> <a href="https://xrpscan.com/tx/{{tx.id}}" target="_blank">{{tx.id}}</a> </div>
+		<div class="hash" ng-show="currentNetwork.networkType == 'xag'"> <a href="https://scan.xrpgen.com/#!/tx?data={{tx.id}}" target="_blank">{{tx.id}}</a> </div>
+	</div>
+</div>

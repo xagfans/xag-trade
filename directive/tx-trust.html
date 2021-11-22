@@ -1,0 +1,22 @@
+<div class="row trusted">
+	<div class="col-xs-3">
+		{{tx.transaction.date | date:'yyyy-MM-dd HH:mm:ss'}}
+	</div>
+	<div class="col-xs-9">
+		<div class="transaction">
+				<span ng-show="tx.transaction.type == 'trusted'">
+					<strong>{{ tx.transaction.counterparty }}</strong> {{'trust_you' | translate}}
+					<strong>{{tx.transaction.limit | fmtnum}} {{tx.transaction.currency}}</strong>
+				</span>
+				<span ng-show="tx.transaction.type == 'trusting'">
+					{{'you_trust' | translate}} <strong>{{tx.transaction.counterparty}}</strong>
+					{{'you_trust_for' | translate}}
+					<strong>{{tx.transaction.limit | fmtnum}} {{tx.transaction.currency}}</strong>
+				</span>
+                    
+				<effects></effects>
+		</div>
+		<div class="hash" ng-show="currentNetwork.networkType != 'xag'"> <a href="https://xrpscan.com/tx/{{tx.id}}" target="_blank">{{tx.id}}</a> </div>
+		<div class="hash" ng-show="currentNetwork.networkType == 'xag'"> <a href="https://scan.xrpgen.com/#!/tx?data={{tx.id}}" target="_blank">{{tx.id}}</a> </div>
+	</div>
+</div>

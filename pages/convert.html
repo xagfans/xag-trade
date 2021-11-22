@@ -1,0 +1,112 @@
+<section class="col-xs-12 content">
+	<div class="so-back islandBack islandBack--t">
+		<div class="island islandBack form-group">
+			<div class="header" translate="convert_title">Convert one currency into another</div>
+			<group ng-show="mode == 'input'">
+					
+					<div class="row">
+							<div class="col-xs-12 col-sm-6 col-md-6">
+								<label translate="receive">Receive</label>
+								<div class="row noborder nopadding">
+										<div class="col-xs-8 nopadding-left">
+											<input type="number" autocomplete="off" placeholder="0.00" class="form-control"
+												ng-model="dst_amount" ng-change="updatePath()" ng-model-options="{debounce:800}" required="true">
+										</div>
+										<div class="col-xs-4 nopadding-right">
+											<div class="dropdown">
+										    <button class="btn btn-default dropdown-toggle form-control nopadding" ng-disabled="!currencies.length" type="button" data-toggle="dropdown">
+										    	<div class="content" style="">
+										    		<div class="currency">{{dst_currency}} </div>
+										    		<div class="dropdown-addon" ng-show="currencies.length"><i class="fa fa-sort-desc" aria-hidden="true"></i></div>
+										    	</div>
+										    </button>
+										    <ul class="dropdown-menu" role="menu">
+										    	<li role="presentation"><a role="menuitem" href="" ng-click="pickCode(native.code)">{{native.code}}</a></li>
+										      <li role="presentation" ng-repeat="code in currencies">
+										      	<a role="menuitem" href="" ng-click="pickCode(code)">{{code}}</a>
+										      </li>
+										    </ul>
+										  </div>
+										</div>
+									</div>
+						  </div>
+					</div>
+				
+				
+				<div class="row form-group alternatives" ng-hide="found">
+					<div class="message" ng-show="finding">
+						<i class="fa fa-spinner fa-pulse"></i> {{'calculating' | translate}}
+					</div>
+					<div class="message" ng-show="!finding">
+						{{ 'convert_input' | translate}}
+					</div>
+				</div>
+				<div class="row form-group alternatives" ng-show="found">
+						<div class="message" ng-show="!objKeyLength(paths)">
+							{{ 'convert_nopath' | translate}}
+					  </div>
+						<div ng-repeat="(key, alt) in paths" class="col-xs-12 col-sm-6 col-md-4">
+							<div class="am">
+								<span class="amnt">{{alt.value}}</span>
+								<span class="currency">{{alt.code}}</span>
+								<div class="ex">(<span class="rate">{{alt.rate}}</span><span class="pair">{{dst_currency}}/{{alt.code}}</span>)</div>
+							</div>
+							<button ng-click="pick(alt.code)" class="btn btn-block btn-success">{{'convert' | translate}} {{alt.code}}</button>
+						</div>
+				</div>
+				<div class="row pathupdate" ng-show="found">
+					<div class="col-xs-12"><span>{{'path_updated' | translate}} {{lastUpdate}} {{'seconds_ago' | translate}}</span></div>
+				</div>
+			</group>
+			<group ng-show="mode == 'confirm'">
+			  <div class="mode-confirm row">
+					<p translate="converting">You are converting</p>
+					<p class="amount_feedback"><span class="value">{{asset.value}} </span><span class="currency">{{asset.code}}</span></p>
+					<p translate="converting_to">to</p>
+					<p class="amount_feedback"><span class="value">{{dst_amount}} </span><span class="currency">{{dst_currency}}</span></p>
+					<p translate="pay_most">You will pay at most</p>
+					<p class="amount_feedback"><span class="value">{{asset.value}} </span><span class="currency">{{asset.code}}  </span><span>± 1%</span></p>
+					<p translate="are_you_sure">Are you sure?</p>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+						<button ng-click="cancelConfirm()" class="btn btn-block btn-default back">« {{'back' | translate}}</button>
+					</div>
+					<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+						<button ng-click="convert_confirmed()" class="btn btn-block btn-success submit">{{'confirm' | translate}}</button>
+					</div>
+				</div>
+			</group>
+			
+			<group ng-show="mode == 'submit'">
+				<div class="row form-group" ng-show="sending">
+						<div class="message">
+							<i class="fa fa-spinner fa-pulse"></i> {{ 'submitting' | translate}}
+					  </div>
+			  </div>
+			  <div class="row form-group block" ng-show="tx_state">
+						<div class="message" ng-show="tx_state == 'submitted'">
+							<h2 translate="submitted">Your transaction has been submitted.</h2>
+					  	<p translate="act_will_upd">Your account will update once the transaction has cleared.</p>
+					  </div>
+					  <div class="message" ng-show="tx_state == 'success'">
+							<h2 class="result-success" translate="cleared">Transaction cleared!</h2>
+					  </div>
+					<hr>
+			  	<div class="actionLink"><a href="" ng-click="init()" translate="back_convert">Do another conversion</a></div>
+			  	<div class="actionLink"><a href="" ng-click="goTo('balance')" translate="go_balance">Back to balance</a></div>
+			  </div>
+			</group>
+			
+			<div class="island__paddedContent" ng-show="send_error">
+				<div class="service_alert">
+					<div>{{send_error}}</div>
+				</div>
+				<hr>
+			  <div class="actionLink"><a href="" ng-click="init()" translate="back_convert">Do another conversion</a></div>
+			</div>
+		</div>
+		
+	</div>
+</section>

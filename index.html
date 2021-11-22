@@ -1,0 +1,80 @@
+<html ng-app="myApp">
+<head>
+  <title translate="ripple_desktop_client">Foxlet Client for Ripple</title>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./node_modules/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/balance.css">
+  <link rel="stylesheet" href="css/history.css">
+  <link rel="stylesheet" href="css/bridge.css">
+  <link rel="stylesheet" href="css/trade.css">
+  
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="node_modules/angular/angular.min.js"></script>
+  <script src="node_modules/angular-route/angular-route.js"></script>
+  <script src="node_modules/angular-translate/dist/angular-translate.js"></script>
+  <script src="node_modules/angular-qrcode/angular-qrcode.js"></script>
+  <script src="node_modules/qrcode-generator/qrcode.js"></script>
+  <script src="node_modules/qrcode-generator/qrcode_UTF8.js"></script>
+  <script src="node_modules/sjcl/sjcl.js"></script>
+  <script src="node_modules/bignumber.js/bignumber.js"></script>
+  <script src="node_modules/lodash/lodash.min.js"></script>
+  <script src="node_modules/ripple-lib/build/ripple-latest-min.js"></script>
+  <script src="js/lib/bip39.js"></script>
+  <script src="js/lib/ed25519-hd-key.js"></script>
+  <script src="js/lib/ripple-keypairs.js"></script>
+  
+  <script src="js/lang/translate_cn.js"></script>
+  <script src="js/lang/translate_jp.js"></script>
+  <script src="js/lang/translate_en.js"></script>
+  
+  <script src="js/app.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+  
+  <script src="js/service/Setting.js"></script>
+  <script src="js/service/Id.js"></script>
+  <script src="js/service/Federation.js"></script>
+  <script src="js/service/Gateways.js"></script>
+  
+  <script src="js/controllers.js"></script>
+  <script src="js/controller/login.js"></script>
+  <script src="js/controller/register.js"></script>
+  <script src="js/controller/security.js"></script>
+  <script src="js/controller/settings.js"></script>
+  <script src="js/controller/balance.js"></script>
+  <script src="js/controller/trust.js"></script>
+  <script src="js/controller/send.js"></script>
+  <script src="js/controller/contact.js"></script>
+  <script src="js/controller/trade.js"></script>
+  <script src="js/controller/convert.js"></script>
+  <script src="js/controller/history.js"></script>
+  
+  <script src="js/auth/auth.factory.js"></script>
+  <script src="js/auth/authdata.factory.js"></script>
+  <script src="js/auth/authdata.filesystem.factory.js"></script>
+  <script src="js/auth/authdata.inmemory.factory.js"></script>
+  
+  <script src="js/ripple/api.factory.js"></script>
+  <script src="js/ripple/orderbook.factory.js"></script>
+  <script src="js/ripple/path.factory.js"></script>
+  <script src="js/ripple/servermanager.factory.js"></script>
+  
+  <script>
+      var appinfo = {
+         "version": "1.0.0"
+      };
+  </script>
+</head>
+
+<body class="foximg">
+	<div ng-include="'pages/header.html'"></div>
+  <div class="container" ng-view></div>
+  <div ng-include="'pages/footer.html'"></div>
+</body>
+
+</html>
