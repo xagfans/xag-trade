@@ -3,42 +3,8 @@ myApp.factory('SettingFactory', function($window) {
     // To add new preset network, add new entry here and in `translationKey` to all translations.
     // P.S. Undefined entries will be asked for in user interface.
     NETWORKS: {
-      xrp: {
-        name: "Ripple Public Network",
-        translationKey: 'public_url',
-        networkType: 'xrp',
-        servers: [
-          {server: 's1.ripple.com', port: 443},
-          {server: 'xrplcluster.com', port: 443},
-          {server: 'xrpl.link', port: 443},
-          {server: 'xrpl.ws', port: 443},
-          {server: 'ws.foxcny.com', port: 443}
-        ],
-        coin: {
-          name: "ripple",
-          atom: "drop",
-          code: "XRP",
-          logo: "img/coin/xrp.png"
-        },
-        tabs: ["history", "trade", "balance", "send", "trust", "service", "dapp"]
-      },
-      xrpTest: {
-        name: "Ripple Test Network",
-        translationKey: 'test_url',
-        networkType: 'xrpTest',
-        servers: [
-          {server: 's.altnet.rippletest.net', port: 51233}
-        ],
-        coin: {
-          name: "ripple",
-          atom: "drop",
-          code: "XRP",
-          logo: "img/coin/xrp.png"
-        },
-        tabs: ["history", "trade", "balance", "send", "trust"]
-      },
       xag: {
-        name: "XAG Fork",
+        name: "XAG Public Network",
         translationKey: 'xag_url',
         networkType: 'xag',
         servers: [
@@ -53,21 +19,7 @@ myApp.factory('SettingFactory', function($window) {
           code: "XAG",
           logo: "img/coin/xag.png"
         },
-        tabs: ["history", "trade", "balance", "send", "trust"]
-      },
-      other: {
-        name: "User defined",
-        translationKey: 'other_url',
-        networkType: 'other',
-        servers: [
-        ],
-        coin: {
-          name: "ripple",  // TODO: ask in settings
-          atom: "drop",    // TODO: ask in settings
-          code: undefined,
-          logo: "img/waterdrop.jpg",  // TODO: ask in settings
-        },
-        tabs: ["history", "trade", "balance", "send", "trust"]
+        tabs: ["history", "trade", "balance", "send", "trust", "service", "dapp"]
       }
     },
 
@@ -111,7 +63,7 @@ myApp.factory('SettingFactory', function($window) {
     },
 
     setNetworkType : function(network) {
-      return $window.localStorage[`network_type`] = network in this.NETWORKS ? network : 'xrp';
+      return $window.localStorage[`network_type`] = network in this.NETWORKS ? network : 'xag';
     },
     getNetworkType : function() {
       return $window.localStorage[`network_type`] || this.setNetworkType();

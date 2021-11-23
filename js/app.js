@@ -191,7 +191,7 @@ myApp.run(['$rootScope', '$window', '$location', '$translate', 'AuthenticationFa
     }
     
     $rootScope.isPublicNetwork = function() {
-      return this.currentNetwork.name == "Ripple Public Network";
+      return this.currentNetwork.name == "XAG Public Network";
     }
 
     $rootScope.isLangCN = function() {
