@@ -38,7 +38,7 @@ var translate_cn = {
   show_secret: '显示秘钥',
   hide_secret: '隐藏秘钥',
   are_you_sure_secret: '你在一个安全的地方？没有人或摄相头在看你吧？',
-  save_safe: '你把密钥/助记词保存在安全的地方了吗？',
+  save_safe: '你把密钥/助记词保存在安全的地方了吗？你把账号文件的位置记住了吗？没有的话找找下载文件夹里吧。',
   yes_save: '是，我已经保存好了！',
   cancel : '取消',
   back   : '返回',

@@ -8,7 +8,7 @@ var translate_en = {
   open_temp_act: 'Temporary Wallet',
   select_file : 'Select account file',
   create_new_account : 'Create new account',
-  create_new_account_info : 'Wallet will create a local file for your secret that will be encrypted with password of your choice. Encrypted file is not recommended way to access your wallet. Please consider a hardware wallet.',
+  create_new_account_info : 'Wallet will create a local file for your secret that will be encrypted with password of your choice. Please store the encrypted file somewhere PRIVATE AND SAFE.',
   account_password : 'Account password',
   open_existed_account : 'Open existing account',
   create_blank : 'Create an empty account',
