@@ -10,6 +10,7 @@ myApp.factory('ServerManager', ['$rootScope',
     
     let _reserveBaseXRP = 0;
     let _reserveIncrementXRP = 0;
+    let _minLedgerVersion = 0;
     
     return {
       setMaxfee(maxfee) {
@@ -30,6 +31,7 @@ myApp.factory('ServerManager', ['$rootScope',
       
       get reserveBaseXRP() {return _reserveBaseXRP; },
       get reserveIncrementXRP() { return _reserveIncrementXRP; },
+      get minLedgerVersion() { return _minLedgerVersion; },
       
       disconnect() {
         for (var name in _servers) {
@@ -75,6 +77,7 @@ myApp.factory('ServerManager', ['$rootScope',
                   console.warn(_active.name, 'disconnected, code:', code);
                 });
                 _active.server.getServerInfo().then(info=>{
+                  _minLedgerVersion = parseInt(info.completeLedgers.split("-")[0]);
                   _reserveBaseXRP = parseFloat(info.validatedLedger.reserveBaseXRP);
                   _reserveIncrementXRP = parseFloat(info.validatedLedger.reserveIncrementXRP);
                 });

@@ -229,11 +229,13 @@ myApp.factory('XrpApi', ['$rootScope', 'AuthenticationFactory', 'ServerManager',
       checkTx(last_id, address) {
         var address = address || this.address;
         var opt = {
+            minLedgerVersion: SM.minLedgerVersion,
             limit: 25
         };
         if (last_id) {
           console.log("start", last_id);
           opt.start = last_id;
+          delete opt.minLedgerVersion;
         }
         return new Promise(async (resolve, reject)=>{
           try {
@@ -246,8 +248,13 @@ myApp.factory('XrpApi', ['$rootScope', 'AuthenticationFactory', 'ServerManager',
             console.log(data);
             resolve({id: last_id, transactions: data});
           } catch (err) {
-            console.error('getTx', err);
-            reject(err);
+            if (err.message == "Server is missing ledger history in the specified range") {
+              console.warn(err.message);
+              resolve({id: null, transactions: []});
+            } else {
+              console.error('getTx', err, err.message);
+              reject(err);
+            }
           }
         });
       },
