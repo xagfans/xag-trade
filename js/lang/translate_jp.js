@@ -229,7 +229,6 @@ var translate_jp = {
   /** Setting & security **/
   settings : '設定',
   network  : 'ネットワーク',
-  proxy    : '代理',
   server : 'サーバー',
   port : 'ポート',
   add : '追加',
@@ -244,7 +243,7 @@ var translate_jp = {
   'Ripple Public Network' : 'パブリックネットワーク',
   'Ripple Test Network' : 'テストネットワーク',
   'User defined' : 'カスタム',
-  public_url : 'Public Net URL',
+  xag_url : 'XAG Public Net URL',
   test_url   : 'Test Net URL',
   other_url  : 'Network URL',
   passphrase : 'パスフレーズ',
@@ -254,10 +253,6 @@ var translate_jp = {
   timeout_desc : 'サーバーに接続する最大時間（秒）。',
   coin_ticket: '資産コード',
   fed_protocol: 'Federation Protocol',
-  fed_ripple  : 'Ripple Service',
-  fed_ripple_desc : 'リップルアドレスを入力すれば、自動的に以下のドメインを解析する。',
-  fed_bitcoin  : 'Bitcoin Service',
-  fed_bitcoin_desc : 'ビットコインアドレスを入力すれば、自動的に以下のドメインを解析する。',
   save     : '保存',
   security : 'セキュリティ',
 

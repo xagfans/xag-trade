@@ -10,8 +10,6 @@ myApp.controller("SettingsCtrl", [ '$scope', '$rootScope', '$location', 'Setting
       return $scope.mode = mode;
     }
 
-    $scope.proxy = SettingFactory.getProxy();
-
     $scope.active_network = SettingFactory.getNetworkType();
     $scope.active_servers = SettingFactory.getServers();
     $scope.active_coin = SettingFactory.getCoin();
@@ -26,11 +24,7 @@ myApp.controller("SettingsCtrl", [ '$scope', '$rootScope', '$location', 'Setting
       $scope.server_url = $scope.all_networks[$scope.network_type].servers[0].server;
       $scope.server_port = $scope.all_networks[$scope.network_type].servers[0].port;;
     }
-    
-    
-    $scope.fed_ripple  = SettingFactory.getFedRipple();
-    $scope.fed_bitcoin = SettingFactory.getFedBitcoin();
-    
+
     $scope.set = function(type) {
       $scope.network_type = type;
       $scope.network_servers = SettingFactory.getServers(type);
@@ -96,14 +90,6 @@ myApp.controller("SettingsCtrl", [ '$scope', '$rootScope', '$location', 'Setting
         }
       }
 
-      if (mode == 'federation') {
-        SettingFactory.setFedRipple($scope.fed_ripple);
-        SettingFactory.setFedBitcoin($scope.fed_bitcoin);
-      }
-
-      if (mode == 'proxy') {
-        SettingFactory.setProxy($scope.proxy);
-      }
     };
 
   } ]);

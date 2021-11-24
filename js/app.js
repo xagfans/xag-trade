@@ -214,13 +214,6 @@ myApp.run(['$rootScope', '$window', '$location', '$translate', 'AuthenticationFa
       SM.setServers(SettingFactory.getServers());
     }
 
-    if (SettingFactory.getProxy()) {
-      try {
-        nw.App.setProxyConfig(SettingFactory.getProxy()); //"127.0.0.1:53323"
-      } catch(e) {
-        console.error("Cannot set proxy", SettingFactory.getProxy(), e);
-      }
-    }
   }]);
 
 

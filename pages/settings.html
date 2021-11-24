@@ -5,23 +5,9 @@
 				<a href="javascript:" ng-class="{active: mode=='network'}" ng-click="mode='network'">{{'network' | translate}}</a>
 				<a href="javascript:" ng-class="{active: mode=='settings'}" ng-click="mode='settings'">{{'settings' | translate}}</a>
 				<a ng-hide="true" href="javascript:" ng-class="{active: mode=='federation'}" ng-click="mode='federation'">{{'fed_protocol' | translate}}</a>
-				<a href="javascript:" ng-class="{active: mode=='proxy'}" ng-click="mode='proxy'">{{'proxy' | translate}}</a>
 			</div>
 		</div>
 
-		<div class="col-sm-9" ng-show="mode=='proxy'">
-			<div class="row" style="margin-bottom: 20px;">
-				<div class="col-xs-12 col-md-10">
-					<label translate="proxy">Proxy</label>
-					<input class="form-control" type="text" ng-model="proxy" placeholder="127.0.0.1:1080" />
-				</div>
-			</div>
-			<div class="row" style="margin-bottom: 20px;">
-				<div class="col-xs-12 col-sm-5">
-					<a class="btn btn-info btn-block btn-big" href="javascript:" ng-click="save('proxy')" translate="save">Save</a>
-				</div>
-			</div>
-		</div>
 		<div class="col-sm-9" ng-show="mode=='network'">
 			<div class="row" style="margin-bottom: 20px;">
 				<div class="col-xs-12 col-md-10">
@@ -120,28 +106,6 @@
 			</div>
 			<div class="s-alert s-alert--alert row__message" ng-show="network_error">
 				{{network_error}}
-			</div>
-		</div>
-
-		<div class="col-sm-9" ng-show="isMode('federation')">
-			<div class="row" style="margin-bottom: 20px;">
-				<div class="col-xs-12 col-md-10">
-					<label translate="fed_ripple">Ripple Service</label>
-					<p translate="fed_ripple_desc">When you enter a Ripple address, it will use below domain to parse</p>
-					<input class="form-control" type="text" ng-model="fed_ripple" placeholder="ripplefox.com" />
-				</div>
-			</div>
-			<div class="row" style="margin-bottom: 20px;">
-				<div class="col-xs-12 col-md-10">
-					<label translate="fed_bitcoin">Bitcoin Service</label>
-					<p translate="fed_bitcoin_desc">When you enter a Bitcoin address, it will use below domain to parse</p>
-					<input class="form-control" type="text" ng-model="fed_bitcoin" placeholder="naobtc.com" />
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12 col-sm-5">
-					<a class="btn btn-info btn-block btn-big" href="javascript:" ng-click="save('federation')" translate="save">Save</a>
-				</div>
 			</div>
 		</div>
 

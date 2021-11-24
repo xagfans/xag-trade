@@ -19,7 +19,7 @@ myApp.factory('SettingFactory', function($window) {
           code: "XAG",
           logo: "img/coin/xag.png"
         },
-        tabs: ["history", "trade", "balance", "send", "trust", "service", "dapp"]
+        tabs: ["history", "trade", "balance", "send", "trust", "service", "dapp"] // no contact tab
       }
     },
 
@@ -53,13 +53,6 @@ myApp.factory('SettingFactory', function($window) {
           return 'en';
         }
       }
-    },
-
-    setProxy : function(proxy) {
-      return $window.localStorage[`proxy`] = "undefined" === proxy ? '' : proxy;
-    },
-    getProxy : function() {
-      return $window.localStorage[`proxy`] || "";
     },
 
     setNetworkType : function(network) {
@@ -102,25 +95,6 @@ myApp.factory('SettingFactory', function($window) {
       return type === 'other' ? $window.localStorage[`network_coin/${type}`] : this.NETWORKS[this.getNetworkType()].coin.code;
     },
 
-    setFedStellar : function(domain) {
-      $window.localStorage['fed_stellar'] = domain;
-    },
-    getFedStellar : function(url) {
-      return $window.localStorage['fed_network'] || 'ripplefox.com';
-    },
-    setFedRipple : function(domain) {
-      $window.localStorage['fed_ripple'] = domain;
-    },
-    getFedRipple : function(url) {
-      return $window.localStorage['fed_ripple'] || 'ripplefox.com';
-    },
-    setFedBitcoin : function(domain) {
-      $window.localStorage['fed_bitcoin'] = domain;
-    },
-    getFedBitcoin : function(url) {
-      return $window.localStorage['fed_bitcoin'] || 'naobtc.com';
-    },
-
     getTradepair : function() {
       if ($window.localStorage['tradepair']) {
         return JSON.parse($window.localStorage['tradepair']);
@@ -128,8 +102,8 @@ myApp.factory('SettingFactory', function($window) {
         return {
           base_code   : this.getCurrentNetwork().coin.code,
           base_issuer : '',
-          counter_code   : 'CNY',
-          counter_issuer : 'rKiCet8SdvWxPXnAgYarFUXMh1zCPz432Y'
+          counter_code   : 'USD',
+          counter_issuer : 'rnzcChVKabxh3JLvh7qGanzqTCDW6fUSDT'
         }
       }
     },
@@ -144,7 +118,7 @@ myApp.factory('SettingFactory', function($window) {
     },
 
     getBridgeService : function() {
-      return $window.localStorage['bridge_service'] || 'ripplefox.com';
+      return $window.localStorage['bridge_service'] || 'xagfans.com';
     },
     setBridgeService : function(gateway_name) {
       $window.localStorage['bridge_service'] = gateway_name;
