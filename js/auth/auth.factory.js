@@ -36,7 +36,7 @@ myApp.factory('AuthenticationFactory', ['$rootScope', '$window', 'AuthData', 'Au
 
       AuthData.create(opts)
         .then((authdata) => {
-          console.log("AuthenticationFactory: registration succeeded", authdata);
+          // console.log("AuthenticationFactory: registration succeeded", authdata);
 
           _type = type;
           _data = authdata;
@@ -77,7 +77,7 @@ myApp.factory('AuthenticationFactory', ['$rootScope', '$window', 'AuthData', 'Au
         _type = type;
         _data = authdata;
         console.warn(`Restored "${type}" authdata from session.`)
-        console.log(_data);
+        // console.log(_data);
       } catch(e) {
         _type    = undefined;
         _data    = undefined;

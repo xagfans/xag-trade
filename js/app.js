@@ -51,8 +51,20 @@ myApp.config(function($routeProvider, $httpProvider, $translateProvider, $compil
     access : {
       requiredLogin : true
     }
+  }).when('/trustCopy', {
+    templateUrl : 'pages/trust_copy.html',
+    controller : 'TrustCtrl',
+    access : {
+      requiredLogin : true
+    }
   }).when('/send', {
     templateUrl : 'pages/send.html',
+    controller : 'SendCtrl',
+    access : {
+      requiredLogin : true
+    }
+  }).when('/sendCopy', {
+    templateUrl : 'pages/send_copy.html',
     controller : 'SendCtrl',
     access : {
       requiredLogin : true
@@ -81,8 +93,20 @@ myApp.config(function($routeProvider, $httpProvider, $translateProvider, $compil
     access : {
       requiredLogin : true
     }
+  }).when('/tradeCopy', {
+    templateUrl : 'pages/trade_copy.html',
+    controller : 'TradeCtrl',
+    access : {
+      requiredLogin : true
+    }
   }).when('/settings', {
     templateUrl : 'pages/settings.html',
+    controller : 'SettingsCtrl',
+    access : {
+      requiredLogin : true
+    }
+  }).when('/settingsCopy', {
+    templateUrl : 'pages/settings_copy.html',
     controller : 'SettingsCtrl',
     access : {
       requiredLogin : true
@@ -103,10 +127,10 @@ myApp.run(['$rootScope', '$window', '$location', '$translate', 'AuthenticationFa
         $location.path("/login");
       } else {
         if (currentRoute && currentRoute.originalPath == '/trade') {
-          console.log('Leave trade page');
+          // console.log('Leave trade page');
         }
         if (currentRoute && currentRoute.originalPath == '/send') {
-          console.log('Leave send page');
+          // console.log('Leave send page');
           $location.search({}); // clean params
         }
         // check if user object exists else fetch it. This is incase of a page refresh
@@ -123,7 +147,7 @@ myApp.run(['$rootScope', '$window', '$location', '$translate', 'AuthenticationFa
     });
 
     $rootScope.$on('$authUpdate', function(){
-      console.log('$authUpdate', AuthenticationFactory.isInMemory, $rootScope.address, AuthenticationFactory.address);
+      // console.log('$authUpdate', AuthenticationFactory.isInMemory, $rootScope.address, AuthenticationFactory.address);
 
       if (AuthenticationFactory.isInMemory) {
         $rootScope.address = AuthenticationFactory.address;
@@ -142,7 +166,7 @@ myApp.run(['$rootScope', '$window', '$location', '$translate', 'AuthenticationFa
     XrpApi.client = "xag-trade-" + appinfo.version;
     $rootScope.currentNetwork = SettingFactory.getCurrentNetwork();
     $rootScope.native = $rootScope.currentNetwork.coin;
-    
+
     $rootScope.balance = "0"; //native asset;
     $rootScope.reserve = 0;
     $rootScope.lines = {}; // lines.CNY.xxx = {code: 'CNY', issuer: 'xxx', balance: 200, limit: 1000}
@@ -189,7 +213,7 @@ myApp.run(['$rootScope', '$window', '$location', '$translate', 'AuthenticationFa
     $rootScope.getGateway = function(code, issuer) {
       return Gateways.getGateway(code, issuer);
     }
-    
+
     $rootScope.isPublicNetwork = function() {
       return this.currentNetwork.name == "XAG Public Network";
     }
@@ -204,7 +228,7 @@ myApp.run(['$rootScope', '$window', '$location', '$translate', 'AuthenticationFa
       SM.setTimeout(SettingFactory.getTimeout());
       SM.setServers(SettingFactory.getServers());
       SM.connect().then((name)=>{
-        console.log(`ServerManager connect to ${name}`);
+        // console.log(`ServerManager connect to ${name}`);
         XrpApi.remote = SM.remote;
       });
     } catch(e) {

@@ -4,13 +4,14 @@ myApp.controller("TrustCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Gateways', 'F
   function($scope, $rootScope, XrpApi, Gateways, Federation) {
     $scope.mode = 'community';
     $scope.gatewaylist = Gateways.gateways;
+    $scope.showTips = true;
     console.log($scope.gatewaylist);
-    
+
     $scope.manual_code;
     $scope.manual_issuer;
     $scope.manual_logo = Gateways.getGateway('', $scope.manual_issuer).logo;
     $scope.manual_name;
-    
+
     $scope.fed_url;
     $scope.fed_currencies = [];
     $scope.fed_error = "";
@@ -58,11 +59,11 @@ myApp.controller("TrustCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Gateways', 'F
       }
       return $rootScope.lines[code][issuer].limit > 0;
     };
-    
+
     var changing = {};
     var errors = {};
     var states = {};
-    
+
     function updateState(hash, state) {
       for (var keystr in states) {
         if (states[keystr].hash == hash) {
@@ -70,7 +71,7 @@ myApp.controller("TrustCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Gateways', 'F
         }
       }
     }
-    
+
     $scope.isChanging = function(code, issuer) {
       return !!changing[key(code, issuer)];
     }
@@ -85,11 +86,11 @@ myApp.controller("TrustCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Gateways', 'F
       var value = states[key(code, issuer)];
       return value && value.state == 'success';
     }
-    
+
     $scope.addTrust = function(code, issuer, amount) {
       amount = amount || "1000000000";
       var keystr = key(code, issuer);
-      
+
       errors[keystr] = "";
       states[keystr] = "";
       changing[keystr] = true;
@@ -103,12 +104,12 @@ myApp.controller("TrustCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Gateways', 'F
         $rootScope.$apply();
       });
     };
-    
+
     $scope.delTrust = function(code, issuer) {
       code = code || $scope.manual_code;
       issuer = issuer || $scope.manual_issuer;
       var keystr = key(code, issuer);
-      
+
       errors[keystr] = "";
       states[keystr] = "";
       changing[keystr] = true;
@@ -122,7 +123,11 @@ myApp.controller("TrustCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Gateways', 'F
         $rootScope.$apply();
       });
     };
-    
+
+    $scope.changeMode = function(){
+      $scope.mode = 'manual'
+    }
+
     $scope.$on("txSuccess", function(e, tx) {
       console.debug('txSuccess event', tx);
       updateState(tx.hash, 'success');
@@ -142,5 +147,5 @@ myApp.controller("TrustCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Gateways', 'F
     function key(code, issuer) {
       return code == $rootScope.currentNetwork.coin.code ? code : code + '.' + issuer;
     };
-    
+
   } ]);

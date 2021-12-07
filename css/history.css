@@ -55,3 +55,88 @@
 	background: #f2f2f2;
 	text-align: center;
 }
+
+/*最新的UI样式*/
+ul >li{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.historyContainer {
+
+}
+.historyContainer .historyContainer__main{
+  background: #FFFFFF;
+  box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.20000000298023224);
+  border-radius: 8px 8px 8px 8px;
+}
+.historyContainer .historyContainer__footer{
+  text-align: center;
+  margin-top: 20px;
+}
+.historyContainer .historyContainer__footer .loadMore{
+  text-decoration: none;
+  background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.historyContainer .historyContainer__footer .warningTip{
+  color: #fff;
+  background: #FFBCBC;
+  box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.20000000298023224);
+  border-radius: 6px 6px 6px 6px;
+  display: inline-block;
+  padding: 6px 20px;
+  margin-bottom: 10px;
+}
+.historyContainer .historyContainer__main .myTable{
+  margin-top: 20px;
+}
+.historyContainer .historyContainer__main .myTable .table__header,
+.historyContainer .historyContainer__main .myTable .table__body{
+  display: flex;
+  align-items: center;
+  text-align:center;
+  border-bottom: 1px solid #f2f2f2;
+  padding: 28px 0;
+}
+.historyContainer .historyContainer__main .myTable .table__header>li:first-child,
+.historyContainer .historyContainer__main .myTable .table__body>li:first-child{
+  width: 200px;
+}
+.historyContainer .historyContainer__main .myTable .table__header>li:last-child,
+.historyContainer .historyContainer__main .myTable .table__body>li:last-child{
+  flex: 1 0 0;
+}
+.historyContainer .historyContainer__main .myTable .table__header >li{
+  font-weight: bold;
+  text-align: center;
+  color: #666;
+  font-size: 18px;
+}
+.historyContainer .historyContainer__main .myTable .table__body >li{
+  color: #999999;
+  font-size: 18px;
+  text-align: left;
+  margin-left: 20px;
+}
+.historyContainer .historyContainer__main .myTable .table__body:last-child{
+  border-bottom: 0;
+}
+
+.historyContainer .historyContainer__main .transaction >span,
+.historyContainer .historyContainer__main .transaction >strong{
+  color: #666;
+  font-size: 18px;
+  font-weight: 500;
+}
+.historyContainer .historyContainer__main .transaction .effects{
+  padding: 0;
+  margin: 0;
+}
+.historyContainer .historyContainer__main .hash,
+.historyContainer .historyContainer__main .hash > a{
+  color: #999;
+  font-size: 18px;
+  font-weight: 400;
+}

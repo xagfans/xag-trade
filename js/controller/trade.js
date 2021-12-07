@@ -2,6 +2,10 @@
 
 myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook', 'SettingFactory', 'Gateways',
   function($scope, $rootScope, XrpApi, XrpOrderbook, SettingFactory, Gateways) {
+    $scope.showMode = 'buy'
+    $scope.changeShowMode = function(str){
+      $scope.showMode = str
+    }
     $scope.offers = {
       origin : null,
       all : {},
@@ -41,7 +45,7 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
               total  : total,
               price  : price
           };
-          
+
           if (sameAsset(taker_gets.currency, taker_gets.counterparty, $scope.base_code, $scope.base_issuer)
               && sameAsset(taker_pays.currency, taker_pays.counterparty, $scope.counter_code, $scope.counter_issuer)) {
               this.ask.push({
@@ -71,7 +75,7 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
         } catch(e) {
           cosole.error(e);
         }
-        
+
       }
     }
 
@@ -100,9 +104,10 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
     function addLinesToTradePairs() {
       for (var code in $rootScope.lines) {
         for (var issuer in $rootScope.lines[code]) {
-          $scope.tradeAssets[key(code, issuer)] = {code: code, issuer: issuer};
+          $scope.tradeAssets[key(code, issuer)] = {code: code, issuer: issuer, balance: $rootScope.lines[code][issuer].balance};
         }
       }
+      console.log($scope.native)
     };
     addLinesToTradePairs();
     $scope.$on("balanceUpdate", function() {
@@ -111,8 +116,8 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
     Gateways.defaultTradeAssets.forEach(asset =>{
       $scope.tradeAssets[key(asset.code, asset.issuer)] = asset;
     });
-    
-    
+
+
     $scope.precise = 2;
     $scope.price_precise = 4;
     $scope.value_precise = 2;
@@ -169,21 +174,21 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
           item.depth = depth;
           return item;
         });
-        
+
         depth = 0;
         this.bids = this.bids.map((item)=>{
           depth = depth + item.amount;
           item.depth = depth;
           return item;
         });
-        
+
         this.asks = this.asks.filter(item => {
           return new BigNumber(item.gets_value).isGreaterThan("0.001") || new BigNumber(item.pays_value).isGreaterThan("0.001");
         });
         this.bids = this.bids.filter(item => {
           return new BigNumber(item.gets_value).isGreaterThan("0.001") || new BigNumber(item.pays_value).isGreaterThan("0.001");
         });
-        
+
         var displayNum = 20;
         if (this.asks.length > displayNum) {
           this.asks = this.asks.slice(0, displayNum);
@@ -216,13 +221,15 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
       });
     }
     $scope.refreshBook();
+    // setInterval(() => {
+    //   $scope.refreshBook();
+    // },3000)
 
     $scope.refreshingOffer = false;
     $scope.refreshOffer = function() {
       $scope.refreshingOffer = true;
       XrpApi.checkOffers().then(data => {
         $scope.offers.update(data);
-        console.log($scope.offers);
         $scope.refreshingOffer = false;
         $scope.$apply();
       }).catch(err => {
@@ -231,7 +238,7 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
       });
     }
     $scope.refreshOffer();
-    
+
     $scope.$on("balanceUpdate", function() {
       console.debug('balanceUpdate event got');
       $scope.refreshOffer();
@@ -242,7 +249,7 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
     $scope.buy_fail;
     $scope.selling = false;
     $scope.sell_fail;
-    
+
     $scope.buy_hash = "";
     $scope.buy_state = "";
     $scope.sell_hash = "";
@@ -296,10 +303,10 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
       if (src == 'bid') {
         $scope.sell_price = price;
       } else {
-        $scope.buy_price = price;
+        $scope.sell_price = price;
       }
     }
-    
+
     $scope.offerWithCheck = function(type) {
       var price;
       if (type == 'buy') {
@@ -319,12 +326,16 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
       }
     }
 
-    $scope.offer = function(type) {
+    $scope.resetState = function(type){
       $scope['fatfinger' + type] = false; // hide the fatfinger warning
       $scope[type + 'ing'] = true;
       $scope[type + '_hash'] = "";
       $scope[type + '_state'] = "";
       $scope[type + '_fail'] = "";
+    }
+
+    $scope.offer = function(type) {
+      $scope.resetState('sell')
       var option = {
         type : type,
         base        : $scope.base_code,
@@ -332,26 +343,21 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
         counter        : $scope.counter_code,
         counter_issuer : $scope.counter_issuer
       };
-      if (type == 'buy') {
-        option.amount = $scope.buy_amount;
-        option.price  = $scope.buy_price;
-      } else {
-        option.amount = $scope.sell_amount;
-        option.price  = $scope.sell_price;
-      }
+      option.amount = $scope.sell_amount;
+      option.price  = $scope.sell_price;
       XrpApi.offer(option).then(hash => {
-        $scope[type + 'ing'] = false;
-        $scope[type + '_hash'] = hash;
-        $scope[type + '_state'] = "submitted";
-        $scope[type + '_amount'] = "";
-        $scope[type + '_price'] = "";
-        $scope[type + '_volume'] = "";
+        $scope['selling'] = false;
+        $scope['sell_hash'] = hash;
+        $scope['sell_state'] = "submitted";
+        $scope['sell_amount'] = "";
+        $scope['sell_price'] = "";
+        $scope['sell_volume'] = "";
         $scope.$apply();
         $scope.refreshOffer();
         $scope.refreshBook();
       }).catch(err => {
-        $scope[type + 'ing'] = false;
-        $scope[type + '_fail'] = err.message;
+        $scope['selling'] = false;
+        $scope['sell_fail'] = err.message;
         $scope.$apply();
       });
     }
@@ -360,7 +366,7 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
     $scope.isCancelling = function(id) {
       return !!$scope.offerDelete[id];
     }
-    
+
     $scope.cancel = function(offer_id) {
       $scope.offerDelete[offer_id] = true;
       $scope.cancel_error = "";
@@ -373,8 +379,9 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
     }
 
     $scope.show_pair = false;
-    $scope.choosePair = function() {
+    $scope.choosePair = function(key) {
       $scope.show_pair = !$scope.show_pair;
+      $scope.pairKey = key;
       if (!$scope.show_pair) {
         $scope.book.clean();
         $scope.offers.clean();
@@ -394,6 +401,8 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
         $scope.counter_issuer = issuer;
         $scope.counter = $rootScope.getGateway(code, issuer);
       }
+      $scope.pairKey = ''
+      $scope.show_pair = false
       $scope.precise_jutify();
     }
     $scope.flip = function() {
@@ -417,7 +426,7 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
     $scope.isCounter = function(code, issue) {
       return sameAsset(code, issue, $scope.counter_code, $scope.counter_issuer);
     }
-    
+
     $scope.countdown = 30;
     console.log('countdown');
     $scope.timer = setInterval(function() {
@@ -428,11 +437,11 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
         }
       });
     }, 1000);
-    
+
     $scope.$on("$destroy", function() {
       clearInterval($scope.timer);
     });
-    
+
     function sameAsset(code, issuer, code2, issuer2) {
       if (code == $rootScope.currentNetwork.coin.code) {
         return code == code2;
@@ -440,7 +449,7 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
         return code == code2 && issuer == issuer2;
       }
     }
-    
+
     function native2coin(asset) {
       obj = JSON.parse(JSON.stringify(asset));
       if (obj.currency == 'XRP') {

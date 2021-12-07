@@ -1,0 +1,106 @@
+.login-content{
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-content .login-video-bg{
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.login-content .title{
+    color: #fff;
+}
+
+.login-content .login-form-content{
+    width: 400px;
+}
+
+.login-content .row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.internationalization{
+    list-style: none;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    margin: 16px 0 4px;
+}
+.internationalization li{
+    margin: 0 15px;
+    cursor: pointer;
+}
+
+.tolink-group{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    font-size: 12px;
+    line-height: 12px;
+}
+
+.tolink-group a{
+    cursor: pointer;
+    color: #fff;
+}
+
+.form-btn{
+    background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
+    height: 38px;
+    line-height: 38px;
+    color: #fff;
+    border-style: none;
+    padding: 0;
+    outline: none;
+}
+.form-btn:hover{
+    color: #fff;
+}
+.form-btn:active,.form-btn:focus,.form-btn:active:focus{
+    background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
+    color: #fff;
+    outline: none;
+}
+.login-content .login-input,.login-content .login-upload{
+    background: rgba(29, 29, 29, 0.9);
+    height: 38px;
+    line-height: 38px;
+    border-style: none;
+    color: #fff;
+}
+
+.login-content .login-upload{
+    padding: 0;
+    color: #fff;
+}
+
+.login-content .login-input:focus{
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(255 255 255 / 60%)
+}
+
+.btn-black{
+    color: #fff;
+    text-align: right;
+    display: block;
+    cursor: pointer;
+}
+.btn-black:hover{
+    color: #fff;
+}
