@@ -1,5 +1,7 @@
 /* exported translate_en */
 var translate_en = {
+  wellcome: 'WELCOME TO RIPO',
+  wellcome_span: 'Distributed value exchange network',
   header_wellcome : 'Welcome to Ripple, a global value exchange',
   login_desc : 'You can only use a secret key to access an existing account. This is because the desktop client stores your login information locally on your computer, so your account is as safe as the security of your personal computer.',
   open_wallet: 'Open wallet',
@@ -23,6 +25,7 @@ var translate_en = {
   pwd_not_match : 'Passwords do not match',
   encrypt_account : 'Encrypt account',
   create_secret : 'Create account with secret key',
+  enter_password: 'Enter Account Password',
   enter_secret : 'Enter your secret key',
   invalid_account: 'Account is invalid',
   invalid_secret : 'Secret is invalid',
@@ -44,7 +47,7 @@ var translate_en = {
   back   : 'Back',
   confirm: 'Confirm',
   stop_countdown: 'Stop countdown',
-  
+
   /** Balance & Trust **/
   overview: 'Overview',
   balance : 'Balance',
@@ -66,13 +69,14 @@ var translate_en = {
   fed_url : 'Federation URL',
   fed_unable : 'Unable to find currencies for',
   fed_loading: 'Loading currencies for',
-  manual_add : 'Manually add trust',
+  manual_add : 'Custom authorization',
   issuer_invalid : 'Asset issuer account ID must be a valid account ID',
   trust_granted  : 'Trust is granted!',
 
   /** send **/
   send : 'Send',
   send_money : 'Send money',
+  send_money_account : 'Transfer account',
   name_or_address : 'Contact name or XAG address',
   send_note : 'Note: The target address must also trust the asset you are sending.',
   recipient : 'Recipient',
@@ -124,7 +128,7 @@ var translate_en = {
   act_will_upd  : 'Your account will update once the transaction has cleared.',
   back_convert  : 'Do another conversion',
   go_balance    : 'Back to balance',
-  
+
   /** History **/
   history: 'History',
   you         : 'You',
@@ -137,9 +141,9 @@ var translate_en = {
   you_convert: 'You requested to convert',
   you_convert_to: 'to',
   you_sold: 'You sold',
-  you_sold_for: 'for', 
+  you_sold_for: 'for',
   you_bought: 'You bought',
-  you_bought_for: 'for', 
+  you_bought_for: 'for',
   order_filled: '. This order has been filled.',
   rest_cancel: '. The rest of your order has been cancelled due to lack of funds.',
   order_has: '. This order has',
@@ -170,7 +174,7 @@ var translate_en = {
   tx_tag: '. (Tag',
   another_payment: 'Send another payment',
   request_quote: 'Requesting quote',
-  
+
   choose : 'Choose',
   example : 'example',
   refresh : 'Refresh',
@@ -211,6 +215,7 @@ var translate_en = {
   order_amount  : 'Amount',
   price_of_each : 'Price of Each',
   order_value   : 'Order Value',
+  rental: 'Rental',
   offer_success : 'Offer successfully created',
   trade_pick : 'Choose asset to trade',
   as_base    : 'As base asset',
@@ -244,16 +249,16 @@ var translate_en = {
   'XAG Test Network' : 'XAG Test Network',
   'User defined' : 'User defined',
   xag_url : 'XAG Public Net URL',
-  test_url   : 'Test Net URL',
-  other_url  : 'Network URL',
-  passphrase : 'Passphrase or id',
+  test_url: 'Test Net URL',
+  other_url: 'Network URL',
+  passphrase: 'Passphrase or id',
   coin_ticket: 'Native asset code',
-  max_fee     : 'Max Fee',
+  max_fee: 'Max Fee',
   max_fee_desc: 'Maximum fee to use with transactions.',
-  timeout      : 'Network Timeout',
+  timeout: 'Network Timeout',
   timeout_desc : 'Timeout in seconds before considering a request to have failed.',
   fed_protocol: 'Federation Protocol',
-  save     : 'Save',
+  save: 'Save',
   security : 'Security',
 
   home_domain : 'Home Domain',
@@ -266,7 +271,8 @@ var translate_en = {
   flags_done  : 'Settings updated',
   messagekey_desc : 'Public key for sending encrypted messages to this account. ',
   manage_data : 'Manage Data',
-  back           : 'Back',
+  back: 'Back',
+  message_key: 'Message Key',
 
   AccountDelete : 'Delete account',
   merge_desc     : 'Danger operation! It transfers your {{code}} to destination account and cost you 5 {{code}}.',
@@ -274,7 +280,7 @@ var translate_en = {
   dest_account   : 'Destination Account',
   delete_warning : 'I KNOW EVERYTHING >>',
   merge_done     : 'Your account was merged to destination.',
-  
+
   /** Deposit & withdrawl **/
   service : 'Service',
   deposit_withdraw : 'Deposit/Withdraw',
@@ -300,11 +306,18 @@ var translate_en = {
   version: 'Version',
   logout : 'Logout',
   new_version_available: 'New version available',
-
+  Ripo_desktop_Wallet: 'Ripo desktop Wallet',
+  server: 'The server',
+  port: 'PORT',
+  operation: 'OPERATION',
   /** Error **/
   NotFoundError : 'The resource was not found. You must have at least 20 {{name}} in your account for it to be activated! Each trust line or offer requires a 5 {{name}}  reserve in addition. To make things easy, send at least 31 {{name}}s to the account.',
   NotConnectedError : 'Not connected, please retry later.',
   NoRippleTXT: 'Ripple.txt was not found.',
   NoFederationUrl: 'Federation service url was not provided.',
-  'Invalid Email' : 'Invalid Email address.'
+  'Invalid Email' : 'Invalid Email address.',
+
+  ytf_address: 'Ethereum address',
+  ytf_address_span: 'Append 02 + 24 zeros to the uppercase character set to generate.'
+
 }

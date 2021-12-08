@@ -204,7 +204,7 @@ myApp.factory('XrpApi', ['$rootScope', 'AuthenticationFactory', 'ServerManager',
               lines[keystr].balance = item.state.balance;
             });
             _trustlines = lines;
-            console.log('lines:', ret);
+            // console.log('lines:', ret);
             resolve(lines);
           }).catch(e => {
             console.error('getTrustlines', e);
@@ -233,7 +233,7 @@ myApp.factory('XrpApi', ['$rootScope', 'AuthenticationFactory', 'ServerManager',
             limit: 25
         };
         if (last_id) {
-          console.log("start", last_id);
+          // console.log("start", last_id);
           opt.start = last_id;
           delete opt.minLedgerVersion;
         }
@@ -245,7 +245,7 @@ myApp.factory('XrpApi', ['$rootScope', 'AuthenticationFactory', 'ServerManager',
             if (data.length) {
               last_id = data[data.length-1].id;
             }
-            console.log(data);
+            // console.log(data);
             resolve({id: last_id, transactions: data});
           } catch (err) {
             if (err.message == "Server is missing ledger history in the specified range") {
@@ -464,7 +464,7 @@ myApp.factory('XrpApi', ['$rootScope', 'AuthenticationFactory', 'ServerManager',
               Account: this.address,
               Destination: dest_account
             }, localInstructions);
-            console.log(prepared);
+            // console.log(prepared);
             var obj = JSON.parse(prepared.txJSON);
             obj.Fee = "5000000";
             const {signedTransaction} = AuthenticationFactory.sign(this, JSON.stringify(obj), "5");
@@ -527,7 +527,7 @@ myApp.factory('XrpApi', ['$rootScope', 'AuthenticationFactory', 'ServerManager',
       
       listenStream() {
         this._closeStream();
-        console.log('subscribe', this.address);
+        // console.log('subscribe', this.address);
         var self = this;
         _myHandleAccountEvent = function(e) {
           self._handleAccountEvent(e)
@@ -544,7 +544,7 @@ myApp.factory('XrpApi', ['$rootScope', 'AuthenticationFactory', 'ServerManager',
 
       _closeStream() {
         if(_myHandleAccountEvent) {
-          console.log('unsubscribe', this.address);
+          // console.log('unsubscribe', this.address);
           _remote.connection.removeListener('transaction', _myHandleAccountEvent);
           _myHandleAccountEvent = undefined;
           _remote.request('unsubscribe', {
@@ -558,7 +558,7 @@ myApp.factory('XrpApi', ['$rootScope', 'AuthenticationFactory', 'ServerManager',
       },
       
       _handleAccountEvent(event) {
-        console.log('event', event);
+        // console.log('event', event);
         $rootScope.$broadcast("accountEvent");
         this.queryAccount();
       }

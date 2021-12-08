@@ -44,7 +44,7 @@ var translate_jp = {
   back   : '戻る',
   confirm: '確定',
   stop_countdown: '自動ジャンプをキャンセルする',
-  
+
   /** Balance & Trust **/
   overview: '概要',
   balance : '残高',
@@ -66,13 +66,14 @@ var translate_jp = {
   fed_url : 'federation URL',
   fed_unable : '資産が見つかりませんでした',
   fed_loading: '資産解析中',
-  manual_add : '手作業で与信する',
+  manual_add : 'カスタム認可',
   issuer_invalid : '発行者アカウントは有効なリップルアドレスである必要があります。',
   trust_granted  : '与信限度額設定成功！',
 
   /** send **/
   send : '発送',
   send_money : '送金',
+  send_money_account : '振込口座',
   name_or_address : '受取側の名前やアドレス',
   send_note : '注意：受取側も同じ資産へ与信する必要があります。',
   recipient : '受取者',
@@ -133,13 +134,13 @@ var translate_jp = {
   loading     : '読み込み中...',
   load_more   : 'さらに読み込む',
   no_more     : 'これ以上の取引はありません',
-  
+
   you_convert: 'あなたは以下の資産への兌換を要求します',
   you_convert_to: '→',
   you_sold: 'あなたは以下の資産を売却します',
-  you_sold_for: '以下の資産を受け取りました', 
+  you_sold_for: '以下の資産を受け取りました',
   you_bought: 'あなたは以下の資産を購入しました',
-  you_bought_for: 'あなたは以下の金額を払いました', 
+  you_bought_for: 'あなたは以下の金額を払いました',
   order_filled: '。この注文は完全に完了しています。',
   rest_cancel: '。残りの注文は資金不足のためキャンセルされました。',
   order_has: '。この注文は以下の金額が残っています',
@@ -211,6 +212,7 @@ var translate_jp = {
   order_amount  : '数量',
   price_of_each : '単価',
   order_value   : '注文総額',
+  rental: 'そうけい',
   offer_success : '注文成功',
   trade_pick : '取引資産を選択する',
   as_base    : '主軸通貨とする',
@@ -253,7 +255,7 @@ var translate_jp = {
   timeout_desc : 'サーバーに接続する最大時間（秒）。',
   coin_ticket: '資産コード',
   fed_protocol: 'Federation Protocol',
-  save     : '保存',
+  save     : '保存＃ホゾン＃',
   security : 'セキュリティ',
 
   home_domain : 'ドメイン',
@@ -267,6 +269,7 @@ var translate_jp = {
   manage_data : 'データ',
   messagekey_desc : 'このアカウントに暗号化されたメッセージを送信するための公開鍵。',
   back           : '戻る',
+  message_key: 'メッセージキー',
 
   AccountDelete : 'アカウントを削除する',
   merge_desc     : '危険!該当操作はあなたが所有する{{code}}を相手側へ発送します。手数料は5 {{code}}です！',
@@ -274,7 +277,7 @@ var translate_jp = {
   dest_account   : '宛先アカウント',
   delete_warning : 'すべてのリスクを了解しました >>',
   merge_done     : 'あなたのアカウントは宛先アカウントと合併されました。',
-  
+
   /** Deposit & withdrawl **/
   service : 'サービス',
   deposit_withdraw : '入出金',
@@ -300,11 +303,18 @@ var translate_jp = {
   version: 'バージョン',
   logout : 'ログアウト',
   new_version_available: '新しいバージョンが見つかりました',
-
+  Ripo_desktop_Wallet: 'Ripoデスクトップの財布',
+  server: 'サーバー',
+  port: 'ポート',
+  operation: '操作',
+  addTo: '添加',
   /** Error **/
   NotFoundError : '該当アカウントが見つかりませんでした。アクティブ化してください。アクティブ化には20枚以上の{{code}}が必要です。与信する、注文するたびにはさらに5枚の{{code}}が必要です。31枚以上の {{code}}でアクティブ化することをお勧めします。',
   NotConnectedError : 'サーバーに接続されていません。しばらくしてからもう一度お試しください。',
   NoRippleTXT: '該当サイトはripple.txtファイルを提供していません',
   NoFederationUrl: '該当サイトはFederation Protocolが適用されていません',
-  'Invalid Email' : 'メールアドレスが間違っています。'
+  'Invalid Email' : 'メールアドレスが間違っています。',
+
+  ytf_address: 'エーテル坊アドレス',
+  ytf_address_span: '02+24ゼロを大文字セットにアタッチして生成します。'
 }

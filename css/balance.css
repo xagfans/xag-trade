@@ -12,7 +12,7 @@
 }
 
 .islandBack--t {
-	padding-top: 27px;
+	padding-top: 20px;
 }
 
 .islandBack--ttt {
@@ -149,34 +149,32 @@
 }
 
 .s-alert--success {
-    border: 1px solid #383;
-    background: #d6e7d6;
+    background: #4cb780;
 }
 
 .s-alert--info {
-    border: 1px solid #69f;
-    background: #e8f0ff;
+    /* border: 1px solid #69f; */
+    background: #69f;
 }
 
 .s-alert--error {
-	border: 1px solid #d12;
-	background: #f8cfd3
+	background: #FFBCBC;
 }
 
 .s-alert--alert {
-    border: 1px solid #d12;
-    background: #f8cfd3;
+	background: #FFBCBC;
 }
 
 .s-alert--warning {
-	border: 1px solid #d12;
-	background: #FCF8E3;
+	background: #f0ad4e;
 }
 
 .s-alert {
+	box-shadow: 0px 0px 6px 1px rgb(0 0 0 / 20%);
+	color: #fff;
     display: block;
     padding: 8px 16px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     border-radius: 3px;
 }
 
@@ -188,7 +186,6 @@
 	width: 100%;
 	text-align: center;
 	font-size: 21px;
-	color: #3a3f43;
 }
 
 .row__fixedAsset {
@@ -252,7 +249,7 @@
 	border-radius: 3px;
 	display: flex;
 	padding: 8px 16px 8px 8px;
-	height: 64px;
+	height: 88px;
 	align-items: center;
 	border: 1px solid #dedfe0;
 }
@@ -279,7 +276,7 @@
 	background: #fff;
 	flex: 0 0 auto;
 	margin-right: 16px;
-	border-radius: 3px;
+	border-radius: 6px;
 }
 
 .AssetCard__logo__image {
@@ -336,4 +333,212 @@ a.AssetCard__federation:hover {
 	{
 	border: 1px solid #5CDA63;
 	box-shadow: 0 0 1px rgba(#5CDA63, 0.3);
+}
+
+/**最新得UI样式**/
+.balanceContainer{}
+.balanceContainer .balanceContainer__warning{
+	background: #FFBCBC;
+	box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.20000000298023224);
+	border-radius: 6px 6px 6px 6px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	padding: 15px 10px;
+	margin-bottom: 12px;
+}
+.balanceContainer  .balanceContainer__warning .leftIcon{
+	width: 49px;
+	margin-right: 11px;
+}
+.balanceContainer  .balanceContainer__warning .leftIcon img{
+	width: 100%;
+}
+.balanceContainer  .balanceContainer__warning .tips{
+	flex:1 0 0;
+}
+.balanceContainer  .balanceContainer__warning .tips > span{
+	font-size: 14px;
+	line-height: 16px;
+	color: #fff;
+}
+.balanceContainer .balanceContainer__content{}
+.balanceContainer .balanceContainer__content .content__top{
+	display: flex;
+	flex-wrap:wrap;
+	position: relative;
+}
+.content__top .absoluteClass{
+	position: absolute !important;
+	top: 156px;
+	right: 0;
+	margin: 0 !important;
+}
+.content__top .addTo__top{
+	position: absolute !important;
+	top: 0;
+	right: 2px;
+	margin: 0 !important;
+}
+.balanceContainer .balanceContainer__content .content__top .leftAssets{
+	width: 766px;
+	margin-right: 17px;
+}
+.balanceContainer .balanceContainer__content .content__top .right{
+	flex: 1 0 0;
+}
+.balanceContainer .balanceContainer__content .content__top .assets{}
+.balanceContainer .balanceContainer__content .assetsCards{
+	height: 142px;
+	background: #52C3E1;
+	min-width: 31.4%;
+	box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.20000000298023224);
+	border-radius: 6px 6px 6px 6px;
+	margin-bottom: 17px;
+	margin-right: 17px;
+}
+.noMarginRight{
+	margin-right: 0 !important;
+}
+.balanceContainer .balanceContainer__content .assetsCards .assetsCards__content{
+	display: flex;
+	align-items: center;
+	padding: 17px 0 0 17px;
+}
+.balanceContainer .balanceContainer__content .assetsCards .content__logo{
+	width: 48px;
+	height: 48px;
+	background: #fff;
+	margin-right: 14px;
+	border-radius: 8px;
+}
+.balanceContainer .balanceContainer__content .assetsCards .content__logo .logo__image{
+	width: 90%;
+	height: 90%;
+	margin: 5%;
+}
+.balanceContainer .balanceContainer__content .assetsCards .content__main{}
+.balanceContainer .balanceContainer__content .assetsCards .content__main .assetsName,
+.balanceContainer .balanceContainer__content .assetsCards .content__main .assetsCode
+{
+	color: #fff;
+	text-align:left;
+	overflow: hidden;
+}
+.balanceContainer .balanceContainer__content .assetsCards .content__main .assetsName{
+	font-size: 14px;
+	font-weight: bold;
+}
+.balanceContainer .balanceContainer__content .assetsCards .content__main .assetsCode{
+	font-weight: 500;
+	font-size: 13px;
+}
+.balanceContainer .balanceContainer__content .assetsCards .assetsCards__footer{
+	display: flex;
+	align-items:center;
+	justify-content: space-between;
+	padding: 0 17px;
+	margin-top: 28px;
+}
+.balanceContainer .balanceContainer__content .assetsCards .assetsCards__footer .descName,
+.balanceContainer .balanceContainer__content .assetsCards .assetsCards__footer .amount{
+	font-size: 16px;
+	color: #fff;
+}
+.balanceContainer .balanceContainer__content .assetsCards .assetsCards__footer .descName{
+
+}
+.balanceContainer .balanceContainer__content .assetsCards .assetsCards__footer .amount{}
+
+.balanceContainer .balanceContainer__content .assetsCards:last-child{
+	margin-bottom: 0;
+}
+.balanceContainer .balanceContainer__content .assetsCards.bigCard{
+	height: 300px;
+	background: #52C3E1;
+	width: 766px;
+	margin-right: 17px;
+}
+.balanceContainer .balanceContainer__content .assetsCards.bigCard .assetsCards__content{
+	padding: 49px 0 0 49px;
+}
+.balanceContainer .balanceContainer__content .assetsCards.bigCard .content__logo{
+	width: 132px;
+	height: 132px;
+	margin-right: 52px;
+}
+.balanceContainer .balanceContainer__content .assetsCards.bigCard .content__main .assetsName{
+	font-size: 37px;
+}
+.balanceContainer .balanceContainer__content .assetsCards.bigCard .content__main .assetsCode{
+	font-size: 24px;
+}
+.balanceContainer .balanceContainer__content .assetsCards.bigCard .assetsCards__footer{
+	padding: 0 49px;
+	margin-top: 65px;
+	font-size: 21px;
+}
+.balanceContainer .balanceContainer__content .assetsCards.addCards{
+	background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
+	opacity: 0.2;
+	position: relative;
+	cursor: pointer;
+}
+.assetsCards.XRP{
+	background: #4E9BDA !important;
+}
+.assetsCards.ABC{
+	background: #53AFC6 !important;
+}
+.assetsCards.BCD{
+	background:#B6B6B6 !important;
+}
+.assetsCards.CNY{
+	background:#7092E3!important;
+}
+.assetsCards.BTC{
+	background:#5CCC86!important;
+}
+.assetsCards.USD{
+	background:#97CEFF!important;
+}
+.assetsCards.XAG{
+	background:#7092E3!important;
+}
+.balanceContainer .balanceContainer__content .assetsCards.addCards .defaultIcon{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%,-50%);
+	-moz-transform: translate(-50%,-50%);
+	-ms-transform: translate(-50%,-50%);
+	-o-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+}
+.balanceContainer .balanceContainer__content .assetsCards.addCards .defaultIcon >img{
+	width: 80px;
+}
+
+
+.balanceContainer .balanceContainer__content .assetsCards.bigCard .assetsCards__footer .descName,
+.balanceContainer .balanceContainer__content .assetsCards.bigCard .assetsCards__footer .amount{
+	font-size: 21px;
+}
+.balanceContainer .balanceContainer__content .content__top ul>li{
+	list-style: none;
+}
+.balanceContainer .balanceContainer__content .content__top{
+	margin-top: 17px;
+}
+.balanceContainer .balanceContainer__content .content__top .Bal__row{
+	display: flex;
+	align-items: center;
+	padding: 0;
+	margin: 0;
+	justify-content: space-between;
+	flex-flow: wrap;
+}
+.balanceContainer .balanceContainer__content .content__top .Bal__row li{
+	width: calc(50% - 8px);
+	margin-bottom: 17px;
 }

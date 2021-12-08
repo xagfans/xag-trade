@@ -1,113 +1,80 @@
-<section class="col-xs-12 content">
-	<div class="row">
-		<div class="col-sm-3">
-			<div class="settingPage">
-				<a href="javascript:" ng-class="{active: mode=='network'}" ng-click="mode='network'">{{'network' | translate}}</a>
-				<a href="javascript:" ng-class="{active: mode=='settings'}" ng-click="mode='settings'">{{'settings' | translate}}</a>
-				<a ng-hide="true" href="javascript:" ng-class="{active: mode=='federation'}" ng-click="mode='federation'">{{'fed_protocol' | translate}}</a>
+<section class="col-xs-12 settingPage">
+	<div class="cards">
+		<div class="cardsNav">
+			<div class="navItem col-md-6" ng-class="{active: mode=='network'}" ng-click="mode='network'">
+				<span  class="navTitle">{{'network' | translate}}</span>
+			</div>
+			<div class="navItem col-md-6" ng-class="{active: mode=='settings'}" ng-click="mode='settings'">
+				<span class="navTitle">{{'settings' | translate}}</span>
 			</div>
 		</div>
+		<div class="cardsContent" ng-show="mode=='network'">
 
-		<div class="col-sm-9" ng-show="mode=='network'">
-			<div class="row" style="margin-bottom: 20px;">
-				<div class="col-xs-12 col-md-10">
-					<label translate="selected_net">Selected Ripple Network</label>
-					<ul>
-						<!-- <li><strong>Type: </strong><tt>{{active_network | translate}}</tt></li> -->
-						<li><strong>Network: </strong>{{all_networks[active_network].name}}</li>
-						<li><strong>Coin: </strong>{{active_coin}}</li>
+			<div class="cardTable">
+				<div class="table__header">
+					<div class="row">
+						<div class="col-md-6 column" translate="server">server</div>
+						<div class="col-md-3 column" translate="port">port</div>
+						<div class="col-md-3 column" translate="operation">operation</div>
+					</div>
+				</div>
+				<div class="table__body">
+					<div class="row">
+						<div class="col-md-6 column">
+							<input class="input-control" style="width: 280px;" type="text" ng-model="server_url" placeholder="g1.xrpgen.com"/>
+						</div>
+						<div class="col-md-3 column">
+							<input class="input-control" type="number" ng-model="server_port" placeholder="443"/>
+						</div>
+						<div class="col-md-3 column">
+							<div class="myBtn" ng-disabled="!server_url" ng-click="addServer()" translate="add">add To</div>
+						</div>
+					</div>
+					<div class="row" ng-repeat="remote in network_servers">
+						<div class="col-md-6 column">{{remote.server}}</div>
+						<div class="col-md-3 column">{{remote.port}}</div>
+						<div class="col-md-3 column">
+							<div class="myBtn text delete" ng-click="removeServer($index)" translate="remove">Delete</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="cardFooter">
+				<div class="myBtn marginBtn" ng-disabled="network_servers.length" ng-click="resetServer()" translate="reset">RESET</div>
+				<div class="myBtn marginBtn" translate="save" ng-disabled="network_type=='other' && !network_coin" ng-click="save('network')">preservation</div>
+			</div>
+		</div>
+		<div class="cardsContent" ng-show="mode=='settings'">
+			<div class="row">
+				<div class="col-md-6 columnItem">
+					<label class="l-title" translate="max_fee">Max Fee</label>
+					<p class="l-tips">{{ 'max_fee_desc' | translate }} ({{network_coin}})</p>
+					<input class="input-control" type="number" ng-model="network_maxfee" placeholder="0.2" />
+				</div>
+				<div class="col-md-6 columnItem">
+					<label class="l-title" translate="timeout">Connection Timeout</label>
+					<p class="l-tips" translate="timeout_desc">It is possible that the status of your transaction will be determined after a long time if the network is highly congested. The timeout number can not be negative. If the value is 0, the transaction is good indefinitely.</p>
+					<input class="input-control" type="number" ng-model="network_timeout" placeholder="30"  data-toggle="dropdown"/>
+					<ul class="dropdown-menu timeout__downMenu" role="menu">
+						<li ng-click="network_timeout=0">0</li>
+						<li ng-click="network_timeout=10">10</li>
+						<li ng-click="network_timeout=30">30</li>
+						<li ng-click="network_timeout=60">60</li>
 					</ul>
+<!--					<datalist id="timeoutlist">-->
+<!--						<option value="0">-->
+<!--						<option value="10">-->
+<!--						<option value="30">-->
+<!--						<option value="60">-->
+<!--					</datalist>-->
 				</div>
 			</div>
-			<div class="row" style="margin-bottom: 20px;">
-				<div class="col-xs-12 col-md-10">
-					<label translate="switch_net">Switch Ripple Network</label>
-					<p translate="switch_net_desc">The testnet is for, well, testing. It’s occasionally reset, so don’t get attached to any balances or accounts that you have on it.</p>
-					<div class="btn-group">
-						<span ng-repeat="n in all_networks">
-							<button class="btn btn-success" ng-class="{active: network_type == n.networkType}" ng-click="set(n.networkType)">{{n.name | translate}}</button>
-						</span>
-					</div>
-				</div>
-			</div>
-			<div class="row" style="margin-bottom: 20px;" ng-init="network = currentNetwork">
-				
-					<div class="col-xs-6 col-md-5" style="margin-bottom: 10px;">
-						<label translate="server">Server</label>
-						<input class="form-control" type="text" ng-model="server_url" placeholder="g1.xrpgen.com"/>
-					</div>
-					<div class="col-xs-6 col-md-5" style="margin-bottom: 10px;">
-						<label translate="port">Port</label>
-						<input class="form-control" type="number" ng-model="server_port" placeholder="443"/>
-					</div>
-					
-					<div class="col-xs-12 col-md-5" style="margin-bottom: 10px;">
-						<button class="btn btn-info btn-block" ng-disabled="!server_url" ng-click="addServer()" translate="add">Add</button>
-					</div>
-					
-					<div class="col-xs-12 col-md-5" style="margin-bottom: 10px;">
-						<button class="btn btn-info btn-block" ng-disabled="network_servers.length" ng-click="resetServer()" translate="reset">Reset</button>
-					</div>
-				
-					<div class="col-xs-12 col-md-10">
-						<table class="table table-hover" style="border: 1px solid #dedfe0;">
-							<tr ng-repeat="remote in network_servers">
-								<td>{{remote.server}}</td>
-								<td>{{remote.port}}</td>
-								<td>
-									<a href="javascript:" ng-click="removeServer($index)" translate="remove">Remove</a>
-								</td>
-							</tr>
-						</table>
-					</div>
-			
-			  	<div class="col-xs-12 col-md-10" ng-show="network_type == 'other'">
-					  <label translate="coin_ticket">coin ticket</label>
-					  <input class="form-control" type="text" ng-model="network_coin" placeholder="XRP"/>
-				  </div>
-			</div>
-
-			<div class="row" style="margin-bottom: 20px;">
-				<div class="col-xs-12 col-sm-5">
-					<button class="btn btn-info btn-block" ng-disabled="network_type=='other' && !network_coin" ng-click="save('network')" translate="save">Save</button>
-				</div>
-			</div>
-			<div class="s-alert s-alert--alert row__message" ng-show="network_error">
-				{{network_error}}
+			<div class="cardFooter">
+				<div class="myBtn" ng-click="save('settings')" translate="save">Save</div>
 			</div>
 		</div>
-		
-		<div class="col-sm-9" ng-show="mode=='settings'">
-			<div class="row" style="margin-bottom: 20px;">
-          <div class="col-xs-12 col-md-10">
-              <label translate="max_fee">Max Fee</label>
-              <p>{{ 'max_fee_desc' | translate }} ({{network_coin}})</p>
-              <input class="form-control" type="number" ng-model="network_maxfee" placeholder="0.2" />
-          </div>
-      </div>
-			<div class="row" style="margin-bottom: 20px;">
-          <div class="col-xs-12 col-md-10">
-              <label translate="timeout">Connection Timeout</label>
-              <p translate="timeout_desc">It is possible that the status of your transaction will be determined after a long time if the network is highly congested. The timeout number can not be negative. If the value is 0, the transaction is good indefinitely.</p>
-              <input class="form-control" type="number" ng-model="network_timeout" placeholder="30" list="timeoutlist"/>
-              <datalist id="timeoutlist">
-                  <option value="0">
-                  <option value="10">
-                  <option value="30">
-                  <option value="60">
-              </datalist>
-          </div>
-      </div>
-
-			<div class="row" style="margin-bottom: 20px;">
-				<div class="col-xs-12 col-sm-5">
-					<a class="btn btn-info btn-block btn-big" href="javascript:" ng-click="save('settings')" translate="save">Save</a>
-				</div>
-			</div>
-			<div class="s-alert s-alert--alert row__message" ng-show="network_error">
-				{{network_error}}
-			</div>
+		<div class="s-alert s-alert--alert row__message" ng-show="network_error">
+			{{network_error}}
 		</div>
-
 	</div>
 </section>

@@ -3,10 +3,9 @@
 myApp.controller("HistoryCtrl", [ '$scope', '$rootScope', 'XrpApi', 'AuthenticationFactory',
   function($scope, $rootScope, XrpApi, AuthenticationFactory) {
     const address = $rootScope.address;
-    $scope.history = [];
     $scope.loading = false;
     $scope.marker = null;
-    
+
     $scope.load_more = function() {
       if ($scope.loading) { return; }
       $scope.loading = true;
@@ -32,7 +31,7 @@ myApp.controller("HistoryCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Authenticat
       $scope.load_more();
     };
     $scope.refresh();
-    
+
     function processTx(tx) {
       var t = {};
       if (tx.type == 'payment') {
@@ -88,10 +87,10 @@ myApp.controller("HistoryCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Authenticat
           let e = {};
           if (account == address) {
             switch (order.status) {
-              case "cancelled": 
+              case "cancelled":
                 e.type = 'offer_cancel_' + order.direction;
                 e.force = address != tx.address;
-                break;               
+                break;
               case "filled":
                 e.filled = true;
               case "partially-filled":
@@ -100,7 +99,7 @@ myApp.controller("HistoryCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Authenticat
               case "created":
                 e.type = 'offer_create_' + order.direction;
                 break;
-              default: 
+              default:
                 console.error("Unsupported " + order.status, tx);
             }
           } else {
@@ -111,10 +110,10 @@ myApp.controller("HistoryCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Authenticat
                   e.type = order.direction == 'sell' ? 'offer_bought' : 'offer_sold';
                 }
                 break;
-              case "cancelled": 
+              case "cancelled":
               case "created":
                 break;
-              default: 
+              default:
                 console.error("Unsupported " + order.status, tx);
             }
           }
@@ -128,6 +127,6 @@ myApp.controller("HistoryCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Authenticat
       }
       return effects;
     }
-    
+
   } ]);
 

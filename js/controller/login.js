@@ -21,7 +21,7 @@ myApp.controller('LoginCtrl', ['$scope', '$rootScope', '$window', '$location', '
 
     $scope.submitForm = function(){
       if (!$scope.walletfile) {
-        $scope.error = 'Please select a wallet file.';
+        $scope.error = 'select_file';
         return;
       }
       $scope.backendMessages = [];

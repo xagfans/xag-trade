@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="./node_modules/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/login.css">
   <link rel="stylesheet" href="css/auth.css">
   <link rel="stylesheet" href="css/balance.css">
   <link rel="stylesheet" href="css/history.css">
@@ -72,9 +73,9 @@
 </head>
 
 <body class="foximg">
-	<div ng-include="'pages/header.html'"></div>
+	<div ng-include="'pages/header.html'" ng-show="showMenu"></div>
   <div class="container" ng-view></div>
-  <div ng-include="'pages/footer.html'"></div>
+  <div ng-include="'pages/footer.html'" ng-show="showMenu"></div>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 /* global myApp */
 
-myApp.controller("BalanceCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Gateways', 
+myApp.controller("BalanceCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Gateways',
   function($scope, $rootScope, XrpApi, Gateways) {
     $scope.working = false;
     $scope.refresh = function() {
@@ -11,7 +11,7 @@ myApp.controller("BalanceCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Gateways',
           $scope.working = false;
           $scope.removeState = {};
         });
-        console.log($rootScope.lines);
+        // console.log($rootScope.lines);
       });
     };
     $scope.refresh();
@@ -43,7 +43,29 @@ myApp.controller("BalanceCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Gateways',
         return false;
       }
     }
-    
+    $scope.bClass = function (code) {
+      let result = Object.keys($rootScope.lines)
+      let index = result.findIndex(function(e){
+        return e === code
+      })
+      let className = code
+      if (index === 0) {
+        className += ' noMarginRight addTo__top'
+      }
+      if (index === 1) {
+        className += ' absoluteClass'
+      }
+      return className
+    }
+    $scope.aClass = function () {
+      let result = Object.keys($rootScope.lines)
+      if (result.length ==1) {
+        return ' absoluteClass'
+      } else if (result.length === 0) {
+        return ' addTo__top'
+      }
+      return ''
+    }
     $scope.$on("balanceUpdate", function() {
       console.debug('balanceUpdate event got');
     });

@@ -45,12 +45,12 @@ myApp.factory('ServerManager', ['$rootScope',
       _connect(remote, name) {
         return new Promise((resolve, reject)=>{
           if (!remote.isConnected()) {
-            console.log(`connect to ${name} ...`);
+            // console.log(`connect to ${name} ...`);
             remote.connect().then(()=>{
-              console.log(`${remote.connection._url} connectted.`);
+              // console.log(`${remote.connection._url} connectted.`);
               resolve({server: remote, name: name});
             }).catch((err) => {
-              console.log(`${name} cannot connect.`);
+              // console.log(`${name} cannot connect.`);
               reject(err);
             });
           } else {
@@ -87,7 +87,7 @@ myApp.factory('ServerManager', ['$rootScope',
                 result.server.disconnect();
               }
             }).catch((err) => {
-              console.log('ignore', err);
+              // console.log('ignore', err);
             });
           }
         });

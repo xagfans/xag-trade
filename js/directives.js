@@ -15,7 +15,20 @@ myApp.directive('gateway', [ function() {
     }
   }
 } ]);
-
+myApp.directive('assetCard', [ function() {
+  return {
+    restrict : 'E',
+    templateUrl : 'directive/assetCard.html',
+    replace : true,
+    scope : true,
+    link : function(scope, element, attrs) {
+      scope.__name = attrs.name;
+      scope.__code = attrs.code;
+      scope.__number = attrs.number;
+      scope.__logo = attrs.logo;
+    }
+  }
+} ]);
 myApp.directive('effects', [ function() {
   return {
     restrict : 'E',

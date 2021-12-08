@@ -1,5 +1,7 @@
 /* exported translate_cn */
 var translate_cn = {
+  wellcome: '欢迎使用瑞波',
+  wellcome_span: '新一代分布式价值交换网络',
   header_wellcome : '欢迎使用瑞波基因，新一代价值互联网',
   login_desc : '本钱包使用秘钥来登录已有的账户。你的秘钥加密保存在了你的电脑里，所以账户像你的个人电脑一样安全。请务必做好密钥的备份。',
   open_wallet: '打开钱包',
@@ -23,6 +25,7 @@ var translate_cn = {
   pwd_not_match : '密码不一致',
   encrypt_account : '加密账户',
   create_secret : '用秘钥创建帐户',
+  enter_password: '请输入密码',
   enter_secret : '请输入秘钥',
   invalid_account: '账号是无效的',
   invalid_secret : '秘钥是无效的',
@@ -35,8 +38,8 @@ var translate_cn = {
   secret_key : '秘钥和助记词',
   mnemonic: '助记词',
   or: '或',
-  show_secret: '显示秘钥',
-  hide_secret: '隐藏秘钥',
+  show_secret: '显示',
+  hide_secret: '隐藏',
   are_you_sure_secret: '你在一个安全的地方？没有人或摄相头在看你吧？',
   save_safe: '你把密钥/助记词保存在安全的地方了吗？你把账号文件的位置记住了吗？没有的话找找下载文件夹里吧。',
   yes_save: '是，我已经保存好了！',
@@ -44,9 +47,9 @@ var translate_cn = {
   back   : '返回',
   confirm: '确定',
   stop_countdown: '停止倒计时',
-  
+
   /** Balance & Trust **/
-  overview: '概况',
+  overview: '资产',
   balance : '余额',
   reserve   : '冻结：',
   total : '总量',
@@ -66,13 +69,14 @@ var translate_cn = {
   fed_url : '联邦协议 URL',
   fed_unable : '无法找到资产',
   fed_loading: '正在解析资产',
-  manual_add : '手动授信',
+  manual_add : '自定义授权',
   issuer_invalid : '发行方账号必须是有效的瑞波基因地址编码。',
   trust_granted  : '设置信任额度成功！',
 
   /** send **/
   send : '发送',
   send_money : '转账',
+  send_money_account : '转账账户',
   name_or_address : '联系人名字或瑞波基因地址',
   send_note : '注意：接受者必须也授信过同样的资产。',
   recipient : '接受者',
@@ -111,7 +115,7 @@ var translate_cn = {
   convert_title : '把一种货币转换成另一种',
   convert_input : '请输入兑换的具体信息。',
   convert_nopath: '没有合适的兑换路径。可能是账号的资金或授信不足。',
-  receive       : '接收',
+  receive       : '数量',
   calculating   : '计算中……',
   path_updated  : '路径上次更新在',
   seconds_ago   : '秒以前',
@@ -133,13 +137,13 @@ var translate_cn = {
   loading     : '载入中...',
   load_more   : '载入更多',
   no_more     : '没有更多的交易了',
-  
+
   you_convert: '你请求兑换',
   you_convert_to: '到',
   you_sold: '你卖出了',
-  you_sold_for: '得到', 
+  you_sold_for: '得到',
   you_bought: '你买到了',
-  you_bought_for: '花费', 
+  you_bought_for: '花费',
   order_filled: '。此委托已经完全成交。',
   rest_cancel: '。剩下的委托因为资金不足被取消。',
   order_has: '。此委托还有',
@@ -211,6 +215,7 @@ var translate_cn = {
   order_amount  : '数量',
   price_of_each : '单价',
   order_value   : '委托总额',
+  rental: '总额',
   offer_success : '下单成功',
   trade_pick : '选择交易资产',
   as_base    : '选作基础货币',
@@ -252,8 +257,8 @@ var translate_cn = {
   timeout      : '网络超时',
   timeout_desc : '连接服务器节点的最大时间（秒）。',
   coin_ticket: '资产代码',
-  fed_protocol: '联邦协议',  
-  save     : '保存',
+  fed_protocol: '联邦协议',
+  save: '保存',
   security : '安全',
 
   home_domain : '域名',
@@ -267,7 +272,8 @@ var translate_cn = {
   messagekey_desc : '用于向该帐户发送加密消息的公钥。',
   manage_data : '数据',
   back        : '返回',
-  
+  message_key: '消息健',
+
   AccountDelete : '删除账号',
   merge_desc     : '危险！此操作将你持有的{{code}}转移到目标账户，手续费5 {{code}}！',
   account_noclean: '账户必须不含任何依赖，如信任线等。',
@@ -300,11 +306,19 @@ var translate_cn = {
   version: '版本',
   logout : '注销',
   new_version_available: '发现新版本',
-
+  Ripo_desktop_Wallet: '瑞波桌面钱包',
+  server: '服务器',
+  port: '端口',
+  operation: '操作',
+  addTo: '添加',
   /** Error **/
   NotFoundError : '共识网络未找到该账号，请先激活此账号。激活需要至少20 {{code}}。每个授信和委托单需要额外冻结5 {{code}}，建议用50 {{code}}完成激活。',
   NotConnectedError : '未连接到服务器，请过一会儿再试。',
   NoRippleTXT: '网站未提供ripple.txt文件',
   NoFederationUrl: '网站未提供联邦协议服务',
-  'Invalid Email' : '电子邮箱地址不正确。'
+  'Invalid Email' : '电子邮箱地址不正确。',
+
+
+  ytf_address: '以太坊地址',
+  ytf_address_span: '将02+24零附加到大写字符集以生成。'
 }

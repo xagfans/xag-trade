@@ -1,51 +1,72 @@
-
-<section class="col-xs-12 content">
-  <div class="auth-attention text-center" translate="login_desc">
-    You will not be able to login to the desktop client using a username/password
-     you create on Ripple Trade. You can only use a secret key to access an
-     existing Ripple account. This is because the desktop client stores your
-     login information locally on your computer, so your account
-     is as safe as the security of your personal computer.
-  </div>
-  <div class="row col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6">
-    <div class="auth-form-wrapper" ng-hide="showTemp">
-      <h2 translate="open_account">Open Wallet</h2>
-      <form name="loginForm" ng-disabled="loginForm.$invalid" ng-submit="submitForm()">
-        <div class="form-group center">
-          <a class="btn btn-link" ng-click="goTo('/register')" translate="create_new_account">Create new account</a>
-          <a class="btn btn-link" ng-click="toggleTemp()" translate="open_temp_act">Temporary Wallet</a>
-        </div>
-        <div class="form-group"><a class="btn btn-block btn-default" id="walletfile" ng-click="fileInputClick()"><span ng-hide='walletfile'>{{'select_file' | translate}}</span>{{walletfile}}</a></div>
-        <div class="form-group hide">
-          <label for="login_walletfile" translate="select_file">Select account file</label>
-          <input class="form-control" id="login_walletfile" name="login_walletfile" type="file" ng-model="walletfile"/>
-        </div>
-        <div class="form-group">
-          <label for="login_password" translate="account_password">Account password</label>
-          <input class="form-control" id="login_password" name="login_password" type="password" ng-model="password" required="required" autocomplete="disabled" />
-        </div>
-        <div class="text-error" ng-show="error"><br/><span>{{error}}</span></div>
-        <div class="text-status" ng-show="status"><span>{{status}}</span>
-          <div class="backend" ng-repeat="message in backendMessages"><b>{{message.backend}} &#32;</b><span>{{message.message}}</span></div>
-        </div>
-        <div class="submit-btn-container">
-          <button class="btn btn-submit btn-block btn-success" type="submit" ng-disabled="loginForm.$invalid"><span translate="open_account">Open account</span></button>
-        </div>
-      </form>
+<div class="login-content">
+  <video src="assets/4k_x264.mp4" autoplay muted loop class="login-video-bg"></video>
+  <div class="row row-gutters">
+    <div class="title">
+    <!-- <div class="title col-sm-12 col-md-6"> -->
+      <h1 style="font-size: 43px;">{{'wellcome' | translate}}</h1>
+      <span style="font-size: 21px;">{{'wellcome_span' | translate}}</span>
     </div>
-    <div class="auth-form-wrapper" ng-show="showTemp">
-      <h2 translate="open_temp_act">Temporary Wallet</h2>
-      <form name="loginAddress" ng-disabled="loginAddress.$invalid" ng-submit="submitAddress()">
-        <div class="form-group">
-          <label translate="address">Address</label>
-          <input class="form-control" id="address" name="address" type="text" ng-model="address" required="required" autocomplete="disabled" />
-        </div>
-        <div class="text-error" ng-show="invalidAddress"><br/><span translate="invalid_account">Account is invalid</span></div>
-        <div class="submit-btn-container">
-          <button class="btn btn-submit btn-block btn-success" type="submit"><span translate="open_account">Open account</span></button>
-          <a class="btn btn-block btn-link" ng-click="toggleTemp()" translate="back">Back</a>
-        </div>
-      </form>
+    <div class="login-form-content">
+      <div class="auth-form-wrapper" ng-hide="showTemp">
+        <!-- <h2 translate="open_account">Open Wallet</h2> -->
+        <form name="loginForm" ng-disabled="loginForm.$invalid" ng-submit="submitForm()">
+          <div class="form-group"><a class="btn btn-block login-upload" id="walletfile"
+              ng-click="fileInputClick()"><span ng-hide='walletfile'>{{'select_file' |
+                translate}}</span>{{walletfile}}</a></div>
+          <div class="form-group hide">
+            <!-- <label for="login_walletfile" translate="select_file">Select account file</label> -->
+            <input class="form-control login-input" id="login_walletfile" name="login_walletfile" type="file"
+              ng-model="walletfile" />
+          </div>
+          <div class="form-group">
+            <!-- <label for="login_password" translate="account_password">Account password</label> -->
+            <input class="form-control login-input" id="login_password" name="login_password" type="password"
+              ng-model="password" required="required" autocomplete="disabled"
+              placeholder="{{'enter_password' | translate}}" />
+            <div class="text-error" ng-show="error"><span>{{error | translate}}</span></div>
+            <div class="text-status" ng-show="status"><span>{{status | translate}}</span>
+              <div class="backend" ng-repeat="message in backendMessages"><b>{{message.backend}}
+                  &#32;</b><span>{{message.message}}</span></div>
+            </div>
+          </div>
+          <div class="tolink-group">
+            <a ng-click="goTo('/register')" translate="create_new_account">Create new account</a>
+            <a ng-click="toggleTemp()" translate="open_temp_act">Temporary Wallet</a>
+          </div>
+          <div class="submit-btn-container">
+            <button class="btn btn-block form-btn" type="submit" ng-disabled="loginForm.$invalid"><span
+                translate="open_account">Open account</span></button>
+            <div ng-include="'components/internationalization.html'"></div>
+          </div>
+        </form>
+      </div>
+      <div class="auth-form-wrapper" ng-show="showTemp">
+        <!-- <h2 translate="open_temp_act">Temporary Wallet</h2> -->
+        <form name="loginAddress" ng-disabled="loginAddress.$invalid" ng-submit="submitAddress()">
+          <div class="form-group">
+            <!-- <label translate="address">Address</label> -->
+            <input class="form-control login-input" id="address" name="address" type="text" ng-model="address"
+              required="required" autocomplete="disabled" placeholder="{{'address' | translate}}" />
+            <div class="text-error" ng-show="invalidAddress">
+              <span translate="invalid_account">Account is invalid</span>
+            </div>
+          </div>
+          <div class="submit-btn-container">
+            <button class="btn btn-block form-btn" type="submit" ng-disabled="loginAddress.$invalid"><span
+                translate="open_account">Open
+                account</span></button>
+            <a class="btn btn-block btn-link" style="color: #fff;text-align: right;font-size: 15px;"
+              ng-click="toggleTemp()" translate="back">Back</a>
+          </div>
+        </form>
+      </div>
+      <div class="auth-attention" translate="login_desc" ng-hide="showTemp">
+        You will not be able to login to the desktop client using a username/password
+        you create on Ripple Trade. You can only use a secret key to access an
+        existing Ripple account. This is because the desktop client stores your
+        login information locally on your computer, so your account
+        is as safe as the security of your personal computer.
+      </div>
     </div>
   </div>
-</section>
+</div>
