@@ -305,7 +305,7 @@ var translate_jp = {
   version: 'バージョン',
   logout : 'ログアウト',
   new_version_available: '新しいバージョンが見つかりました',
-  Ripo_desktop_Wallet: 'Ripoデスクトップの財布',
+  XAG_web_client: 'XAG Web Client',
   server: 'サーバー',
   port: 'ポート',
   operation: '操作',

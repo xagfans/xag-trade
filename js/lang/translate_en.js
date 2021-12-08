@@ -306,7 +306,7 @@ var translate_en = {
   version: 'Version',
   logout : 'Logout',
   new_version_available: 'New version available',
-  Ripo_desktop_Wallet: 'Ripo desktop Wallet',
+  XAG_web_client: 'XAG Web Client',
   server: 'The server',
   port: 'PORT',
   operation: 'OPERATION',

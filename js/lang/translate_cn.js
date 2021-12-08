@@ -306,7 +306,7 @@ var translate_cn = {
   version: '版本',
   logout : '注销',
   new_version_available: '发现新版本',
-  Ripo_desktop_Wallet: '瑞波桌面钱包',
+  XAG_web_client: '瑞波基因网页钱包',
   server: '服务器',
   port: '端口',
   operation: '操作',
