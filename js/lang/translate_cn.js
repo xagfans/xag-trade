@@ -1,7 +1,7 @@
 /* exported translate_cn */
 var translate_cn = {
-  wellcome: '欢迎使用瑞波',
-  wellcome_span: '新一代分布式价值交换网络',
+  wellcome: '瑞波基因',
+  wellcome_span: '带您领略新一代价值互联网',
   header_wellcome : '欢迎使用瑞波基因，新一代价值互联网',
   login_desc : '本钱包使用秘钥来登录已有的账户。你的秘钥加密保存在了你的电脑里，所以账户像你的个人电脑一样安全。请务必做好密钥的备份。',
   open_wallet: '打开钱包',
