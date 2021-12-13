@@ -278,6 +278,7 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
     $scope.sell_amount;
     $scope.sell_volume;
     $scope.calculate = function(name) {
+      $scope.fatfingerbuy = $scope.fatfingersell = false
       switch(name) {
       case 'buy_price':
         $scope.buy_volume = round($scope.buy_price * $scope.buy_amount, 8);
@@ -403,6 +404,14 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
       }
       $scope.pairKey = ''
       $scope.show_pair = false
+      if (!$scope.show_pair) {
+        $scope.book.clean();
+        $scope.offers.clean();
+        $scope.offerDelete = {};
+        $scope.refreshOffer();
+        $scope.refreshBook();
+        $scope.savePair();
+      }
       $scope.precise_jutify();
     }
     $scope.flip = function() {

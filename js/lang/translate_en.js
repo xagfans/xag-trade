@@ -1,7 +1,7 @@
 /* exported translate_en */
 var translate_en = {
-  wellcome: 'WELCOME TO RIPO',
-  wellcome_span: 'Distributed value exchange network',
+  wellcome: 'Xrpalike Gene',
+  wellcome_span: 'Leading value Internet into the future!',
   header_wellcome : 'Welcome to Ripple, a global value exchange',
   login_desc : 'You can only use a secret key to access an existing account. This is because the desktop client stores your login information locally on your computer, so your account is as safe as the security of your personal computer.',
   open_wallet: 'Open wallet',
@@ -306,7 +306,7 @@ var translate_en = {
   version: 'Version',
   logout : 'Logout',
   new_version_available: 'New version available',
-  Ripo_desktop_Wallet: 'Ripo desktop Wallet',
+  XAG_web_client: 'XAG Web Client',
   server: 'The server',
   port: 'PORT',
   operation: 'OPERATION',

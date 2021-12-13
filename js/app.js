@@ -51,20 +51,8 @@ myApp.config(function($routeProvider, $httpProvider, $translateProvider, $compil
     access : {
       requiredLogin : true
     }
-  }).when('/trustCopy', {
-    templateUrl : 'pages/trust_copy.html',
-    controller : 'TrustCtrl',
-    access : {
-      requiredLogin : true
-    }
   }).when('/send', {
     templateUrl : 'pages/send.html',
-    controller : 'SendCtrl',
-    access : {
-      requiredLogin : true
-    }
-  }).when('/sendCopy', {
-    templateUrl : 'pages/send_copy.html',
     controller : 'SendCtrl',
     access : {
       requiredLogin : true
@@ -93,20 +81,8 @@ myApp.config(function($routeProvider, $httpProvider, $translateProvider, $compil
     access : {
       requiredLogin : true
     }
-  }).when('/tradeCopy', {
-    templateUrl : 'pages/trade_copy.html',
-    controller : 'TradeCtrl',
-    access : {
-      requiredLogin : true
-    }
   }).when('/settings', {
     templateUrl : 'pages/settings.html',
-    controller : 'SettingsCtrl',
-    access : {
-      requiredLogin : true
-    }
-  }).when('/settingsCopy', {
-    templateUrl : 'pages/settings_copy.html',
     controller : 'SettingsCtrl',
     access : {
       requiredLogin : true

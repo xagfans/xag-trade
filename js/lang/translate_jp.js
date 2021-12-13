@@ -1,5 +1,7 @@
 /* exported translate_jp */
 var translate_jp = {
+  wellcome: 'Xrpalike Gene',
+  wellcome_span: '価値のインターネット',
   header_wellcome : 'リップルへようこそ　価値のインターネット',
   login_desc : 'ウォレットはプライベートキーを使ってアカウントにログインします。プライベートキーはあなたのパソコンの中に保存されるため、アカウントはあなたのパソコンと同様に安全です。必ずプライベートキーをバックアップしてください。',
   open_wallet: 'ウォレットを開く',
@@ -303,7 +305,7 @@ var translate_jp = {
   version: 'バージョン',
   logout : 'ログアウト',
   new_version_available: '新しいバージョンが見つかりました',
-  Ripo_desktop_Wallet: 'Ripoデスクトップの財布',
+  XAG_web_client: 'XAG Web Client',
   server: 'サーバー',
   port: 'ポート',
   operation: '操作',
