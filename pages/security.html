@@ -1,195 +1,211 @@
-<section class="col-xs-12 content">
-	<div class="row">
-		<div class="col-sm-3">
-			<div class="settingPage">
-				<a href="javascript:" ng-class="{active: mode=='security'}" ng-click="mode='security'">{{'security' | translate}}</a>
-				<a href="javascript:" ng-class="{active: mode=='domain'}" ng-click="mode='domain'">{{'home_domain' | translate}}</a>
-				<a href="javascript:" ng-class="{active: mode=='payment'}" ng-click="mode='payment'">{{'payment_flag' | translate}}</a>
-				<a href="javascript:" ng-class="{active: mode=='messagekey'}" ng-click="mode='messagekey'">Message Key</a>
+<section class="col-xs-12 securityPage settingPage">
+	<div class="cards">
+		<div class="cardsNav row">
+			<div class="navItem col-md-3" ng-class="{active: mode=='security'}" ng-click="mode='security'">
+				<span class="navTitle">{{'security'| translate}}</span>
+			</div>
+			<div class="navItem col-md-3" ng-class="{active: mode=='domain'}" ng-click="mode='domain'">
+				<span class="navTitle">{{'home_domain'| translate}}</span>
+			</div>
+			<div class="navItem col-md-3" ng-class="{active: mode=='payment'}" ng-click="mode='payment'">
+				<span class="navTitle">{{'payment_flag'| translate}}</span>
+			</div>
+			<div class="navItem col-md-3" ng-class="{active: mode=='messagekey'}" ng-click="mode='messagekey'">
+				<span class="navTitle">{{'message_key' | translate}}</span>
 			</div>
 		</div>
+		<div class="cardsContent" ng-show="mode=='security'">
+			<div class="row">
+				<div class="col-md-6 columnItem">
+					<label class="l-title" translate="public_address">Public address</label>
+					<p class="qrcodebox">
+						<qrcode data="{{address}}" size=124></qrcode>
+					</p>
+					<p class="l-keycode">{{address}}</p>
+				</div>
+				<div class="col-md-6 columnItem">
+					<label class="l-title" translate="secret_key">Secret key:</label>
+					<p class="qrcodebox" ng-show="showSecret==true">
+						<qrcode data="{{keyQRCode}}" size=124></qrcode>
+					</p>
+					<p class="l-keycode" ng-show="showSecret==true">
+						{{keyOpen}}
+					</p>
+					<!-- <p class="key" ng-hide="showSecret==true">{{key}}</p> -->
+					<group ng-show="showSecret">
+						<label class="secretTitle" translate="mnemonic" ng-show="mnemonic">Mnemonic</label>
+						<p class="l-keycode" ng-show="mnemonic">{{mnemonic}}</p>
+						<p class="l-keycode" ng-show="mnemonic_lang">{{mnemonic_lang}}</p>
+					</group>
+					<p ng-show="showSecret==true">
+						<button class="btn securityBtn btn-info btn-sm" ng-click="showSec(false)"
+							translate="hide_secret">Hide secret key</button>
+					</p>
+					<p ng-hide="showSecret==true" style="margin-top: 30px;">
+						<button class="btn securityBtn btn-info btn-sm"
+							ng-really-message="{{'are_you_sure_secret' | translate}}" ng-really-click="showSec(true)"
+							translate="show_secret">Show secret key</button>
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="warningTip" ng-show="messagekey_done" translate="flags_done">
+					Settings updated.
+				</div>
+			</div>
+			<div class="row" ng-show="error">
+				<div class="warningTip">
+					{{error | translate:currentNetwork.coin}}
+				</div>
+			</div>
+			<div class="row cardFooter">
+				<div class="securityBtn" ng-click="goTo('/balance')" translate="yes_save">Yes, I saved my secret key
+				</div>
+			</div>
+		</div>
+		<div class="cardsContent" ng-show="mode=='domain'">
+			<div class="row domainBox" style="margin-bottom: 20px;">
+				<!-- <label translate="home_domain">Home Domain</label> -->
+				<input class="form-control user-form-input" type="text" ng-model="domain" placeholder="{{'home_domain' | translate}}" />
+			</div>
+			<div class="row" ng-show="domain_done">
+				<div class="warningTip" translate="domain_done">
+					Home Domain was set.
+				</div>
+			</div>
+			<div class="row" ng-show="error">
+				<div class="warningTip">
+					{{error | translate:currentNetwork.coin}}
+				</div>
+			</div>
+			<div class="row cardFooter" style="margin-bottom: 20px;">
+				<div class="securityBtn" ng-disabled="domain_working" ng-click="setDomain()" translate="save">Save</div>
+			</div>
+		</div>
+		<div class="cardsContent payment" ng-show="mode=='payment'">
+			<div class="row">
+				<div class="col-md-4 columnItem">
+					<div class="topDesc">
+						<label class="l-title">Disallow Native Asset</label>
+						<p class="l-tips">{{"disallowxrp" | translate}}</p>
+					</div>
+					<div class="footer_switch">
+						<label class="switch marginleft">
+							<input type="checkbox" ng-change="setFlags('disallowIncomingXRP', disallowxrp)"
+								ng-model="disallowxrp" ng-disabled="flags_working">
+							<span class="slider round"></span>
+						</label>
+					</div>
+				</div>
+				<div class="col-md-4 columnItem">
+					<div class="topDesc">
+						<label class="l-title">Require Destination Tag</label>
+						<p class="l-tips">{{"requiretag" | translate}}</p>
+					</div>
+					<div class="footer_switch">
+						<label class="switch marginleft">
+							<input type="checkbox" ng-change="setFlags('requireDestinationTag', requiretag)"
+								ng-model="requiretag" ng-disabled="flags_working">
+							<span class="slider round"></span>
+						</label>
+					</div>
+				</div>
+				<div class="col-md-4 columnItem">
+					<div class="topDesc">
+						<label class="l-title">Default Rippling</label>
+						<p class="l-tips">{{"setrippling" | translate}}</p>
+					</div>
+					<div class="footer_switch">
+						<label class="switch marginleft">
+							<input type="checkbox" ng-change="setFlags('defaultRipple', defaultrippling)"
+								ng-model="defaultrippling" ng-disabled="flags_working">
+							<span class="slider round"></span>
+						</label>
+					</div>
+				</div>
 
-		<div class="col-sm-9" ng-show="mode=='security'">
-		  <label translate="important">Important:</label>
-		  <p class="hint" translate="security_notice">The secret key below gives access to your money in the unlikely case that you lose your password.
-			 In that case your contacts will be lost, but with this secret key alone anyone can retrieve your money. So please
-			 store it somewhere PRIVATE AND SAFE.
-		  </p>
-		  <div class="address">
-			<label translate="public_address">Public address</label>
-			<p class="key">{{address}}</p>
-			<p class="key"><qrcode data="{{address}}" size=200></qrcode></p>
-		  </div>
-		  <div class="secret" ng-show="keyAmount > 0">
-			<label translate="secret_key">Secret key:</label>
-			<p class="key" ng-show="showSecret==true">
-				{{keyOpen}}
-			</p>
-			<p class="key" ng-show="showSecret==true"><qrcode data="{{keyQRCode}}" size=200></qrcode></p>
-			<p class="key" ng-hide="showSecret==true">{{key}}</p>
-			<p ng-hide="showSecret==true">
-				<button class="btn btn-info btn-sm" ng-really-message="{{'are_you_sure_secret' | translate}}" ng-really-click="showSec(true)" translate="show_secret">Show secret key</button>
-			</p>
-			<group ng-show="showSecret">
-				<label translate="mnemonic" ng-show="mnemonic">Mnemonic</label>
-				<p class="key" ng-show="mnemonic">{{mnemonic}}</p>
-				<label translate="or" ng-show="mnemonic_lang">Or</label>
-				<p class="key" ng-show="mnemonic_lang">{{mnemonic_lang}}</p>
-			</group>
-			<p ng-show="showSecret==true">
-			  <button class="btn btn-info btn-sm" ng-click="showSec(false)" translate="hide_secret">Hide secret key</button>
-			</p>
-			<div class="row pd">
-				<label class="block" translate="save_safe">Have you saved your secret key somewhere safe?</label>
-				<div class="col-xs-12 col-sm-5 col-lg-4"><a class="btn btn-info btn-block btn-big" href="javascript:" ng-click="goTo('/balance')" translate="yes_save">Yes, I saved my secret key</a></div>
-			</div>
-		  </div>
-		</div>
-		
-		<div class="col-sm-9" ng-show="mode=='domain'">
-			<label translate="important">Important:</label>
-			<p class="hint" translate="domain_desc">A domain name that can optionally be added to the account. Clients can look up more details from this domain.</p>
-
-			<div class="row" style="margin-bottom: 20px;">
-				<div class="col-xs-12 col-md-10">
-					<label translate="home_domain">Home Domain</label>
-					<input class="form-control" type="text" ng-model="domain" />
-				</div>
-			</div>
-			<div class="s-alert s-alert--success row__message" ng-show="domain_done" translate="domain_done">
-				Home Domain was set.
-			</div>
-			<div class="row" style="margin-bottom: 20px;">
-				<div class="col-xs-12 col-sm-5">
-					<a class="btn btn-info btn-block btn-big" href="javascript:" ng-disabled="domain_working"
-						ng-click="setDomain()" translate="save">Save</a>
-				</div>
-			</div>
-		</div>
-		
-		<div class="col-sm-9 pd" ng-show="mode=='payment'">
-			<div class="row" style="margin-bottom: 20px;">
-				<div class="col-xs-2 col-md-2">
-					<label class="switch marginleft">
-						<input type="checkbox" ng-change="setFlags('disallowIncomingXRP', disallowxrp)" ng-model="disallowxrp" ng-disabled="flags_working">
-						<span class="slider round"></span>
-					</label>
-				</div>
-				<div class="col-xs-8 col-md-8">
-					<label>Disallow Native Asset</label>
-					<p>{{"disallowxrp" | translate}}</p>
-				</div>
-			</div>
-			<div class="row" style="margin-bottom: 20px;">
-				<div class="col-xs-2 col-md-2">
-					<label class="switch marginleft">
-						<input type="checkbox" ng-change="setFlags('requireDestinationTag', requiretag)" ng-model="requiretag" ng-disabled="flags_working">
-						<span class="slider round"></span>
-					</label>
-				</div>
-				<div class="col-xs-8 col-md-8">
-					<label>Require Destination Tag</label>
-					<p>{{"requiretag" | translate}}</p>
-				</div>
-			</div>
-			<div class="row" style="margin-bottom: 20px;">
-				<div class="col-xs-2 col-md-2">
-					<label class="switch marginleft">
-						<input type="checkbox" ng-change="setFlags('defaultRipple', defaultrippling)" ng-model="defaultrippling" ng-disabled="flags_working">
-						<span class="slider round"></span>
-					</label>
-				</div>
-				<div class="col-xs-8 col-md-8">
-					<label>Default Rippling</label>
-					<p>{{"setrippling" | translate}}</p>
-				</div>
 			</div>
 			<div class="row form-group" ng-show="flags_working">
-					<div class="message">
-						<i class="fa fa-spinner fa-pulse"></i> {{ 'submitting' | translate}}
-				  </div>
-		  </div>
-		  <div class="s-alert s-alert--success row__message" ng-show="flags_done" translate="flags_done">
+				<div class="message">
+					<i class="fa fa-spinner fa-pulse"></i> {{ 'submitting' | translate}}
+				</div>
+			</div>
+			<div class="s-alert s-alert--success row__message" ng-show="flags_done" translate="flags_done">
 				Settings updated.
 			</div>
 		</div>
-		
-		<div class="col-sm-9" ng-show="mode=='messagekey'">
-			<label translate="important">Important:</label>
-			<p class="hint" translate="messagekey_desc">Public key for sending encrypted messages to this account. </p>
-			<div class="row" style="margin-bottom: 20px;">
-				<div class="col-xs-12 col-md-10">
-					<label>Message Key</label>
-					<input class="form-control" type="text" ng-model="messagekey" />
-				</div>
+		<div class="cardsContent messagekey" ng-show="mode=='messagekey'">
+			<div class="row formInput">
+				<input class="form-control user-form-input" type="text" ng-model="messagekey" placeholder="{{'message_key' | translate}}" />
 			</div>
-			<div class="row" style="margin-bottom: 20px;">
-				<div class="col-xs-2 col-md-2">
+			<div class="row">
+				<div class="col-md-8">
+					<div class="messagekeyDesc">
+						<div class="l-title">{{'ytf_address' | translate}}</div>
+						<div class="l-tips">{{'ytf_address_span' | translate}}</div>
+					</div>
+				</div>
+				<div class="col-md-4" style="text-align: right;">
 					<label class="switch marginleft">
 						<input type="checkbox" ng-model="isEthAddress" ng-disabled="messagekey_working">
 						<span class="slider round"></span>
 					</label>
 				</div>
-				<div class="col-xs-8 col-md-8">
-					<label>Ethereum address</label>
-					<p>Append 02 + 24 zeros to the uppercased character set to produce.</p>
+			</div>
+			<div class="row">
+				<div class="warningTip" ng-show="messagekey_done" translate="flags_done">
+					Settings updated.
 				</div>
 			</div>
-			<div class="s-alert s-alert--success row__message" ng-show="messagekey_done" translate="flags_done">
-				Settings updated.
+			<div class="warningTip" style="margin: 10px 0 0;" ng-show="error">
+				{{error | translate:currentNetwork.coin}}
 			</div>
-			<div class="row" style="margin-bottom: 20px;">
-				<div class="col-xs-12 col-sm-5">
-					<a class="btn btn-info btn-block btn-big" href="javascript:" ng-disabled="messagekey_working"
-						ng-click="setMessagekey()" translate="save">Save</a>
-				</div>
+			<div class="row cardFooter" style="margin-bottom: 20px;">
+				<div class="securityBtn" ng-disabled="messagekey_working" ng-click="setMessagekey()" translate="save">
+					Save</div>
 			</div>
 		</div>
-		
+	</div>
+	<div class="row">
 		<div class="col-sm-9" ng-show="mode=='delete'">
 			<label translate="important">Important:</label>
-			<p class="hint" translate="merge_desc" translate-values="currentNetwork.coin">Danger operation! It transfers the native balance (the amount of XRP an account holds) to another account and removes the source account from the ledger.</p>
+			<p class="hint" translate="merge_desc" translate-values="currentNetwork.coin">Danger operation! It transfers
+				the native balance (the amount of XRP an account holds) to another account and removes the source
+				account from the ledger.</p>
 
 			<div class="row" style="margin-bottom: 20px;">
 				<div class="col-xs-12 col-md-10">
 					<label translate="dest_account">Destination Account</label>
 					<input class="form-control" type="text" ng-model="dest_account" />
 					<div class="errorGroup">
-          	<div class="error" ng-show="dest_account && !isValidAddress(dest_account)" translate="invalid_account">Account invalid</div>
-          </div>
+						<div class="error" ng-show="dest_account && !isValidAddress(dest_account)"
+							translate="invalid_account">Account invalid</div>
+					</div>
 				</div>
 			</div>
 			<div class="row" style="margin-bottom: 20px;" ng-show="delete_warning">
 				<div class="col-xs-12 col-sm-5">
 					<div class="errorGroup">
-          	<div class="error" ng-show="objKeyLength(lines)" translate="account_noclean">Your account should have no obligations.</div>
-          </div>
-					<button class="btn btn-warning btn-block btn-big"
-						ng-click="toggleWarning()" 
-						ng-disabled="objKeyLength(lines)"
-						translate="delete_warning">I KNOW　EVERYTHING >></button>
+						<div class="error" ng-show="objKeyLength(lines)" translate="account_noclean">Your account should
+							have no obligations.</div>
+					</div>
+					<button class="btn btn-warning btn-block btn-big" ng-click="toggleWarning()"
+						ng-disabled="objKeyLength(lines)" translate="delete_warning">I KNOW　EVERYTHING >></button>
 				</div>
 			</div>
-			<div class="row" style="margin-bottom: 20px;" ng-hide="delete_warning" >
+			<div class="row" style="margin-bottom: 20px;" ng-hide="delete_warning">
 				<div class="col-xs-12 col-sm-5">
 					<button class="btn btn-info btn-block btn-big" ng-disabled="merge_working"
 						ng-click="toggleWarning()" translate="back">Back</button>
 				</div>
 				<div class="col-xs-12 col-sm-5">
-					<button class="btn btn-danger btn-block btn-big"
-						ng-click="deleteAccount()" 
+					<button class="btn btn-danger btn-block btn-big" ng-click="deleteAccount()"
 						ng-disabled="!dest_account || !isValidAddress(dest_account) || merge_working"
 						translate="AccountDelete">Delete account</button>
 				</div>
 			</div>
 			<div class="s-alert s-alert--success row__message" ng-show="merge_done" translate="merge_done">
 				Your account was merged to destination.
-			</div>
-		</div>
-
-		<div class="col-sm-12" style="margin-top: 20px;" ng-show="error">
-			<div class="s-alert s-alert--alert row__message">
-				{{error | translate:currentNetwork.coin}}
 			</div>
 		</div>
 	</div>

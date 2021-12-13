@@ -472,7 +472,7 @@ a.AssetPairRow:hover .AssetPair__separator {
 
 .alternatives {
 	display: flex !important;
-  justify-content: flex-start;
+  justify-content: space-around;
   min-width: 33.33333%;
 }
 .alternatives .am{
@@ -585,13 +585,17 @@ a.AssetPairRow:hover .AssetPair__separator {
 
 
 /*新改UI的样式*/
-.tradContainer{}
+.tradContainer .warning-buy-sell{
+  color: #FF7E7E;
+  margin-top: -8px;
+}
 .tradContainer .island_new{
   background:transparent;
 }
 .tradContainer .island_new .PairPicker__card{
-  height: 234px;
+  height: 248px;
   width: 170px;
+  background: #52C3E1;
   box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.20000000298023224);
   border-radius: 6px;
   position: relative;
@@ -709,14 +713,14 @@ a.AssetPairRow:hover .AssetPair__separator {
   justify-content: space-between;
 }
 .tradContainer .flexRow .column{
-  width: 626px;
+  flex: 1;
 }
 .tradContainer .flexRow .column__card{
-  flex: 1 0 0;
+  width: 440px;
   margin-left: 20px;
 }
 .tradContainer .column__card .cards{
-  height: 236px;
+  height: 248px;
 }
 .tradContainer .column__card .cards .cardsNav{
   height: 30px;
@@ -727,16 +731,16 @@ a.AssetPairRow:hover .AssetPair__separator {
   width: 100%;
 }
 .tradContainer .column__card .cards .cardsNav .navItem .navTitle{
-  font-size: 14px;
+  font-size: 16px;
   text-align: center;
 }
 .tradContainer .column__card .cards .myBtn{
   box-shadow: 0px 2px 2px 1px rgba(0,0,0,0.25);
-  height: 23px;
-  line-height: 23px;
+  height: 28px;
+  line-height: 28px;
   font-size: 14px;
   border-radius: 15px;
-  padding: 0 12px;
+  padding: 0 18px;
   margin: 0 20px;
 }
 .tradContainer .listing{}
@@ -767,13 +771,13 @@ a.AssetPairRow:hover .AssetPair__separator {
   border:none;
   background: #f5f5f5;
   border-radius: 15px 0 0 15px;
-  height: 24px;
-  line-height: 24px;
+  height: 28px;
+  line-height: 28px;
   box-shadow: unset;
 }
 .cinput-group .addOnBtn{
-  height: 24px;
-  line-height: 24px;
+  height: 28px;
+  line-height: 28px;
   border-radius: 0 15px 15px 0;
   border: 1px solid #4776E6;
   background: #fff;
@@ -1253,36 +1257,49 @@ a.AssetPairRow:hover .AssetPair__separator {
   background: rgba(0,0,0,0.4);
   overflow: hidden;
 }
-.popubDialog .popubDialog__body{
+.popubDialog .popubDialog__main{
   position: absolute;
   left: 50%;
   top: 50%;
+  min-width: 1100px;
+  max-width: 75%;
   -webkit-transform: translate(-50%,-50%);
   -moz-transform: translate(-50%,-50%);
   -ms-transform: translate(-50%,-50%);
   -o-transform: translate(-50%,-50%);
   transform: translate(-50%,-50%);
+}
+.popubDialog .popubDialog__body{
   background: #fff;
-  max-width: 75%;
+  max-width: 100%;
   border-radius: 8px;
   max-height: 1000px;
   overflow-y: auto;
   overflow-x:hidden;
 }
+.popubDialog .popubDialog__close{
+  text-align: center;
+  margin-top: 16px;
+}
+.popubDialog .popubDialog__close img{
+  width: 26px;
+  cursor: pointer;
+  display: inline-block;
+}
 .popubDialog .popubDialog__body .flexRow{
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  min-width: 754px;
 }
 .popubDialog .assetsCards{
   height: 124px;
-  width: 356px;
+  width: calc(100% / 3 - 16px);
   background: #52C3E1;
   box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.20000000298023224);
   border-radius: 6px 6px 6px 6px;
-  margin: 9px;
+  margin: 8px;
   cursor: pointer;
+  overflow:hidden;
 }
 .popubDialog .assetsCards .assetsCards__content{
   display: flex;
@@ -1313,6 +1330,7 @@ a.AssetPairRow:hover .AssetPair__separator {
 .popubDialog .assetsCards .content__main .assetsCode{
   font-weight: 500;
   font-size: 13px;
+  overflow: hidden;
 }
 .popubDialog .assetsCards .assetsCards__footer{
   display: flex;

@@ -1,5 +1,35 @@
-<section class="col-xs-12 content">
-	<group>
+<section class="historyContainer">
+	<div class="historyContainer__main">
+		<div class="myTable">
+			<ul class="table__header">
+				<li class="headerName">时间</li>
+				<li class="headerName">操作</li>
+			</ul>
+			<ul  class="table__body" ng-repeat="tx in history" ng-switch="tx.type">
+				<!--				<li class="columnName">{{tx.transaction.date | date:'yyyy-MM-dd HH:mm:ss'}}</li>-->
+				<li class="columnName">
+					<!--					<span ng-show="tx.type == 'settings'" translate="accountset">Account details have been changed</span>-->
+					<!--					<effects></effects>-->
+					<tx-payment ng-switch-when="payment"></tx-payment>
+					<tx-trust ng-switch-when="trustline"></tx-trust>
+					<tx-offer ng-switch-when="order"></tx-offer>
+					<tx-offercancel ng-switch-when="orderCancellation"></tx-offercancel>
+					<tx-message ng-switch-when="settings"></tx-message>
+					<tx-default ng-switch-default></tx-default>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="historyContainer__footer">
+		<div class="warningTip" ng-show="error_msg">
+			{{error_msg | translate:currentNetwork.coin}}
+		</div>
+		<div translate="loading" ng-show="loading">Loading...</div>
+		<a class="loadMore" href="" ng-click="load_more()" translate="load_more" ng-show="marker && !loading">Load more</a>
+		<div translate="no_more" ng-show="!marker && !loading">No more transactions left</div>
+	</div>
+	</div>
+	<group style="display: none;">
 	<div class="so-back islandBack islandBack--t">
 		<div class="island">
 			<div class="island__header">{{'history' | translate}}

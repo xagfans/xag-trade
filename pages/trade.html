@@ -4,7 +4,7 @@
 			<div class="flexRow">
 				<div class="column">
 					<div class="island_new flexRow">
-						<div class="PairPicker__card" ng-class="base_code">
+						<div class="PairPicker__card" ng-class="base_code" ng-click="choosePair('base')">
 							<div class="card__logo">
 								<img class="image" data-ng-src="{{base.logo}}">
 							</div>
@@ -12,7 +12,7 @@
 							<div class="card__balance" translate="balance">余额</div>
 							<div class="card__money">${{getBalance(base_code, base_issuer)}}</div>
 							<div class="card__footer">
-								<img src="img/file2.png" class="filpIcon" ng-click="choosePair('base')" alt="">
+								<img src="img/file2.png" class="filpIcon" alt="">
 							</div>
 						</div>
 						<div class="transferIcon" ng-click="flip()">
@@ -21,7 +21,7 @@
 							</div>
 							<div class="iconTips">点击转换</div>
 						</div>
-						<div class="PairPicker__card" ng-class="counter_code">
+						<div class="PairPicker__card" ng-class="counter_code" ng-click="choosePair('counter')">
 							<div class="card__logo">
 								<img class="image" data-ng-src="{{counter.logo}}">
 							</div>
@@ -29,7 +29,7 @@
 							<div class="card__balance" translate="balance">余额</div>
 							<div class="card__money">${{getBalance(counter_code, counter_issuer)}}</div>
 							<div class="card__footer">
-								<img src="img/file2.png" class="filpIcon" ng-click="choosePair('counter')" alt="">
+								<img src="img/file2.png" class="filpIcon" alt="">
 							</div>
 						</div>
 					</div>
@@ -76,17 +76,20 @@
 								<div class="myBtn" ng-click="offerWithCheck('sell')">{{'sell' | translate}}
 									{{base_code}}</div>
 							</div>
-							<div class="row submit-field warning-content" ng-show="fatfingerbuy">
+							<div ng-show="fatfingersell || fatfingerbuy">
+								<div class="warning-buy-sell" translate="fatfinger"></div>
+							</div>
+							<div class="cardFooter" ng-show="fatfingerbuy" style="margin-top: 8px">
 								<button class="myBtn" ng-click="offer('buy')">{{'buy' | translate}}
 									{{base_code}}</button>
-								<button class="btn btn-default marginleft" ng-click="fatfingerbuy=false">{{'cancel' |
-									translate}}</button>
+								<!-- <button class="btn btn-default marginleft" ng-click="fatfingerbuy=false">{{'cancel' |
+									translate}}</button> -->
 							</div>
-							<div class="row submit-field warning-content" ng-show="fatfingersell">
-								<button class="btn btn-warning" ng-click="offer('sell')">{{'sell' | translate}}
+							<div class="cardFooter" ng-show="fatfingersell" style="margin-top: 8px">
+								<button class="myBtn" ng-click="offer('sell')">{{'sell' | translate}}
 									{{base_code}}</button>
-								<button class="btn btn-default marginleft" ng-click="fatfingersell=false">{{'cancel' |
-									translate}}</button>
+								<!-- <button class="btn btn-default marginleft" ng-click="fatfingersell=false">{{'cancel' |
+									translate}}</button> -->
 							</div>
 						</div>
 					</div>
@@ -99,46 +102,48 @@
 					</div>
 					<div class="s-alert s-alert--error" ng-show="sell_fail">{{sell_fail}}</div>
 				</div>
-				<div ng-show="fatfingersell || fatfingerbuy">
-					<div class="s-alert s-alert--warning" translate="fatfinger"></div>
-				</div>
 			</div>
 			<div class="popubDialog" ng-show="show_pair">
-				<div class="popubDialog__body">
-					<div class="flexRow">
-						<div class="assetsCards" ng-click="pick(pairKey, native.code, native.name)"
-							ng-class="native.code">
-							<div class="assetsCards__content">
-								<div class="content__logo">
-									<img class="logo__image" data-ng-src="{{native.logo}}">
+				<div class="popubDialog__main">
+					<div class="popubDialog__body">
+						<div class="flexRow">
+							<div class="assetsCards" ng-click="pick(pairKey, native.code, '')"
+								ng-class="native.code">
+								<div class="assetsCards__content">
+									<div class="content__logo">
+										<img class="logo__image" data-ng-src="{{native.logo}}">
+									</div>
+									<div class="content__main">
+										<div class="assetsName">{{native.code}}</div>
+										<div class="assetsCode"></div>
+									</div>
 								</div>
-								<div class="content__main">
-									<div class="assetsName">{{native.code}}</div>
-									<div class="assetsCode"></div>
+								<div class="assetsCards__footer">
+									<div class="descName">{{'balance' | translate}}</div>
+									<div class="amount">{{getBalance(native.code, '')}}</div>
 								</div>
 							</div>
-							<div class="assetsCards__footer">
-								<div class="descName">{{'balance' | translate}}</div>
-								<div class="amount">{{getBalance(native.code, native.name)}}</div>
+							<div class="assetsCards" ng-repeat="(keystr, line) in tradeAssets"
+								ng-click="pick(pairKey, line.code, line.issuer)" ng-class="line.code"
+								ng-init="gateway=getGateway(line.code, line.issuer)">
+								<div class="assetsCards__content">
+									<div class="content__logo">
+										<img class="logo__image" data-ng-src="{{gateway.logo}}">
+									</div>
+									<div class="content__main">
+										<div class="assetsName">{{line.code}}</div>
+										<div class="assetsCode">{{line.issuer}}</div>
+									</div>
+								</div>
+								<div class="assetsCards__footer">
+									<div class="descName">{{'balance' | translate}}</div>
+									<div class="amount">{{line.balance}}</div>
+								</div>
 							</div>
 						</div>
-						<div class="assetsCards" ng-repeat="(keystr, line) in tradeAssets"
-							ng-click="pick(pairKey, line.code, line.issuer)" ng-class="line.code"
-							ng-init="gateway=getGateway(line.code, line.issuer)">
-							<div class="assetsCards__content">
-								<div class="content__logo">
-									<img class="logo__image" data-ng-src="{{gateway.logo}}">
-								</div>
-								<div class="content__main">
-									<div class="assetsName">{{line.code}}</div>
-									<div class="assetsCode">{{line.issuer}}</div>
-								</div>
-							</div>
-							<div class="assetsCards__footer">
-								<div class="descName">{{'balance' | translate}}</div>
-								<div class="amount">{{line.balance}}</div>
-							</div>
-						</div>
+					</div>
+					<div class="popubDialog__close">
+						<img src="../img/closeIcon.png" ng-click="show_pair=false" alt="">
 					</div>
 				</div>
 			</div>
