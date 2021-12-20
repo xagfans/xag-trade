@@ -49,12 +49,12 @@ myApp.controller("BalanceCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Gateways',
         return e === code
       })
       let className = code
-      if (index === 0) {
-        className += ' noMarginRight addTo__top'
-      }
-      if (index === 1) {
-        className += ' absoluteClass'
-      }
+      // if (index === 0) {
+      //   className += ' noMarginRight addTo__top'
+      // }
+      // if (index === 1) {
+      //   className += ' absoluteClass'
+      // }
       return className
     }
     $scope.aClass = function () {

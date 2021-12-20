@@ -11,14 +11,17 @@
 					<div class="cinput-group col-md-12" style="height: 34px;">
 						<input type="text" style="border-radius: 15px;" class="form-control" required="true"
 							ng-model="input_address" ng-change="resolve()" ng-model-options="{debounce:800}"
-							placeholder="{{'recipient' | translate}}" list="contacts">
+							placeholder="{{'recipient' | translate}}({{'invalid_address'| translate}})" list="contacts">
 						<datalist id="contacts">
 							<option ng-repeat="entry in contacts" value="{{entry.name}}">{{entry.address}}</option>
 						</datalist>
 					</div>
 					<div ng-show="input_address != real_address" class="success msg">{{real_address}}</div>
-					<div ng-show="invalid_address" class="error msg" translate="invalid_address">invalid address</div>
+<!--					<div ng-show="invalid_address" class="error msg" translate="invalid_address">invalid address</div>-->
 				</div>
+				<div class="send_flexRow">
+
+
 				<div class="sendRow">
 					<div class="cinput-group">
 						<input type="text" placeholder="{{'will_recv' | translate}}" autocomplete="off" class="form-control"
@@ -41,14 +44,17 @@
 				<div class="sendRow">
 					<div class="cinput-group">
 						<input name="tag"
-							style="border-radius: 15px;"
 							placeholder="{{'dest_tag' | translate}}"
 							type="text" class="form-control" autocomplete="off"
 							ng-model="tag" ng-change="checkTag()" ng-required="tag_require" ng-disabled="tag_provided">
+						<div class="addOnBtn">
+							<div class="btnText" style="font-size: 17px;" translate="dest_tag">标签</div>
+						</div>
 					</div>
 					<div ng-show="tag_require" class="msg" translate="tag_need">Recipient requires a destination tag to be
 						specified for the transaction. If you don't know the destination tag, please contact them before doing a transaction.</div>
 					<div ng-show="invalid_tag" class="error msg" translate="error_invalid_tag">invalid tag</div>
+				</div>
 				</div>
 				<div class="footer__btn" ng-hide="is_federation && extra_fields">
 					<div type="submit" class="trustBtn success" ng-click="pickPath(asset.code)" ng-disabled="invalid_address || invalid_amount || invalid_tag">{{'send' | translate}} {{asset.code}}</div>

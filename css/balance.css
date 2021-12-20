@@ -158,9 +158,19 @@
 }
 
 .s-alert--error {
-	background: #FFBCBC;
+	background: #FF7878;
 }
-
+.errorFlex{
+	display: flex !important;
+	align-items: center;
+}
+.errorFlex .warnIcon{
+	width: 44px;
+	margin-right: 19px;
+}
+.errorFlex .tips{
+	flex: 1 0 0;
+}
 .s-alert--alert {
 	background: #FFBCBC;
 }
@@ -389,9 +399,9 @@ a.AssetCard__federation:hover {
 }
 .balanceContainer .balanceContainer__content .content__top .assets{}
 .balanceContainer .balanceContainer__content .assetsCards{
-	height: 142px;
+	height: 160px;
 	background: #52C3E1;
-	min-width: 31.4%;
+	width: 31.4%;
 	box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.20000000298023224);
 	border-radius: 6px 6px 6px 6px;
 	margin-bottom: 17px;
@@ -403,7 +413,7 @@ a.AssetCard__federation:hover {
 .balanceContainer .balanceContainer__content .assetsCards .assetsCards__content{
 	display: flex;
 	align-items: center;
-	padding: 17px 0 0 17px;
+	padding: 30px 0 0 30px;
 }
 .balanceContainer .balanceContainer__content .assetsCards .content__logo{
 	width: 48px;
@@ -417,13 +427,16 @@ a.AssetCard__federation:hover {
 	height: 90%;
 	margin: 5%;
 }
-.balanceContainer .balanceContainer__content .assetsCards .content__main{}
+.balanceContainer .balanceContainer__content .assetsCards .content__main{
+	overflow: hidden;
+}
 .balanceContainer .balanceContainer__content .assetsCards .content__main .assetsName,
 .balanceContainer .balanceContainer__content .assetsCards .content__main .assetsCode
 {
 	color: #fff;
 	text-align:left;
 	overflow: hidden;
+
 }
 .balanceContainer .balanceContainer__content .assetsCards .content__main .assetsName{
 	font-size: 14px;
@@ -432,13 +445,14 @@ a.AssetCard__federation:hover {
 .balanceContainer .balanceContainer__content .assetsCards .content__main .assetsCode{
 	font-weight: 500;
 	font-size: 13px;
+	opacity: 0.7;
 }
 .balanceContainer .balanceContainer__content .assetsCards .assetsCards__footer{
 	display: flex;
 	align-items:center;
 	justify-content: space-between;
-	padding: 0 17px;
-	margin-top: 28px;
+	padding: 0 30px;
+	margin-top: 40px;
 }
 .balanceContainer .balanceContainer__content .assetsCards .assetsCards__footer .descName,
 .balanceContainer .balanceContainer__content .assetsCards .assetsCards__footer .amount{
@@ -448,24 +462,45 @@ a.AssetCard__federation:hover {
 .balanceContainer .balanceContainer__content .assetsCards .assetsCards__footer .descName{
 
 }
-.balanceContainer .balanceContainer__content .assetsCards .assetsCards__footer .amount{}
+.balanceContainer .balanceContainer__content .assetsCards .assetsCards__footer .amount{
+	font-weight: bold;
+}
 
 .balanceContainer .balanceContainer__content .assetsCards:last-child{
 	margin-bottom: 0;
 }
 .balanceContainer .balanceContainer__content .assetsCards.bigCard{
-	height: 300px;
+	/*height: 132px;*/
 	background: #52C3E1;
-	width: 766px;
+	width: 64.36666%;
 	margin-right: 17px;
 }
 .balanceContainer .balanceContainer__content .assetsCards.bigCard .assetsCards__content{
-	padding: 49px 0 0 49px;
+	padding: 24px 60px 0 60px;
 }
 .balanceContainer .balanceContainer__content .assetsCards.bigCard .content__logo{
-	width: 132px;
-	height: 132px;
+	width: 102px;
+	height: 102px;
 	margin-right: 52px;
+}
+.balanceContainer .balanceContainer__content .assetsCards.bigCard .rightMain{
+	flex: 1;
+}
+.balanceContainer .balanceContainer__content .assetsCards.bigCard .main__footer .descName{
+	font-size: 28px;
+	color: #fff;
+	font-weight: bold;
+}
+.balanceContainer .balanceContainer__content .assetsCards.bigCard .main__footer .amount{
+	font-size: 36px;
+	color: #fff;
+	font-weight: bold;
+	display:inline-block;
+}
+.balanceContainer .balanceContainer__content .assetsCards.bigCard .main__footer{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 .balanceContainer .balanceContainer__content .assetsCards.bigCard .content__main .assetsName{
 	font-size: 37px;

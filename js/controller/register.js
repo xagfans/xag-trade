@@ -15,6 +15,7 @@ myApp.controller('RegisterCtrl', ['$scope', '$rootScope', '$translate', '$window
     };
     $scope.showPass = function(flag) {
       $scope.showPassword = flag;
+      $scope.showSec(flag);
     };
     $scope.showSec = function(flag) {
       $scope.showSecret = flag;

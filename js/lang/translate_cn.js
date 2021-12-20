@@ -320,5 +320,6 @@ var translate_cn = {
 
 
   ytf_address: '以太坊地址',
-  ytf_address_span: '将02+24零附加到大写字符集以生成。'
+  ytf_address_span: '将02+24零附加到大写字符集以生成。',
+  lookmore: '加载更多'
 }

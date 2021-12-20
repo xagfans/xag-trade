@@ -202,7 +202,19 @@ a.AssetPairRow:hover .AssetPair__separator {
 	font: 18px 'OpenSansRegular';
   line-height:34px;
 }
-
+.listing .lookmore{
+    text-align: center;
+    margin-top: 10px;
+}
+.listing .lookmore .text{
+    background: linear-gradient(
+            90deg, #4776E6 0%, #8E54E9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 400;
+    font-size: 15px;
+    cursor:pointer;
+}
 .input-group .form-control:first-child,
 .input-group-addon:first-child,
 .input-group-btn:first-child > .btn,
@@ -774,6 +786,7 @@ a.AssetPairRow:hover .AssetPair__separator {
   height: 28px;
   line-height: 28px;
   box-shadow: unset;
+    flex: 1;
 }
 .cinput-group .addOnBtn{
   height: 28px;
@@ -967,7 +980,7 @@ a.AssetPairRow:hover .AssetPair__separator {
   margin-top: 20px;
 }
 .trustNew .trustNew__tips{
-  background: #FFBCBC;
+  background: #FF7878;
   box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.20000000298023224);
   border-radius: 6px;
   position: relative;
@@ -1152,6 +1165,14 @@ a.AssetPairRow:hover .AssetPair__separator {
 .sendContainer .cards{
   padding: 0 45px;
   height: auto;
+}
+.sendContainer .send_flexRow{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.sendContainer .send_flexRow .sendRow{
+    width: calc(50% - 10px);
 }
 .sendContainer .cards .cardsContent{}
 .sendContainer .cards .cardsContent .sendRow{

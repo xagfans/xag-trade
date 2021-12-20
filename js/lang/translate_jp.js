@@ -318,5 +318,6 @@ var translate_jp = {
   'Invalid Email' : 'メールアドレスが間違っています。',
 
   ytf_address: 'エーテル坊アドレス',
-  ytf_address_span: '02+24ゼロを大文字セットにアタッチして生成します。'
+  ytf_address_span: '02+24ゼロを大文字セットにアタッチして生成します。',
+  lookmore: '追加のロード'
 }
