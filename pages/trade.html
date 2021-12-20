@@ -100,7 +100,14 @@
 					<div class="s-alert s-alert--info" ng-show="sell_state=='submitted'" translate="submitted"></div>
 					<div class="s-alert s-alert--success" ng-show="sell_state=='success'" translate="offer_success">
 					</div>
-					<div class="s-alert s-alert--error" ng-show="sell_fail">{{sell_fail}}</div>
+					<div class="s-alert errorFlex s-alert--error" ng-show="sell_fail">
+						<div>
+							<img class="warnIcon" src="../img/warnInfo.png" alt="">
+						</div>
+						<div class="tips">
+							{{sell_fail}}
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="popubDialog" ng-show="show_pair">
@@ -181,6 +188,9 @@
 							</div>
 							<div ng-show="!offers.bid.length" class="message" translate="no_offers">You haven't placed
 								any orders.</div>
+							<div class="lookmore" ng-show="offers.bid.length">
+								<span class="text" translate="lookmore" ng-click="changeShowMode('buy')">加载更多</span>
+							</div>
 						</div>
 						<div class="listing" ng-show="showMode == 'sell'">
 							<div class="row head" ng-show="offers.ask.length">
@@ -203,6 +213,9 @@
 							</div>
 							<div ng-show="!offers.ask.length" class="message" translate="no_offers">You haven't placed
 								any orders.</div>
+							<div class="lookmore" ng-show="offers.ask.length">
+								<span class="text" translate="lookmore" ng-click="changeShowMode('sell')">加载更多</span>
+							</div>
 						</div>
 					</div>
 				</div>

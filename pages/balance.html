@@ -16,15 +16,16 @@
 					<div class="content__logo">
 						<img class="logo__image" data-ng-src="{{native.logo}}">
 					</div>
-					<div class="content__main">
-						<div class="assetsName">{{native.code}}</div>
-						<div class="assetsCode">{{native.name}}</div>
+					<div class="rightMain">
+						<div class="content__main">
+							<div class="assetsName">{{native.code}}</div>
+<!--							<div class="assetsCode">{{native.name}}</div>-->
+						</div>
+						<div class="main__footer">
+							<div class="descName">{{'balance' | translate}}</div>
+							<div class="amount">${{balance | number : 6}}</div>
+						</div>
 					</div>
-				</div>
-
-				<div class="assetsCards__footer">
-					<div class="descName">{{'balance' | translate}}</div>
-					<div class="amount">{{balance | number : 6}}</div>
 				</div>
 			</div>
 			<div class="assetsCards" ng-repeat="(code, sublines) in lines" ng-class="bClass(code)">
@@ -40,11 +41,11 @@
 					</div>
 					<div class="assetsCards__footer">
 						<div class="descName">{{'balance' | translate}}</div>
-						<div class="amount">{{line.balance | number : 6}}</div>
+						<div class="amount">${{line.balance | number : 6}}</div>
 					</div>
 				</div>
 			</div>
-			<div class="assetsCards addCards" ng-click="goTo('/trust')" ng-class="aClass()">
+			<div class="assetsCards addCards" ng-click="goTo('/trust')">
 				<div class="assetsCards__content" style="visibility: hidden;">rnzcChVnzcChVKabxh3JLvh7qGanzqTCDW6fUSDT</div>
 				<div class="defaultIcon">
 					<img src="../img/addIcon.png" alt="">

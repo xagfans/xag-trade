@@ -49,7 +49,7 @@ var translate_en = {
   stop_countdown: 'Stop countdown',
 
   /** Balance & Trust **/
-  overview: 'Overview',
+  overview: 'OVERVIEW',
   balance : 'Balance',
   reserve   : 'Reserve:',
   total : 'Total',
@@ -75,7 +75,7 @@ var translate_en = {
 
   /** send **/
   send : 'Send',
-  send_money : 'Send money',
+  send_money : 'SEND MONEY',
   send_money_account : 'Transfer account',
   name_or_address : 'Contact name or XAG address',
   send_note : 'Note: The target address must also trust the asset you are sending.',
@@ -184,7 +184,7 @@ var translate_en = {
   optional : 'Optional',
   required : 'Required',
 
-  trade : 'Trade',
+  trade : 'TRADE',
   normal: 'Normal',
   sent  : 'Sent',
   received : 'Received',
@@ -290,7 +290,7 @@ var translate_en = {
   dw_desc_line1 : 'If you want to deposit or withdraw funds, either in fiat or from other blockchains, you may use an gateway service to do so.',
   dw_desc_line2 : 'You\'ll find a selection of service providers in the tabs below. Start by choosing a provider. ',
   gateway   : 'Gateway',
-  gateways  : 'Gateways',
+  gateways  : 'GATEWAYS',
   no_trust : 'Please create the trust line first.',
   alipay    : 'Alipay',
   bank_card : 'Bank',
@@ -318,6 +318,7 @@ var translate_en = {
   'Invalid Email' : 'Invalid Email address.',
 
   ytf_address: 'Ethereum address',
-  ytf_address_span: 'Append 02 + 24 zeros to the uppercase character set to generate.'
+  ytf_address_span: 'Append 02 + 24 zeros to the uppercase character set to generate.',
+  lookmore: 'Load more'
 
 }
