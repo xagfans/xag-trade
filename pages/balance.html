@@ -1,6 +1,7 @@
 <section class="balanceContainer">
 	<group>
-	<div class="balanceContainer__warning" ng-hide="funded()">
+	<div class="balanceContainer__warning">
+<!--	<div class="balanceContainer__warning" ng-hide="funded()">-->
 		<div class="leftIcon">
 			<img src="../img/warnInfo.png" alt="">
 		</div>
@@ -28,7 +29,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="assetsCards" ng-repeat="(code, sublines) in lines" ng-class="bClass(code)">
+			<div class="assetsCards otherCards" ng-repeat="(code, sublines) in lines" ng-class="bClass(code)">
 				<div ng-repeat="(issuer, line) in sublines" >
 					<div class="assetsCards__content" ng-init="gateway=getGateway(code, line.issuer)">
 						<div class="content__logo">
@@ -45,7 +46,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="assetsCards addCards" ng-click="goTo('/trust')">
+			<div class="assetsCards addCards otherCards" ng-click="goTo('/trust')">
 				<div class="assetsCards__content" style="visibility: hidden;">rnzcChVnzcChVKabxh3JLvh7qGanzqTCDW6fUSDT</div>
 				<div class="defaultIcon">
 					<img src="../img/addIcon.png" alt="">

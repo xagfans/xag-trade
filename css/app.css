@@ -297,7 +297,10 @@ code {
   background: #FFFFFF;
   box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.2);
   border-radius: 6px 6px 6px 6px;
-  height: 530px;
+  /*height: 530px;*/
+}
+.cards .mt20{
+  margin-top: 20px;
 }
 .cards .cardsNav{
   font-size: 0;
@@ -426,9 +429,13 @@ font-weight: bold;
  color: #fff;
  cursor: pointer;
 }
+.noboxShow{
+  border:none;
+  box-shadow: none !important;
+}
 .cards .warningTip{
   padding: 10px 14px;
-  background: #FFBCBC;
+  background: #FF7878;
   color: #fff;
   font-weight: 400;
   line-height: 22px;

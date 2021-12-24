@@ -110,7 +110,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="popubDialog" ng-show="show_pair">
+			<div class="popubDialog" ng-show="show_pair" ng-click="show_pair=false">
 				<div class="popubDialog__main">
 					<div class="popubDialog__body">
 						<div class="flexRow">
@@ -188,7 +188,7 @@
 							</div>
 							<div ng-show="!offers.bid.length" class="message" translate="no_offers">You haven't placed
 								any orders.</div>
-							<div class="lookmore" ng-show="offers.bid.length">
+							<div class="lookmore">
 								<span class="text" translate="lookmore" ng-click="changeShowMode('buy')">加载更多</span>
 							</div>
 						</div>
@@ -213,7 +213,7 @@
 							</div>
 							<div ng-show="!offers.ask.length" class="message" translate="no_offers">You haven't placed
 								any orders.</div>
-							<div class="lookmore" ng-show="offers.ask.length">
+							<div class="lookmore">
 								<span class="text" translate="lookmore" ng-click="changeShowMode('sell')">加载更多</span>
 							</div>
 						</div>

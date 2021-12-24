@@ -37,6 +37,8 @@
   padding: 10px 16px;
   border-radius: 10px;
   line-height: 20px;
+  white-space: pre-wrap;
+  max-width: 100%;
 } 
 
 .noborder {

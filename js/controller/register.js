@@ -8,6 +8,7 @@ myApp.controller('RegisterCtrl', ['$scope', '$rootScope', '$translate', '$window
     $scope.password2 = '';
     $scope.key = '';
     $scope.mode = 'register_new_account';
+    $scope.showSecret = true;
     $scope.submitLoading = false;
 
     $scope.changeMode = function(mode) {
@@ -15,7 +16,7 @@ myApp.controller('RegisterCtrl', ['$scope', '$rootScope', '$translate', '$window
     };
     $scope.showPass = function(flag) {
       $scope.showPassword = flag;
-      $scope.showSec(flag);
+      // $scope.showSec(flag);
     };
     $scope.showSec = function(flag) {
       $scope.showSecret = flag;
@@ -71,26 +72,45 @@ myApp.controller('RegisterCtrl', ['$scope', '$rootScope', '$translate', '$window
           $scope.mnemonic_lang = Id.getMnemonicLang($scope.mnemonic, $scope.lang);
         }
         $scope.$apply();
-
+        $scope.authdata = authdata
         console.log(authdata);
-        const blob = new Blob([authdata.blob], {type : 'text/plain'});
-        if (navigator.msSaveBlob) {
-          navigator.msSaveBlob(blob, authdata._path);
-        } else {
-          var e = document.createEvent('MouseEvents'),
-          a = document.createElement('a');
-          a.download = authdata._path;
-          a.href = URL.createObjectURL(blob);
-          a.dataset.downloadurl = ['text/plain', a.download, a.href].join(':');
-          e.initEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-          a.dispatchEvent(e);
-          URL.revokeObjectURL(a.href); // clean the url.createObjectURL resource
-        }
+        // const blob = new Blob([authdata.blob], {type : 'text/plain'});
+        // if (navigator.msSaveBlob) {
+        //   navigator.msSaveBlob(blob, authdata._path);
+        // } else {
+        //   var e = document.createEvent('MouseEvents'),
+        //   a = document.createElement('a');
+        //   a.download = authdata._path;
+        //   a.href = URL.createObjectURL(blob);
+        //   a.dataset.downloadurl = ['text/plain', a.download, a.href].join(':');
+        //   e.initEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+        //   a.dispatchEvent(e);
+        //   URL.revokeObjectURL(a.href); // clean the url.createObjectURL resource
+        // }
 
       });
     };
+    $scope.download  = function () {
+      var authdata = $scope.authdata
+      const blob = new Blob([authdata.blob], {type : 'text/plain'});
+      if (navigator.msSaveBlob) {
+        navigator.msSaveBlob(blob, authdata._path);
+      } else {
+        var e = document.createEvent('MouseEvents'),
+            a = document.createElement('a');
+        a.download = authdata._path;
+        a.href = URL.createObjectURL(blob);
+        a.dataset.downloadurl = ['text/plain', a.download, a.href].join(':');
+        e.initEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+        a.dispatchEvent(e);
+        URL.revokeObjectURL(a.href); // clean the url.createObjectURL resource
+      }
+      $scope.mode = 'register_empty_wallet';
+      $scope.reset();
 
-    $scope.submitSecretKeyForm = function(){
+      $location.path('/');
+    }
+     $scope.submitSecretKeyForm = function(){
       $scope.masterkey = $scope.secretKey;
       $scope.fileInputClick();
     };
@@ -107,5 +127,8 @@ myApp.controller('RegisterCtrl', ['$scope', '$rootScope', '$translate', '$window
 
       $location.path('/');
     };
+    $scope.handleShow = function() {
+      $scope.showSecret = false
+    }
   }
 ]);

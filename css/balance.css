@@ -172,7 +172,7 @@
 	flex: 1 0 0;
 }
 .s-alert--alert {
-	background: #FFBCBC;
+	background: #FF7878;
 }
 
 .s-alert--warning {
@@ -348,7 +348,7 @@ a.AssetCard__federation:hover {
 /**最新得UI样式**/
 .balanceContainer{}
 .balanceContainer .balanceContainer__warning{
-	background: #FFBCBC;
+	background: #FF7878;
 	box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.20000000298023224);
 	border-radius: 6px 6px 6px 6px;
 	display: flex;
@@ -356,6 +356,7 @@ a.AssetCard__federation:hover {
 	justify-content: flex-start;
 	padding: 15px 10px;
 	margin-bottom: 12px;
+	width: calc(100% - 18px);
 }
 .balanceContainer  .balanceContainer__warning .leftIcon{
 	width: 49px;
@@ -401,7 +402,7 @@ a.AssetCard__federation:hover {
 .balanceContainer .balanceContainer__content .assetsCards{
 	height: 160px;
 	background: #52C3E1;
-	width: 31.4%;
+	width: calc(33.33% - 17px);
 	box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.20000000298023224);
 	border-radius: 6px 6px 6px 6px;
 	margin-bottom: 17px;
@@ -472,9 +473,15 @@ a.AssetCard__federation:hover {
 .balanceContainer .balanceContainer__content .assetsCards.bigCard{
 	/*height: 132px;*/
 	background: #52C3E1;
-	width: 64.36666%;
+	width: 64.9866%;
 	margin-right: 17px;
 }
+/*.balanceContainer .balanceContainer__content .assetsCards:nth-child(2){*/
+/*	!*margin-right: 0;*!*/
+/*}*/
+/*.balanceContainer .balanceContainer__content .otherCards:nth-child(4n){*/
+/*	margin-right: 0;*/
+/*}*/
 .balanceContainer .balanceContainer__content .assetsCards.bigCard .assetsCards__content{
 	padding: 24px 60px 0 60px;
 }
