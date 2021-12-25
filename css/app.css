@@ -345,6 +345,18 @@ code {
   font-weight: bold;
   border-bottom: none !important;
 }
+.cards .cardsContent .addButton{
+  background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
+  border-radius: 6px 6px 6px 6px;
+  text-align: center;
+  padding: 4px 16px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #fff;
+  margin: auto;
+  display: inline-block;
+  border-style: none;
+}
 .cards .cardsContent .myBtn{
   cursor: pointer;
   background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
@@ -358,6 +370,9 @@ code {
   display: inline-block;
   border-style: none;
 }
+.cards .cardsContent .myBtn.cursor{
+  cursor: pointer;
+}
 .cards .cardsContent .myBtn.text{
   background:none;
   color: #666;
@@ -365,6 +380,7 @@ code {
   font-size: 16px;
   display: inline-block;
   padding: 0;
+  cursor: pointer;
 }
 .cards .cardsContent .myBtn.delete{
   color: #FF7E7E;

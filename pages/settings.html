@@ -27,7 +27,9 @@
 							<input class="input-control" type="number" ng-model="server_port" placeholder="443"/>
 						</div>
 						<div class="col-md-3 column">
-							<div class="myBtn" ng-disabled="!server_url" ng-click="addServer()" translate="add">add To</div>
+							<button class="addButton" ng-click="addServer()" ng-disabled="!server_url"><span
+									translate="add">add To</span></button>
+<!--							<div class="myBtn" ng-disabled="!server_url" ng-click="addServer()" translate="add">add To</div>-->
 						</div>
 					</div>
 					<div class="row" ng-repeat="remote in network_servers">
