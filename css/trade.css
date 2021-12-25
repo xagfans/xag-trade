@@ -1094,7 +1094,8 @@ a.AssetPairRow:hover .AssetPair__separator {
   font-weight: 300;
 }
 .trustNew .Msg{
-  margin-top: 20px;
+  margin: 20px 0 0 0;
+    width: 100%;
 }
 .trustNew .gatewayCards .defaultTips{
   font-size: 15px;
@@ -1311,6 +1312,7 @@ a.AssetPairRow:hover .AssetPair__separator {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+ justify-content: flex-start;
 }
 .popubDialog .assetsCards{
   height: 124px;

@@ -297,7 +297,10 @@ code {
   background: #FFFFFF;
   box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.2);
   border-radius: 6px 6px 6px 6px;
-  height: 530px;
+  /*height: 530px;*/
+}
+.cards .mt20{
+  margin-top: 20px;
 }
 .cards .cardsNav{
   font-size: 0;
@@ -342,6 +345,18 @@ code {
   font-weight: bold;
   border-bottom: none !important;
 }
+.cards .cardsContent .addButton{
+  background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
+  border-radius: 6px 6px 6px 6px;
+  text-align: center;
+  padding: 4px 16px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #fff;
+  margin: auto;
+  display: inline-block;
+  border-style: none;
+}
 .cards .cardsContent .myBtn{
   cursor: pointer;
   background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
@@ -355,6 +370,9 @@ code {
   display: inline-block;
   border-style: none;
 }
+.cards .cardsContent .myBtn.cursor{
+  cursor: pointer;
+}
 .cards .cardsContent .myBtn.text{
   background:none;
   color: #666;
@@ -362,6 +380,7 @@ code {
   font-size: 16px;
   display: inline-block;
   padding: 0;
+  cursor: pointer;
 }
 .cards .cardsContent .myBtn.delete{
   color: #FF7E7E;
@@ -426,9 +445,13 @@ font-weight: bold;
  color: #fff;
  cursor: pointer;
 }
+.noboxShow{
+  border:none;
+  box-shadow: none !important;
+}
 .cards .warningTip{
   padding: 10px 14px;
-  background: #FFBCBC;
+  background: #FF7878;
   color: #fff;
   font-weight: 400;
   line-height: 22px;
