@@ -7,7 +7,8 @@ myApp.factory('Gateways', ['$rootScope', function($rootScope) {
           website : 'https://xagfans.com/',
           service : [],
           assets : [
-            {code : 'USD', issuer : 'rnzcChVKabxh3JLvh7qGanzqTCDW6fUSDT', list: true, name: "USDT", logo: "img/coin/usdt.svg"}
+            {code : 'USD', issuer : 'rnzcChVKabxh3JLvh7qGanzqTCDW6fUSDT', list: true, name: "USDT", logo: "img/coin/usdt.svg"},
+            {code : 'XLM', issuer : 'rPbAf6KCn85NoLRCoqavewUyskX3BajXLM', list: true, name: "Stellar Lumens", logo: "img/coin/xlm.png"}
           ],
           logo : "img/coin/xag.png"
         }
