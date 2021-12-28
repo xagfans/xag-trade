@@ -210,6 +210,7 @@ var translate_jp = {
   manager_offer : '注文管理',
   your_buy_offers  : '自分の買い注文',
   your_sell_offers : '自分の売り注文',
+  your_overview: '総覧',
   no_offers : '注文はありません',
   you_have      : '所有資産は以下です',
   order_amount  : '数量',
@@ -320,5 +321,6 @@ var translate_jp = {
 
   ytf_address: 'エーテル坊アドレス',
   ytf_address_span: '02+24ゼロを大文字セットにアタッチして生成します。',
-  lookmore: '追加のロード'
+  lookmore: '追加のロード',
+  power_text: '委任状の作成'
 }

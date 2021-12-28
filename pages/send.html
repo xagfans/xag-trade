@@ -9,7 +9,7 @@
 			<group ng-show="mode == 'input'">
 				<div class="sendRow" style="min-height: 34px;">
 					<div class="cinput-group col-md-12" style="height: 34px;">
-						<input type="text" style="border-radius: 15px;" class="form-control" required="true"
+						<input type="text" style="border-radius: 40px;" class="form-control" required="true"
 							ng-model="input_address" ng-change="resolve()" ng-model-options="{debounce:800}"
 							placeholder="{{'recipient' | translate}}({{'invalid_address'| translate}})" list="contacts">
 						<datalist id="contacts">
@@ -57,7 +57,7 @@
 				</div>
 				</div>
 				<div class="footer__btn" ng-hide="is_federation && extra_fields">
-					<div type="submit" class="trustBtn success" ng-click="pickPath(asset.code)" ng-disabled="invalid_address || invalid_amount || invalid_tag">{{'send' | translate}} {{asset.code}}</div>
+<!--					<div type="submit" class="trustBtn success" ng-click="pickPath(asset.code)" ng-disabled="invalid_address || invalid_amount || invalid_tag">{{'send' | translate}} {{asset.code}}</div>-->
 				</div>
 				<form name="serviceForm" ng-show="is_federation">
 					<div ng-repeat="field in extra_fields" ng-switch="field.type" class="row noborder">
@@ -103,7 +103,7 @@
 							<span class="currency">{{asset.code}}</span>
 							<div class="ex">(<span class="rate">1</span><span class="pair">{{asset.code}}/{{asset.code}}</span>)</div>
 						</div>
-						<button type="submit" ng-click="pickPath(asset.code)" class="btn btn-block btn-success">{{'send' | translate}} {{asset.code}}</button>
+						<button type="submit" ng-click="pickPath(asset.code)" class="btn btn-block form-btn">{{'send' | translate}} {{asset.code}}</button>
 					</div>
 
 					<div class="message" ng-show="!paths.length && asset.code != native.code">{{ 'no_send_path' | translate}}</div>
@@ -114,11 +114,11 @@
 							<span class="currency">{{alt.code}}</span>
 							<div class="ex">(<span class="rate">{{alt.rate}}</span><span class="pair">{{asset.code}}/{{alt.code}}</span>)</div>
 						</div>
-						<button type="submit" ng-click="pickPath(alt.code)" class="btn btn-block btn-success">{{'send' | translate}} {{alt.code}}</button>
+						<button type="submit" ng-click="pickPath(alt.code)" class="btn btn-block form-btn">{{'send' | translate}} {{alt.code}}</button>
 					</div>
 				</div>
-				<div class="row pathupdate" ng-show="found">
-					<div class="col-xs-12"><span>{{'path_updated' | translate}} {{lastUpdate}} {{'seconds_ago' | translate}}</span></div>
+				<div class="pathupdate" ng-show="found">
+					<div><span>{{'path_updated' | translate}} {{lastUpdate}} {{'seconds_ago' | translate}}</span></div>
 				</div>
 
 				<div class="row noborder" ng-show="act_loading">
@@ -133,7 +133,7 @@
 				<div class="row" ng-show="real_not_fund">
 					<div class="s-alert s-alert--info" translate="not_funded" translate-values="native">Not funded</div>
 				</div>
-				<div class="row" ng-show="send_error || service_error || quote_error || (!serviceForm.$valid && service_currency)">
+				<div ng-show="send_error || service_error || quote_error || (!serviceForm.$valid && service_currency)">
 					<div class="s-alert s-alert--error">
 						<div ng-show="send_error">{{send_error}}</div>
 						<div ng-show="service_error">{{service_error | translate}}</div>

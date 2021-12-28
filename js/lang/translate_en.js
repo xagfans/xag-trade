@@ -211,6 +211,7 @@ var translate_en = {
   manager_offer : 'Manage offers',
   your_buy_offers  : 'Your buy offers',
   your_sell_offers : 'Your sell offers',
+  your_overview: 'overview',
   no_offers : 'You haven\'t placed any orders.',
   you_have      : 'You have',
   order_amount  : 'Amount',
@@ -320,6 +321,6 @@ var translate_en = {
 
   ytf_address: 'Ethereum address',
   ytf_address_span: 'Append 02 + 24 zeros to the uppercase character set to generate.',
-  lookmore: 'Load more'
-
+  lookmore: 'Load more',
+  power_text: 'Create delegation order'
 }
