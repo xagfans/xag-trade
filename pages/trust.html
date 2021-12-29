@@ -81,6 +81,7 @@
 					<div class="error" ng-show="manual_issuer && !isValidAddress(manual_issuer)"
 						translate="issuer_invalid">Asset issuer account ID must be a valid account ID</div>
 				</div>
+				<button type="button" ng-click="mode = 'community'" class="btn btn-default trustBtn" style="margin-right: 40px;">{{'cancel' | translate}}</button>
 				<button class="btn btn-success trustBtn"
 					ng-disabled="!manual_code || !isValidAddress(manual_issuer) || isChanging(manual_code, manual_issuer)"
 					ng-click="addTrust(manual_code, manual_issuer, manual_amount)">{{'trust_add' | translate}} {{manual_code}}</button>
