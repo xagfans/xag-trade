@@ -211,6 +211,7 @@ var translate_cn = {
   manager_offer : '管理委托',
   your_buy_offers  : '我的买单',
   your_sell_offers : '我的卖单',
+  your_overview : '总览',
   no_offers : '你没有委托单',
   you_have      : '你拥有',
   order_amount  : '数量',
@@ -322,5 +323,6 @@ var translate_cn = {
 
   ytf_address: '以太坊地址',
   ytf_address_span: '将02+24零附加到大写字符集以生成。',
-  lookmore: '加载更多'
+  lookmore: '加载更多',
+  power_text: '创建委托单'
 }
