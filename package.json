@@ -2,8 +2,21 @@
   "name": "XagTrade",
   "version": "1.0.0",
   "description": "Xrpalike Gene Web Client",
+  "main": "main.js",
+  "chromium-args": "--disable-gpu",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dist": "build --tasks win-x86,win-x64,linux-x86,linux-x64,mac-x64 --mirror https://npm.taobao.org/mirrors/nwjs/ .",
+    "mac": "build --tasks mac-x64 --mirror https://npm.taobao.org/mirrors/nwjs/ .",
+    "win": "build --tasks win-x86,win-x64 --mirror https://npm.taobao.org/mirrors/nwjs/ .",
+    "linux": "build --tasks linux-x86,linux-x64 --mirror https://npm.taobao.org/mirrors/nwjs/ .",
+    "start": "run --x64 --mirror https://npm.taobao.org/mirrors/nwjs/ ."
+  },
   "author": "XagLabs",
   "license": "Apache",
+  "devDependencies": {
+    "nwjs-builder-phoenix": "^1.15.0"
+  },
   "dependencies": {
     "angular": "^1.7.9",
     "angular-qrcode": "^7.2.0",
@@ -19,5 +32,20 @@
     "qrcode-generator": "^1.4.4",
     "ripple-lib": "^1.9.5",
     "sjcl": "^1.0.8"
+  },  
+  "build": {
+    "nwVersion": "0.52.0",
+    "win": {
+      "productName": "XagClient",
+      "companyName": "Xag Labs",
+      "icon": "./assets/favicon.ico"
+    },
+    "mac": {
+      "displayName": "XagClient",
+      "icon": "./assets/XagTrade.icns"
+    }
+  },
+  "window": {
+    "icon": "./assets/XagTrade.png"
   }
 }
