@@ -1,6 +1,6 @@
 <div ng-controller="HeaderCtrl" class="header">
 	<header ng-show="!showMenu" class="auth">
-		<h1 translate="header_wellcome">Stellar is a platform that connects banks, payments systems, and people.</h1>
+		<h1 translate="header_wellcome">Xrpalike Gene is a value internet.</h1>
 	</header>
 
 	<nav class="navbar topmenu" ng-show="showMenu">
@@ -87,10 +87,10 @@
 			</div>
 		</div>
 	</nav>
-	<div ng-show="isActive('/balance') || isActive('/history') || isActive('/contact')" class="subnav">
+	<div ng-show="isActive('/') || isActive('/balance') || isActive('/history') || isActive('/contact')" class="subnav">
 		<div class="container">
 			<ul>
-				<li ng-class="{active:isActive('/balance')}" ng-show="currentNetwork.tabs.indexOf('balance') > -1"
+				<li ng-class="{active:isActive('/') || isActive('/balance')}" ng-show="currentNetwork.tabs.indexOf('balance') > -1"
 					ng-click="goTo('/balance')"><a href="javascript:">{{'balance' | translate}}</a></li>
 				<li ng-class="{active:isActive('/history')}" ng-show="currentNetwork.tabs.indexOf('history') > -1"
 					ng-click="goTo('/history')"><a href="javascript:">{{'history' | translate}}</a></li>
