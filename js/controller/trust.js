@@ -3,7 +3,7 @@
 myApp.controller("TrustCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Gateways', 'Federation',
   function($scope, $rootScope, XrpApi, Gateways, Federation) {
     $scope.mode = 'community';
-    $scope.gatewaylist = Gateways.gateways;
+    $scope.gatewaylist = Gateways.getAll($rootScope.lines);//Gateways.gateways;
     $scope.showTips = true;
     console.log($scope.gatewaylist);
 
@@ -16,11 +16,6 @@ myApp.controller("TrustCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Gateways', 'F
     $scope.fed_currencies = [];
     $scope.fed_error = "";
     $scope.fed_loading;
-
-    $scope.show_all = false;
-    $scope.showHide = function() {
-      $scope.show_all = !$scope.show_all;
-    }
 
     $scope.resolve = function() {
       var snapshot = $scope.fed_url;
@@ -54,6 +49,7 @@ myApp.controller("TrustCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Gateways', 'F
       $scope.manual_name = gateway.name;
     }
     $scope.hasLine = function(code, issuer) {
+      code = code.length > 3 && code.length <= 20 ? asciiToHex(code) : code;
       if (!$rootScope.lines[code] || !$rootScope.lines[code][issuer]) {
         return false;
       }

@@ -11,8 +11,8 @@
 		<!-- {{lines}}
 		{{gatewaylist}} -->
 		<div ng-repeat="(name, gateway) in gatewaylist">
-			<group class="col-md-4" ng-repeat="asset in gateway.assets" ng-show="asset.list || show_all">
-				<div>
+			<group class="col-md-4" ng-repeat="asset in gateway.assets">
+				<div style="margin-bottom: 17px;">
 					<div class="gatewayCards" ng-class="asset.code">
 						<gateway name="{{asset.name || gateway.name}}" logo="{{asset.logo || gateway.logo}}" website=""
 							code="{{asset.code}}" address="{{asset.issuer}}"></gateway>
@@ -38,23 +38,17 @@
 				<div class="row Msg" ng-show="isDone(asset.code, asset.issuer)">
 					<div class="s-alert s-alert--success row__message" translate="trust_granted">Trust is granted!</div>
 				</div>
-			</group>
-			<!--自定义授权-->
-			<div class="col-md-4" ng-click="changeMode()">
-				<div class="gatewayCards defaultCards">
-					<div class="defaultIcon">
-						<img src="../img/addIcon.png" style="width:80px;" alt="">
-					</div>
-					<div class="defaultTips">{{'manual_add' | translate}}</div>
+			</group>			
+		</div>
+		<!--自定义授权-->
+		<div class="col-md-4" ng-click="changeMode()">
+			<div class="gatewayCards defaultCards">
+				<div class="defaultIcon">
+					<img src="../img/addIcon.png" style="width:80px;" alt="">
 				</div>
+				<div class="defaultTips">{{'manual_add' | translate}}</div>
 			</div>
 		</div>
-		<!--					<a href="" ng-click="showHide()">-->
-		<!--						<div class="txfoot">-->
-		<!--							<span ng-show="!show_all"><i class="fa fa-angle-double-down fa-2x"></i></span>-->
-		<!--							<span ng-show="show_all"><i class="fa fa-angle-double-up fa-2x"></i></span>-->
-		<!--						</div>-->
-		<!--					</a>-->
 	</group>
 
 	<div class="manual" ng-show="mode == 'manual'">
