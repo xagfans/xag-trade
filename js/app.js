@@ -209,8 +209,8 @@ myApp.run(['$rootScope', '$window', '$location', '$translate', 'AuthenticationFa
       });
     } catch(e) {
       console.error("Cannot set server", SettingFactory.getNetworkType(), e);
-      console.warn("Change network back to xrp.");
-      SettingFactory.setNetworkType('xrp');
+      console.warn("Change network back to xag.");
+      SettingFactory.setNetworkType('xag');
       SM.setServers(SettingFactory.getServers());
     }
 
@@ -226,3 +226,36 @@ var round = function(dight, howMany) {
   }
   return dight;
 }
+
+var hexToAscii = function(hex) {
+    var str = "";
+    var i = 0, l = hex.length;
+    if (hex.substring(0, 2) === '0x') {
+        i = 2;
+    }
+    for (; i < l; i+=2) {
+        var code = parseInt(hex.substr(i, 2), 16);
+        if (code > 0) {
+          str += String.fromCharCode(code);
+        }
+    }
+
+    return str;
+};
+
+var asciiToHex = function(str) {
+  var hex = "";
+  for(var i = 0; i < str.length; i++) {
+    var code = str.charCodeAt(i);
+    var n = code.toString(16);
+    hex += n.length < 2 ? '0' + n : n;
+  }
+  return (hex + "0000000000000000000000000000000000000000").substring(0, 40).toUpperCase();;
+};
+
+function key(code, issuer) {
+  if (code.length > 3 && code.length <= 20) {
+    code = asciiToHex(code);
+  }
+  return code == $rootScope.native ? code : code + '.' + issuer;
+};
