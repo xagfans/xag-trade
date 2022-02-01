@@ -10,7 +10,7 @@
 							</div>
 							<div class="card__code">{{base_code  | rpcurrency}}</div>
 							<div class="card__balance" translate="balance">余额</div>
-							<div class="card__money">${{getBalance(base_code, base_issuer)}}</div>
+							<div class="card__money">{{getBalance(base_code, base_issuer)}}</div>
 							<div class="card__footer">
 								<img src="img/file2.png" class="filpIcon" alt="">
 							</div>
@@ -27,7 +27,7 @@
 							</div>
 							<div class="card__code">{{counter_code | rpcurrency}}</div>
 							<div class="card__balance" translate="balance">余额</div>
-							<div class="card__money">${{getBalance(counter_code, counter_issuer)}}</div>
+							<div class="card__money">{{getBalance(counter_code, counter_issuer)}}</div>
 							<div class="card__footer">
 								<img src="img/file2.png" class="filpIcon" alt="">
 							</div>
@@ -70,10 +70,10 @@
 							</div>
 							<div class="cardFooter" ng-hide="fatfingersell || fatfingerbuy">
 								<!--买入-->
-								<div class="myBtn" ng-click="offerWithCheck('buy')" ng-disabled="selling">{{'buy' |
+								<div class="myBtn" ng-click="offerWithCheck('buy')" ng-disabled="buying || !sell_amount || !sell_price">{{'buy' |
 									translate}} {{base_code  | rpcurrency}}</div>
 								<!--卖出-->
-								<div class="myBtn" ng-click="offerWithCheck('sell')">{{'sell' | translate}}
+								<div class="myBtn" ng-click="offerWithCheck('sell')" ng-disabled="selling || !sell_amount || !sell_price">{{'sell' | translate}}
 									{{base_code  | rpcurrency}}</div>
 							</div>
 							<div ng-show="fatfingersell || fatfingerbuy">

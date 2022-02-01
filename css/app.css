@@ -406,6 +406,10 @@ code {
 .cards .cardsContent .myBtn.text:hover{
   color: #4776E6;
 }
+.cards .cardsContent .myBtn[disabled]{
+  color: #aaa !important;
+  background: #8E64F9 !important;
+}
 .cards .cardsContent .table__body{
   max-height: 340px;
   overflow-y: auto;

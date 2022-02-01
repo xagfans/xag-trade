@@ -107,14 +107,20 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
         let issuer = $rootScope.lines[keystr].issuer;
         $scope.tradeAssets[keystr] = {code: code, issuer: issuer, balance: $rootScope.lines[keystr].balance};
       }
-      console.log($scope.native)
     };
     addLinesToTradePairs();
     $scope.$on("balanceUpdate", function() {
       addLinesToTradePairs();
     });
     Gateways.defaultTradeAssets.forEach(asset =>{
-      $scope.tradeAssets[key(asset.code, asset.issuer)] = asset;
+      let keystr = key(asset.code, asset.issuer);
+      if (!$scope.tradeAssets[keystr]) {
+        $scope.tradeAssets[keystr] = {
+          code : asset.code.length > 3 ? asciiToHex(asset.code) : asset.code,
+          issuer : asset.issuer,
+          balance : 0
+        };
+      }
     });
 
 
@@ -221,9 +227,6 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
       });
     }
     $scope.refreshBook();
-    // setInterval(() => {
-    //   $scope.refreshBook();
-    // },3000)
 
     $scope.refreshingOffer = false;
     $scope.refreshOffer = function() {
@@ -312,7 +315,7 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
       var price;
       if (type == 'buy') {
         price = $scope.book.price('ask');
-        if (price && $scope.buy_price > price * 1.2) {
+        if (price && $scope.sell_price > price * 1.2) {
           $scope.fatfingerbuy = true;
         } else {
           $scope.offer(type);
@@ -443,6 +446,7 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
         $scope.countdown = $scope.countdown - 1;
         if ($scope.countdown <= 0) {
           $scope.refreshBook();
+          $scope.refreshOffer();
         }
       });
     }, 1000);
