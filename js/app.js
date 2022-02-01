@@ -142,15 +142,15 @@ myApp.run(['$rootScope', '$window', '$location', '$translate', 'AuthenticationFa
     XrpApi.client = "xag-trade-" + appinfo.version;
     $rootScope.currentNetwork = SettingFactory.getCurrentNetwork();
     $rootScope.native = $rootScope.currentNetwork.coin;
-
     $rootScope.balance = "0"; //native asset;
     $rootScope.reserve = 0;
-    $rootScope.lines = {}; // lines.CNY.xxx = {code: 'CNY', issuer: 'xxx', balance: 200, limit: 1000}
+    $rootScope.lines = {}; // lines.keystr = {code: 'CNY', issuer: 'xxx', balance: 200, limit: 1000}
     $rootScope.getBalance = function(code, issuer) {
       if (code == $rootScope.native.code) {
         return $rootScope.balance;
       } else {
-        return $rootScope.lines[code] && $rootScope.lines[code][issuer] ? $rootScope.lines[code][issuer].balance : 0;
+        let keystr = key(code, issuer);
+        return $rootScope.lines[keystr] ? $rootScope.lines[keystr].balance : 0;
       }
     }
     $rootScope.funded = function() {
@@ -254,8 +254,11 @@ var asciiToHex = function(str) {
 };
 
 function key(code, issuer) {
+  if (!code) {
+    return "NONE";
+  }
   if (code.length > 3 && code.length <= 20) {
     code = asciiToHex(code);
   }
-  return code == $rootScope.native ? code : code + '.' + issuer;
+  return code == 'XRP' || code == 'XAG' ? code : code + '.' + issuer;
 };

@@ -102,10 +102,10 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
 
     $scope.tradeAssets = {};
     function addLinesToTradePairs() {
-      for (var code in $rootScope.lines) {
-        for (var issuer in $rootScope.lines[code]) {
-          $scope.tradeAssets[key(code, issuer)] = {code: code, issuer: issuer, balance: $rootScope.lines[code][issuer].balance};
-        }
+      for (var keystr in $rootScope.lines) {
+        let code = $rootScope.lines[keystr].code;
+        let issuer = $rootScope.lines[keystr].issuer;
+        $scope.tradeAssets[keystr] = {code: code, issuer: issuer, balance: $rootScope.lines[keystr].balance};
       }
       console.log($scope.native)
     };

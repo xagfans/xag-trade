@@ -501,17 +501,13 @@ myApp.factory('XrpApi', ['$rootScope', 'AuthenticationFactory', 'ServerManager',
       _updateRootInfo() {
         $rootScope.balance = _xrpBalance;
         $rootScope.reserve = SM.reserveBaseXRP + SM.reserveIncrementXRP * _ownerCount;
-        
-        var lines = {};
+        let lines = {};
         for(var keystr in _trustlines) {
           var line = _trustlines[keystr];
           if (line.balance == "0" && line.limit == "0") {
             continue;
           }
-          if (!lines[line.currency]) {
-            lines[line.currency] = {};
-          }
-          lines[line.currency][line.counterparty] = {
+          lines[keystr] = {
               code    : line.currency,
               issuer  : line.counterparty,
               balance : line.balance,

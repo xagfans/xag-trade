@@ -48,12 +48,12 @@ myApp.controller("TrustCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Gateways', 'F
       $scope.manual_logo = gateway.logo;
       $scope.manual_name = gateway.name;
     }
-    $scope.hasLine = function(code, issuer) {
-      code = code.length > 3 && code.length <= 20 ? asciiToHex(code) : code;
-      if (!$rootScope.lines[code] || !$rootScope.lines[code][issuer]) {
+    $scope.hasLine = function(code, issuer) {      
+      let keystr = key(code, issuer);
+      if (!$rootScope.lines[keystr]) {
         return false;
       }
-      return $rootScope.lines[code][issuer].limit > 0;
+      return $rootScope.lines[keystr].limit > 0;
     };
 
     var changing = {};
@@ -139,9 +139,5 @@ myApp.controller("TrustCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Gateways', 'F
       console.debug('lines may update');
       $scope.$apply();
     });
-
-    function key(code, issuer) {
-      return code == $rootScope.currentNetwork.coin.code ? code : code + '.' + issuer;
-    };
 
   } ]);

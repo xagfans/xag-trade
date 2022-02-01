@@ -5,8 +5,11 @@ myApp.controller("ConvertCtrl", ['$scope', '$rootScope', 'XrpApi', 'XrpPath', 'S
     $scope.init = function(){
       $scope.mode = 'input';
       $scope.currencies = [];
-      for (var code in $rootScope.lines) {
-        $scope.currencies.push(code);
+      for (var keystr in $rootScope.lines) {
+        let code = $rootScope.lines[keystr].code;
+        if ($scope.currencies.indexOf(code) < 0) {
+          $scope.currencies.push(code);
+        }        
       }
       $scope.dst_amount = null;
       $scope.dst_currency = $scope.dst_currency? $scope.dst_currency : $rootScope.native.code;
