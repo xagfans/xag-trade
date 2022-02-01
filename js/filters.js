@@ -30,7 +30,9 @@ myApp.filter('fmtnum', function($filter) {
 
 myApp.filter('rpcurrency', function($filter) {
   return function(input, nativecode) {
-    nativecode = nativecode || 'XRP';
-    return input == 'XRP' ? nativecode : input;
+    input = input || "";
+    nativecode = nativecode || 'XAG';
+    input = input == 'XRP' ? nativecode : input;
+    return input.length == 40 ? hexToAscii(input) : input;
   }
 });

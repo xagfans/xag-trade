@@ -8,7 +8,7 @@
 							<div class="card__logo">
 								<img class="image" data-ng-src="{{base.logo}}">
 							</div>
-							<div class="card__code">{{base_code}}</div>
+							<div class="card__code">{{base_code  | rpcurrency}}</div>
 							<div class="card__balance" translate="balance">余额</div>
 							<div class="card__money">${{getBalance(base_code, base_issuer)}}</div>
 							<div class="card__footer">
@@ -25,7 +25,7 @@
 							<div class="card__logo">
 								<img class="image" data-ng-src="{{counter.logo}}">
 							</div>
-							<div class="card__code">{{counter_code}}</div>
+							<div class="card__code">{{counter_code | rpcurrency}}</div>
 							<div class="card__balance" translate="balance">余额</div>
 							<div class="card__money">${{getBalance(counter_code, counter_issuer)}}</div>
 							<div class="card__footer">
@@ -48,7 +48,7 @@
 									<div class="cinput-group">
 										<input type="text" class="form-control" ng-model="sell_amount"
 											ng-change="calculate('sell_amount')" placeholder="1000">
-										<div class="addOnBtn"><span class="btnText">{{base_code}}</span></div>
+										<div class="addOnBtn"><span class="btnText">{{base_code  | rpcurrency}}</span></div>
 									</div>
 								</div>
 								<div class="fieldBox">
@@ -56,7 +56,7 @@
 									<div class="cinput-group">
 										<input type="text" class="form-control" ng-model="sell_price"
 											ng-change="calculate('sell_price')" placeholder="1000">
-										<div class="addOnBtn"><span class="btnText">{{counter_code}}</span></div>
+										<div class="addOnBtn"><span class="btnText">{{counter_code  | rpcurrency}}</span></div>
 									</div>
 								</div>
 								<div class="fieldBox">
@@ -64,30 +64,30 @@
 									<div class="cinput-group">
 										<input type="text" class="form-control" ng-model="sell_volume"
 											ng-change="calculate('sell_volume')" placeholder="1000">
-										<div class="addOnBtn"><span class="btnText">{{counter_code}}</span></div>
+										<div class="addOnBtn"><span class="btnText">{{counter_code  | rpcurrency}}</span></div>
 									</div>
 								</div>
 							</div>
 							<div class="cardFooter" ng-hide="fatfingersell || fatfingerbuy">
 								<!--买入-->
 								<div class="myBtn" ng-click="offerWithCheck('buy')" ng-disabled="selling">{{'buy' |
-									translate}} {{base_code}}</div>
+									translate}} {{base_code  | rpcurrency}}</div>
 								<!--卖出-->
 								<div class="myBtn" ng-click="offerWithCheck('sell')">{{'sell' | translate}}
-									{{base_code}}</div>
+									{{base_code  | rpcurrency}}</div>
 							</div>
 							<div ng-show="fatfingersell || fatfingerbuy">
 								<div class="warning-buy-sell" translate="fatfinger"></div>
 							</div>
 							<div class="cardFooter" ng-show="fatfingerbuy" style="margin-top: 8px">
 								<button class="myBtn" ng-click="offer('buy')">{{'buy' | translate}}
-									{{base_code}}</button>
+									{{base_code  | rpcurrency}}</button>
 								<!-- <button class="btn btn-default marginleft" ng-click="fatfingerbuy=false">{{'cancel' |
 									translate}}</button> -->
 							</div>
 							<div class="cardFooter" ng-show="fatfingersell" style="margin-top: 8px">
 								<button class="myBtn" ng-click="offer('sell')">{{'sell' | translate}}
-									{{base_code}}</button>
+									{{base_code  | rpcurrency}}</button>
 								<!-- <button class="btn btn-default marginleft" ng-click="fatfingersell=false">{{'cancel' |
 									translate}}</button> -->
 							</div>
@@ -138,7 +138,7 @@
 										<img class="logo__image" data-ng-src="{{gateway.logo}}">
 									</div>
 									<div class="content__main">
-										<div class="assetsName">{{line.code}}</div>
+										<div class="assetsName">{{line.code  | rpcurrency}}</div>
 										<div class="assetsCode">{{line.issuer}}</div>
 									</div>
 								</div>
@@ -180,10 +180,10 @@
 							</div>
 							<div class="row body" ng-repeat="item in offers.bid"
 								ng-class="{cancelling: isCancelling(item.id)}">
-								<div class="col-xs-3 rowItem right">{{item.price | fmtnum}} {{item.total.currency}}</div>
-								<div class="col-xs-3 rowItem right">{{item.quantity.value | fmtnum}} {{item.quantity.currency}}
+								<div class="col-xs-3 rowItem right">{{item.price | fmtnum}} {{item.total.currency  | rpcurrency}}</div>
+								<div class="col-xs-3 rowItem right">{{item.quantity.value | fmtnum}} {{item.quantity.currency | rpcurrency}}
 								</div>
-								<div class="col-xs-4 rowItem right">{{item.total.value | fmtnum}} {{item.total.currency}}</div>
+								<div class="col-xs-4 rowItem right">{{item.total.value | fmtnum}} {{item.total.currency | rpcurrency}}</div>
 								<div class="col-xs-2 action">
 									<i class="fa fa-spinner fa-pulse" ng-show="isCancelling(item.id)"></i>
 									<a href="javascript:" ng-click="cancel(item.id, 'all')"
@@ -205,10 +205,10 @@
 							</div>
 							<div class="row body" ng-repeat="item in offers.ask"
 								ng-class="{cancelling: isCancelling(item.id)}">
-								<div class="col-xs-3 rowItem right">{{item.price | fmtnum}} {{item.total.currency}}</div>
-								<div class="col-xs-3 rowItem right">{{item.quantity.value | fmtnum}} {{item.quantity.currency}}
+								<div class="col-xs-3 rowItem right">{{item.price | fmtnum}} {{item.total.currency | rpcurrency}}</div>
+								<div class="col-xs-3 rowItem right">{{item.quantity.value | fmtnum}} {{item.quantity.currency | rpcurrency}}
 								</div>
-								<div class="col-xs-4 rowItem right">{{item.total.value | fmtnum}} {{item.total.currency}}</div>
+								<div class="col-xs-4 rowItem right">{{item.total.value | fmtnum}} {{item.total.currency | rpcurrency}}</div>
 								<div class="col-xs-2 action">
 									<i class="fa fa-spinner fa-pulse" ng-show="isCancelling(item.id)"></i>
 									<a href="javascript:" ng-click="cancel(item.id, 'all')"
@@ -232,18 +232,17 @@
 							<div class="row body" ng-repeat="(id, item) in offers.all"
 								ng-class="{cancelling: isCancelling(item.id)}">
 								<div class="col-sm-1 rowItem">{{item.direction | translate}}</div>
-								<div class="col-sm-3 right rowItem">{{item.price | fmtnum}} {{item.total.currency}}</div>
-								<div class="col-sm-3 right rowItem">{{item.quantity.value | fmtnum}} {{item.quantity.currency}}
+								<div class="col-sm-3 right rowItem">{{item.price | fmtnum}} {{item.total.currency | rpcurrency}}</div>
+								<div class="col-sm-3 right rowItem">{{item.quantity.value | fmtnum}} {{item.quantity.currency | rpcurrency}}
 								</div>
-								<div class="col-sm-3 right rowItem">{{item.total.value | fmtnum}} {{item.total.currency}}</div>
+								<div class="col-sm-3 right rowItem">{{item.total.value | fmtnum}} {{item.total.currency | rpcurrency}}</div>
 								<div class="col-sm-2 action">
 									<i class="fa fa-spinner fa-pulse" ng-show="isCancelling(item.id)"></i>
 									<a href="javascript:" ng-click="cancel(item.id, 'all')"
 										class="danger">{{'offer_cancel' | translate}}</a>
 								</div>
 							</div>
-							<div ng-hide="objKeyLength(offers.all)" class="message" translate="no_offers">You haven't placed
-								any orders.</div>
+							<div ng-hide="objKeyLength(offers.all)" class="message" translate="no_offers">You haven't placed any orders.</div>
 <!--							<div class="lookmore">-->
 <!--								<span class="text" translate="lookmore" ng-click="changeShowMode('sell')">加载更多</span>-->
 <!--							</div>-->
@@ -260,14 +259,14 @@
 						<div class="cardsContent">
 							<div class="listing">
 								<div class="row head" ng-show="book.bids.length">
-									<div class="col-xs-4">{{'sum' | translate}} <div class="currency">({{base_code}})
+									<div class="col-xs-4">{{'sum' | translate}} <div class="currency">({{base_code  | rpcurrency}})
 										</div>
 									</div>
-									<div class="col-xs-4">{{'size' | translate}} <div class="currency">({{base_code}})
+									<div class="col-xs-4">{{'size' | translate}} <div class="currency">({{base_code  | rpcurrency}})
 										</div>
 									</div>
 									<div class="col-xs-4">{{'bid_price' | translate}}<div class="currency">
-											({{counter_code}})</div>
+											({{counter_code  | rpcurrency}})</div>
 									</div>
 								</div>
 								<div class="row body" ng-class="{my: item.account == address}" title="{{item.account}}"
@@ -291,12 +290,12 @@
 							<div class="listing">
 								<div class="row head" ng-show="book.asks.length">
 									<div class="col-xs-4">{{'ask_price' | translate}}<div class="currency">
-											({{counter_code}})</div>
+											({{counter_code | rpcurrency}})</div>
 									</div>
-									<div class="col-xs-4">{{'size' | translate}} <div class="currency">({{base_code}})
+									<div class="col-xs-4">{{'size' | translate}} <div class="currency">({{base_code | rpcurrency}})
 										</div>
 									</div>
-									<div class="col-xs-4">{{'sum' | translate}} <div class="currency">({{base_code}})
+									<div class="col-xs-4">{{'sum' | translate}} <div class="currency">({{base_code | rpcurrency}})
 										</div>
 									</div>
 								</div>

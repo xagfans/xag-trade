@@ -28,14 +28,15 @@
 					</div>
 				</div>
 			</div>
-			<div class="assetsCards otherCards" ng-repeat="(code, sublines) in lines" ng-class="bClass(code)">
-				<div ng-repeat="(issuer, line) in sublines" >
-					<div class="assetsCards__content" ng-init="gateway=getGateway(code, line.issuer)">
+
+			<div class="assetsCards otherCards" ng-repeat="(keystr, line) in lines" ng-class="bClass(line.code)">				
+				<div>
+					<div class="assetsCards__content" ng-init="gateway=getGateway(line.code, line.issuer)">
 						<div class="content__logo">
 							<img class="logo__image" data-ng-src="{{gateway.logo}}">
 						</div>
 						<div class="content__main">
-							<div class="assetsName">{{code}}</div>
+							<div class="assetsName">{{line.code | rpcurrency}}</div>
 							<div class="assetsCode">{{line.issuer}}</div>
 						</div>
 					</div>

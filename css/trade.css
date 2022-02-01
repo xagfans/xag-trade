@@ -656,6 +656,7 @@ a.AssetPairRow:hover .AssetPair__separator {
   position: relative;
 }
 
+.PairPicker__card.Ripple,
 .PairPicker__card.XRP {
   background: #4E9BDA !important;
 }
@@ -1351,6 +1352,13 @@ a.AssetPairRow:hover .AssetPair__separator {
   padding: 0;
 }
 
+.sendContainer .cards .cardsContent .sendRow .cinput-group .send_title {
+  margin-right: 20px;
+  font: bold 16px 'OpenSansRegular';
+  text-align: left;
+  text-transform: uppercase;
+}
+
 .sendContainer .cards .cardsContent .sendRow .cinput-group .dropdown-menu {
   border: none;
   border-radius: 6px;
@@ -1400,12 +1408,12 @@ a.AssetPairRow:hover .AssetPair__separator {
 }
 
 .sendContainer .mode-confirm .dest_feedback .value {
-  border-radius: 40px;
+  border-radius: 56px;
   background: #f2f2f2;
-  height: 40px;
-  line-height: 40px;
-  padding: 0 10px;
-  font-size: 17px;
+  height: 56px;
+  line-height: 56px;
+  padding: 0 26px;
+  font-size: 33px;
   color: #333;
   font-weight: 400;
   flex: 1 0 0;
@@ -1415,6 +1423,7 @@ a.AssetPairRow:hover .AssetPair__separator {
   font-size: 13px;
   color: #666;
   padding-top: 5px;
+  padding-left: 26px;
 }
 
 .sendContainer .mode-confirm .dest_feedback .value.other {
@@ -1422,16 +1431,16 @@ a.AssetPairRow:hover .AssetPair__separator {
 }
 
 .sendContainer .mode-confirm .dest_feedback .currency {
-  border-radius: 0 40px 40px 0;
-  height: 40px;
-  line-height: 40px;
+  border-radius: 0 56px 56px 0;
+  height: 56px;
+  line-height: 56px;
   background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   border: 1px solid #4776E6;
   color: #fff;
-  padding: 0 14px;
-  font-size: 17px;
+  padding: 0 26px;
+  font-size: 22px;
 }
 
 .popubDialog {

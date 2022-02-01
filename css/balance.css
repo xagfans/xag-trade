@@ -526,25 +526,33 @@ a.AssetCard__federation:hover {
 	position: relative;
 	cursor: pointer;
 }
-.assetsCards.XRP{
+
+.XLM{
+	background: #5EABDA !important;
+}
+.Ripple,
+.XRP{
 	background: #4E9BDA !important;
 }
-.assetsCards.ABC{
+.ABC{
 	background: #53AFC6 !important;
 }
-.assetsCards.BCD{
+.BCD{
 	background:#B6B6B6 !important;
 }
-.assetsCards.CNY{
+.CNY{
 	background:#7092E3!important;
 }
-.assetsCards.BTC{
+.BTC{
 	background:#5CCC86!important;
 }
-.assetsCards.USD{
+.USD{
 	background:#97CEFF!important;
 }
-.assetsCards.XAG{
+.USDT{
+	background:#53ae94!important;
+}
+.XAG{
 	background:#7092E3!important;
 }
 .balanceContainer .balanceContainer__content .assetsCards.addCards .defaultIcon{

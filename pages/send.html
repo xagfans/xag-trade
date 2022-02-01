@@ -9,6 +9,7 @@
 			<group ng-show="mode == 'input'">
 				<div class="sendRow" style="min-height: 34px;">
 					<div class="cinput-group col-md-12" style="height: 34px;">
+						<label translate="address" class="send_title">Address</label>
 						<input type="text" style="border-radius: 40px;" class="form-control" required="true"
 							ng-model="input_address" ng-change="resolve()" ng-model-options="{debounce:800}"
 							placeholder="{{'recipient' | translate}}({{'invalid_address'| translate}})" list="contacts">
@@ -17,44 +18,47 @@
 						</datalist>
 					</div>
 					<div ng-show="input_address != real_address" class="success msg">{{real_address}}</div>
-<!--					<div ng-show="invalid_address" class="error msg" translate="invalid_address">invalid address</div>-->
+					<div ng-show="invalid_address && input_address" class="error msg" translate="invalid_address">invalid address</div>
 				</div>
 				<div class="send_flexRow">
-
-
-				<div class="sendRow">
-					<div class="cinput-group">
-						<input type="text" placeholder="{{'will_recv' | translate}}" autocomplete="off" class="form-control"
-							ng-model="asset.amount" ng-change="updatePath()" ng-model-options="{debounce:800}" required="true">
-						<div class="dropdown">
-							<button class="addOnBtn" ng-disabled="!currencies.length" type="button" data-toggle="dropdown"><span class="btnText" style="font-size: 17px;">{{asset.code}}</span></button>
-<!--							<div class="addOnBtn" data-toggle="dropdown"><span class="btnText" style="font-size: 17px;">{{asset.code}}</span></div>-->
-							<ul class="dropdown-menu" role="menu">
-								<li role="presentation"><a role="menuitem" href="" ng-click="pickCode(native.code)">{{native.code}}</a></li>
-								<li role="presentation" ng-repeat="code in currencies">
-									<a role="menuitem" href="" ng-click="pickCode(code)">{{code}}</a>
-								</li>
-							</ul>
+					<div class="sendRow">
+						<div class="cinput-group">
+							<label translate="amount" class="send_title">Amount</label>
+							<input type="text" placeholder="{{'will_recv' | translate}}" autocomplete="off" 
+								class="form-control" style="border-radius: 40px; margin-right: 15px;" 
+								ng-model="asset.amount" ng-change="updatePath()" ng-model-options="{debounce:800}" required="true">
+							<div class="dropdown">
+								<button class="addOnBtn" ng-disabled="!currencies.length" type="button" data-toggle="dropdown" style="border-radius: 40px; outline:none;">
+									<div class="" style="">
+										<span class="btnText" style="font-size: 17px;">{{asset.code | rpcurrency}}</span>										
+									</div>									
+								</button>
+								<ul class="dropdown-menu" role="menu">
+									<li role="presentation"><a role="menuitem" href="" ng-click="pickCode(native.code)">{{native.code}}</a></li>
+									<li role="presentation" ng-repeat="code in currencies">
+										<a role="menuitem" href="" ng-click="pickCode(code)">{{code | rpcurrency}}</a>
+									</li>
+								</ul>
+							</div>
 						</div>
-					</div>
-					<div ng-show="disallow_xrp && asset.code==native.code" class="error" translate="disallow_xrp" translate-values="native">Recipient does not allow XRP payments. Are you sure you want to send XRP anyway?</div>
-					<div ng-show="invalid_amount && asset.amount" class="error" translate="invalid_amount">Invalid amount.</div>
+						<div ng-show="disallow_xrp && asset.code==native.code" class="error" translate="disallow_xrp" translate-values="native">Recipient does not allow XRP payments. Are you sure you want to send XRP anyway?</div>
+						<div ng-show="invalid_amount && asset.amount" class="error" translate="invalid_amount">Invalid amount.</div>
 
-				</div>
-				<div class="sendRow">
-					<div class="cinput-group">
-						<input name="tag"
-							placeholder="{{'dest_tag' | translate}}"
-							type="text" class="form-control" autocomplete="off"
-							ng-model="tag" ng-change="checkTag()" ng-required="tag_require" ng-disabled="tag_provided">
-						<div class="addOnBtn">
-							<div class="btnText" style="font-size: 17px;" translate="dest_tag">标签</div>
-						</div>
 					</div>
-					<div ng-show="tag_require" class="msg" translate="tag_need">Recipient requires a destination tag to be
-						specified for the transaction. If you don't know the destination tag, please contact them before doing a transaction.</div>
-					<div ng-show="invalid_tag" class="error msg" translate="error_invalid_tag">invalid tag</div>
 				</div>
+				<div class="send_flexRow">
+					<div class="sendRow">
+						<div class="cinput-group">
+							<label translate="dest_tag" class="send_title">Tag</label>
+							<input name="tag" type="text" placeholder="{{'dest_tag' | translate}}"
+								class="form-control" style="border-radius: 40px;" 
+								autocomplete="off"
+								ng-model="tag" ng-change="checkTag()" ng-required="tag_require" ng-disabled="tag_provided">
+						</div>
+						<div ng-show="tag_require" class="msg" translate="tag_need">Recipient requires a destination tag to be
+							specified for the transaction. If you don't know the destination tag, please contact them before doing a transaction.</div>
+						<div ng-show="invalid_tag" class="error msg" translate="error_invalid_tag">invalid tag</div>
+					</div>
 				</div>
 				<div class="footer__btn" ng-hide="is_federation && extra_fields">
 <!--					<div type="submit" class="trustBtn success" ng-click="pickPath(asset.code)" ng-disabled="invalid_address || invalid_amount || invalid_tag">{{'send' | translate}} {{asset.code}}</div>-->
@@ -97,13 +101,13 @@
 				</form>
 
 				<div class="row form-group alternatives" ng-show="found">
-					<div ng-show="asset.code == native.code && is_federation && extra_fields" class="col-xs-12 col-sm-6 col-md-4">
+					<div ng-show="asset.code == native.code" class="col-xs-12 col-sm-6 col-md-4">
 						<div class="am">
 							<span class="amnt">{{asset.amount}}</span>
-							<span class="currency">{{asset.code}}</span>
-							<div class="ex">(<span class="rate">1</span><span class="pair">{{asset.code}}/{{asset.code}}</span>)</div>
+							<span class="currency">{{asset.code | rpcurrency}}</span>
+							<div class="ex">(<span class="rate">1</span><span class="pair">{{asset.code | rpcurrency}}/{{asset.code | rpcurrency}}</span>)</div>
 						</div>
-						<button type="submit" ng-click="pickPath(asset.code)" class="btn btn-block form-btn">{{'send' | translate}} {{asset.code}}</button>
+						<button type="submit" ng-click="pickPath(asset.code)" class="btn btn-block form-btn">{{'send' | translate}} {{asset.code | rpcurrency}}</button>
 					</div>
 
 					<div class="message" ng-show="!paths.length && asset.code != native.code">{{ 'no_send_path' | translate}}</div>
@@ -111,10 +115,10 @@
 					<div ng-repeat="alt in paths" class="col-xs-12 col-sm-6 col-md-4">
 						<div class="am">
 							<span class="amnt">{{alt.value}}</span>
-							<span class="currency">{{alt.code}}</span>
-							<div class="ex">(<span class="rate">{{alt.rate}}</span><span class="pair">{{asset.code}}/{{alt.code}}</span>)</div>
+							<span class="currency">{{alt.code | rpcurrency}}</span>
+							<div class="ex">(<span class="rate">{{alt.rate}}</span><span class="pair">{{asset.code | rpcurrency}}/{{alt.code | rpcurrency}}</span>)</div>
 						</div>
-						<button type="submit" ng-click="pickPath(alt.code)" class="btn btn-block form-btn">{{'send' | translate}} {{alt.code}}</button>
+						<button type="submit" ng-click="pickPath(alt.code)" class="btn btn-block form-btn">{{'send' | translate}} {{alt.code | rpcurrency}}</button>
 					</div>
 				</div>
 				<div class="pathupdate" ng-show="found">
@@ -146,31 +150,25 @@
 
 			<group ng-show="mode == 'confirm'">
 				<div class="mode-confirm row">
-<!--					<p translate="you_sending" translate-values="path">You are sending XRP to</p>-->
 					<div class="dest_feedback noFlex">
 						<div class="value">{{input_address}}</div>
 						<div class="extra" ng-show="real_address && real_address != input_address">{{real_address}}</div>
 					</div>
 					<div class="dest_feedback">
-						<div class="value other">{{asset.amount}}</div>
-						<div class="currency">{{asset.code}}</div>
+						<div class="value other"><span>{{asset.amount}} </span><span style="font-size: 20px;">{{asset.code | rpcurrency}}</span></div>
+						<div class="currency" translate="amount">Amount</div>
+						<!-- <span class="value other">{{asset.amount}} </span><span class="currency">{{asset.code | rpcurrency}}</span> -->
 					</div>
 					<div class="dest_feedback">
-						<div class="value other">{{path.value}} </div>
-						<div class="currency">费用</div>
-					</div>
-					<div class="dest_feedback">
-						<div class="value other">{{path.value}} </div>
-						<div class="currency">{{'dest_tag' | translate}}</div>
+						<div class="value other">{{tag}} </div>
+						<div class="currency" translate="dest_tag">Destination tag</div>
 					</div>
 <!--					<p class="amount_feedback"><span class="value">{{path.value}} </span><span class="currency">{{path.code}}</span><span ng-show="path.origin">± 1%</span></p>-->
 <!--					<p translate="are_you_sure">Are you sure?</p>-->
 				</div>
 
 				<div class="footer__btn">
-<!--					<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">-->
-<!--						<button ng-click="cancelConfirm()" class="btn btn-block btn-default back">« {{'back' | translate}}</button>-->
-<!--					</div>-->
+					<button ng-click="cancelConfirm()" class="trustBtn btn-default" style="margin-right: 20px;">{{'back' | translate}}</button>
 					<button ng-click="send_confirmed()" class="trustBtn">{{'confirm' | translate}}</button>
 				</div>
 			</group>

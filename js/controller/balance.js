@@ -48,14 +48,14 @@ myApp.controller("BalanceCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Gateways',
       let index = result.findIndex(function(e){
         return e === code
       })
-      let className = code
+      let className = code && code.length == 40 ? hexToAscii(code) : code;
       // if (index === 0) {
       //   className += ' noMarginRight addTo__top'
       // }
       // if (index === 1) {
       //   className += ' absoluteClass'
       // }
-      return className
+      return className;
     }
     $scope.aClass = function () {
       let result = Object.keys($rootScope.lines)

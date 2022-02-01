@@ -8,14 +8,15 @@
 							class="form-control" ng-model="dst_amount" ng-change="updatePath()"
 							ng-model-options="{debounce:800}" required="true">
 						<div style="position: relative;" class="rightBtnWrap">
-							<button class="addOnBtn" ng-disabled="!currencies.length" type="button"
-								data-toggle="dropdown"><span class="btnText">{{dst_currency}}</span></button>
+							<button class="addOnBtn" style="outline:none;" ng-disabled="!currencies.length" type="button" data-toggle="dropdown">
+								<span class="btnText">{{dst_currency | rpcurrency}}</span>
+							</button>
 							<ul class="dropdown-menu" role="menu">
 								<li role="presentation">
 									<a role="menuitem" href="" ng-click="pickCode(native.code)">{{native.code}}</a>
 								</li>
 								<li role="presentation" ng-repeat="code in currencies">
-									<a role="menuitem" href="" ng-click="pickCode(code)">{{code}}</a>
+									<a role="menuitem" href="" ng-click="pickCode(code)">{{code | rpcurrency}}</a>
 								</li>
 							</ul>
 						</div>
@@ -65,12 +66,11 @@
 						<div ng-repeat="(key, alt) in paths" class="col-md-4">
 							<div class="am">
 								<span class="amnt">{{alt.value}}</span>
-								<span class="currency">{{alt.code}}</span>
+								<span class="currency">{{alt.code | rpcurrency}}</span>
 								<div class="ex">(<span class="rate">{{alt.rate}}</span><span
-										class="pair">{{dst_currency}}/{{alt.code}}</span>)</div>
+										class="pair">{{dst_currency | rpcurrency}}/{{alt.code | rpcurrency}}</span>)</div>
 							</div>
-							<button ng-click="pick(alt.code)" class="btn btn-block form-btn">{{'convert' | translate}}
-								{{alt.code}}</button>
+							<button ng-click="pick(alt.code)" class="btn btn-block form-btn">{{'convert' | translate}} {{alt.code | rpcurrency}}</button>
 						</div>
 					</div>
 				</div>
@@ -82,8 +82,8 @@
 				<div class="mode-confirm" style="margin-bottom: 60px">
 					<!-- <p translate="converting">You are converting</p> -->
 					<div class="flex-ali margin-bottom-16">
-						<p class="value-back">{{asset.value}}</p>
-						<span class="code-back">{{asset.code}}</span>
+						<p class="value-back">{{dst_amount}}</p>
+						<span class="code-back">{{dst_currency | rpcurrency}}</span>
 					</div>
 					<!-- <p translate="converting_to">to</p> -->
 					<!-- <div class="flex-ali">
@@ -92,8 +92,8 @@
 					</div> -->
 					<!-- <p translate="pay_most">You will pay at most</p> -->
 					<div class="flex-ali margin-bottom-16">
-						<p class="value-back">{{asset.value}}{{asset.code}}± 1%</p>
-						<span class="code-back">费用</span>
+						<p class="value-back">{{asset.value}} {{asset.code | rpcurrency}} ± 1%</p>
+						<span class="code-back" translate="pay">Pay</span>
 					</div>
 					<!-- <p translate="are_you_sure">Are you sure?</p> -->
 				</div>

@@ -122,6 +122,7 @@ var translate_jp = {
   converting    : 'あなたは以下の資産へ兌換しています',
   converting_to : '↓',
   pay_most      : '最大限のコストは以下です',
+  pay           : '料金',
   submitting    : '取引情報をリップルネットワークへ発送しています',
   submitted     : '取引情報を発送しました。',
   cleared       : '取引はキャンセルされました！',

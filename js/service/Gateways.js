@@ -7,16 +7,25 @@ myApp.factory('Gateways', ['$rootScope', function($rootScope) {
           website : 'https://xagfans.com/',
           service : [],
           assets : [
-            {code : 'USD', issuer : 'rnzcChVKabxh3JLvh7qGanzqTCDW6fUSDT', list: true, name: "USDT", logo: "img/coin/usdt.svg"},
-            {code : 'XLM', issuer : 'rPbAf6KCn85NoLRCoqavewUyskX3BajXLM', list: true, name: "Stellar Lumens", logo: "img/coin/xlm.png"}
+            {code : 'USDT', issuer : 'rnzcChVKabxh3JLvh7qGanzqTCDW6fUSDT', list: true, name: "USDT", logo: "img/coin/usdt.svg"},
+            {code : 'Ripple', issuer : 'rMeL8gHJifANAfVchSDkTUmUWjHMvCeXrp', list: true, name: "Ripple XRP", logo: "img/coin/xrp.png"},
+            {code : 'XLM', issuer : 'rUWABeB63z3pq2L6Ke4BTQAPS6hbBtFXLM', list: true, name: "Stellar Lumens", logo: "img/coin/xlm.png"}
           ],
           logo : "img/coin/xag.png"
         }
     };
-    
-    function key(code, issuer) {
-      return code == 'XRP' ? code : code + '.' + issuer;
-    };
+
+    function inList(code, issuer) {
+      for (var name in _gateways) {
+        var found = _gateways[name].assets.find(item => {
+          return key(item.code, item.issuer) == key(code, issuer);
+        });
+        if (found) {
+          return true;
+        }
+      }
+      return false;
+    }
     
     let _asset2gateway = {};
     for (var name in _gateways) {
@@ -46,6 +55,25 @@ myApp.factory('Gateways', ['$rootScope', function($rootScope) {
         }
         return _asset2gateway[key(code, issuer)] || _asset2gateway[issuer] || {logo : 'img/unknown.png'};
       },
+
+      getAll(lines) {
+        var list = JSON.parse(JSON.stringify(_gateways));
+        list["localhost"] = {
+          assets : []
+        }
+        for(var keystr in lines) {
+          let code = lines[keystr].code;
+          let issuer = lines[keystr].issuer;
+          if (!inList(code, issuer)) {
+            list["localhost"].assets.push({
+              code: code, 
+              issuer: issuer,
+              logo: 'img/unknown.png'
+            });
+          }
+        }
+        return list;
+      },
       
       get gateways() {
         return _gateways;
@@ -53,7 +81,7 @@ myApp.factory('Gateways', ['$rootScope', function($rootScope) {
       
       get defaultTradeAssets() {
         return [
-          {code : 'USD', issuer : 'rnzcChVKabxh3JLvh7qGanzqTCDW6fUSDT'}
+          {code : 'USDT', issuer : 'rnzcChVKabxh3JLvh7qGanzqTCDW6fUSDT'}
         ]
       }
     };
