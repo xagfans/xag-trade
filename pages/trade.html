@@ -70,11 +70,11 @@
 							</div>
 							<div class="cardFooter" ng-hide="fatfingersell || fatfingerbuy">
 								<!--买入-->
-								<div class="myBtn" ng-click="offerWithCheck('buy')" ng-disabled="buying || !sell_amount || !sell_price">{{'buy' |
-									translate}} {{base_code  | rpcurrency}}</div>
+								<button class="btn myBtn" ng-click="offerWithCheck('buy')" ng-disabled="buying || !sell_amount || !sell_price">{{'buy' |
+									translate}} {{base_code  | rpcurrency}}</button>
 								<!--卖出-->
-								<div class="myBtn" ng-click="offerWithCheck('sell')" ng-disabled="selling || !sell_amount || !sell_price">{{'sell' | translate}}
-									{{base_code  | rpcurrency}}</div>
+								<button class="btn myBtn" ng-click="offerWithCheck('sell')" ng-disabled="selling || !sell_amount || !sell_price">{{'sell' | translate}}
+									{{base_code  | rpcurrency}}</button>
 							</div>
 							<div ng-show="fatfingersell || fatfingerbuy">
 								<div class="warning-buy-sell" translate="fatfinger"></div>

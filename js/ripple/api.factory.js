@@ -280,7 +280,7 @@ myApp.factory('XrpApi', ['$rootScope', 'AuthenticationFactory', 'ServerManager',
         const trustline = {
           currency: code,
           counterparty: issuer,
-          limit: limit,
+          limit: limit.toString(),
           ripplingDisabled: ripplingDisabled
         };
         trustline.memos = [{data: _client, type: 'client', format: 'text'}];

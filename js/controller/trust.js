@@ -84,7 +84,7 @@ myApp.controller("TrustCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Gateways', 'F
     }
 
     $scope.addTrust = function(code, issuer, amount) {
-      amount = amount || "1000000000";
+      amount = amount || 1e12;
       var keystr = key(code, issuer);
 
       errors[keystr] = "";
