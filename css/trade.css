@@ -959,7 +959,7 @@ a.AssetPairRow:hover .AssetPair__separator {
 .tradContainer .listings_pad_new .flexRow .cards .cardsContent {
   overflow-y: auto;
   overflow-x: hidden;
-  height: 320px;
+  height: auto;
   padding: 20px 20px 0;
 }
 
