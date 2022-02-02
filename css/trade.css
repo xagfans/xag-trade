@@ -1394,6 +1394,11 @@ a.AssetPairRow:hover .AssetPair__separator {
   font-weight: bold;
 }
 
+
+.sendContainer .sendForm .row {
+  padding: 14px 0px;
+}
+
 .sendContainer .mode-confirm .dest_feedback {
   display: flex;
   align-items: center;

@@ -17,10 +17,10 @@
 							<option ng-repeat="entry in contacts" value="{{entry.name}}">{{entry.address}}</option>
 						</datalist>
 					</div>
-					<div ng-show="input_address != real_address" class="success msg">{{real_address}}</div>
+					<div ng-show="input_address != real_address" class="hint msg">{{real_address}}</div>
 					<div ng-show="invalid_address && input_address" class="error msg" translate="invalid_address">invalid address</div>
 				</div>
-				<div class="send_flexRow">
+				<div class="send_flexRow" ng-hide="is_federation && extra_fields">
 					<div class="sendRow">
 						<div class="cinput-group">
 							<label translate="amount" class="send_title">Amount</label>
@@ -46,7 +46,7 @@
 
 					</div>
 				</div>
-				<div class="send_flexRow">
+				<div class="send_flexRow" ng-hide="is_federation && extra_fields">
 					<div class="sendRow">
 						<div class="cinput-group">
 							<label translate="dest_tag" class="send_title">Tag</label>
@@ -63,7 +63,7 @@
 				<div class="footer__btn" ng-hide="is_federation && extra_fields">
 <!--					<div type="submit" class="trustBtn success" ng-click="pickPath(asset.code)" ng-disabled="invalid_address || invalid_amount || invalid_tag">{{'send' | translate}} {{asset.code}}</div>-->
 				</div>
-				<form name="serviceForm" ng-show="is_federation">
+				<form name="serviceForm" ng-show="is_federation" class="sendForm">
 					<div ng-repeat="field in extra_fields" ng-switch="field.type" class="row noborder">
 						<div ng-switch-when="label" class="col-xs-12 col-md-8">
 							<label ng-bind="field.label"></label>
@@ -137,7 +137,7 @@
 				<div class="row" ng-show="real_not_fund">
 					<div class="s-alert s-alert--info" translate="not_funded" translate-values="native">Not funded</div>
 				</div>
-				<div ng-show="send_error || service_error || quote_error || (!serviceForm.$valid && service_currency)">
+				<div style="margin-top: 17px;" ng-show="send_error || service_error || quote_error || (!serviceForm.$valid && service_currency)">
 					<div class="s-alert s-alert--error">
 						<div ng-show="send_error">{{send_error}}</div>
 						<div ng-show="service_error">{{service_error | translate}}</div>
