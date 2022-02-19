@@ -113,6 +113,7 @@ var translate_en = {
 
   /** Convert **/
   convert       : 'Convert',
+  simple        : 'Simple',
   convert_title : 'Convert one currency into another',
   convert_input : 'Please enter the conversion details.',
   convert_nopath: 'No acceptable path. Please make sure your account has enough funds / trustline limit.',
@@ -285,6 +286,7 @@ var translate_en = {
   merge_done     : 'Your account was merged to destination.',
 
   /** Deposit & withdrawl **/
+  cross_chain : 'Cross Chains',
   service : 'Service',
   deposit_withdraw : 'Deposit/Withdraw',
   deposit  : 'Deposit',

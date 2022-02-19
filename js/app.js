@@ -51,6 +51,12 @@ myApp.config(function($routeProvider, $httpProvider, $translateProvider, $compil
     access : {
       requiredLogin : true
     }
+  }).when('/crosschain', {
+    templateUrl : 'pages/crosschain.html',
+    controller : 'CrossChainCtrl',
+    access : {
+      requiredLogin : true
+    }
   }).when('/send', {
     templateUrl : 'pages/send.html',
     controller : 'SendCtrl',

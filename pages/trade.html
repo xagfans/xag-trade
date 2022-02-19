@@ -159,15 +159,15 @@
 					<div class="cardsNav">
 						<div class="navItem col-md-4" ng-class="{'active': showMode == 'buy'}"
 							ng-click="changeShowMode('buy')">
-							<span class="navTitle" translate="your_buy_offers">Your buy offers</span>
+							<span class="navTitle">{{'your_buy_offers' | translate}} ({{offers.bid.length}})</span>
 						</div>
 						<div class="navItem col-md-4" ng-class="{'active': showMode == 'sell'}"
 							ng-click="changeShowMode('sell')">
-							<span class="navTitle" translate="your_sell_offers">Your sell offers</span>
+							<span class="navTitle">{{'your_sell_offers' | translate}} ({{offers.ask.length}})</span>
 						</div>
 						<div class="navItem col-md-4" ng-class="{'active': showMode == 'overview'}"
 							ng-click="changeShowMode('overview')">
-							<span class="navTitle" translate="your_overview">overview</span>
+							<span class="navTitle">{{'your_overview' | translate}} ({{objKeyLength(offers.all)}})</span>
 						</div>
 					</div>
 					<div class="cardsContent">
@@ -259,14 +259,11 @@
 						<div class="cardsContent">
 							<div class="listing">
 								<div class="row head" ng-show="book.bids.length">
-									<div class="col-xs-4">{{'sum' | translate}} <div class="currency">({{base_code  | rpcurrency}})
-										</div>
+									<div class="col-xs-4">{{'sum' | translate}} <div class="currency">{{base_code  | rpcurrency}}</div>
 									</div>
-									<div class="col-xs-4">{{'size' | translate}} <div class="currency">({{base_code  | rpcurrency}})
-										</div>
+									<div class="col-xs-4">{{'size' | translate}} <div class="currency">{{base_code  | rpcurrency}}</div>
 									</div>
-									<div class="col-xs-4">{{'bid_price' | translate}}<div class="currency">
-											({{counter_code  | rpcurrency}})</div>
+									<div class="col-xs-4">{{'bid_price' | translate}}<div class="currency">{{counter_code  | rpcurrency}}</div>
 									</div>
 								</div>
 								<div class="row body" ng-class="{my: item.account == address}" title="{{item.account}}"
@@ -289,14 +286,11 @@
 						<div class="cardsContent">
 							<div class="listing">
 								<div class="row head" ng-show="book.asks.length">
-									<div class="col-xs-4">{{'ask_price' | translate}}<div class="currency">
-											({{counter_code | rpcurrency}})</div>
+									<div class="col-xs-4">{{'ask_price' | translate}}<div class="currency">{{counter_code | rpcurrency}}</div>
 									</div>
-									<div class="col-xs-4">{{'size' | translate}} <div class="currency">({{base_code | rpcurrency}})
-										</div>
+									<div class="col-xs-4">{{'size' | translate}} <div class="currency">{{base_code | rpcurrency}}</div>
 									</div>
-									<div class="col-xs-4">{{'sum' | translate}} <div class="currency">({{base_code | rpcurrency}})
-										</div>
+									<div class="col-xs-4">{{'sum' | translate}} <div class="currency">{{base_code | rpcurrency}}</div>
 									</div>
 								</div>
 								<div class="row body" ng-class="{my: item.account == address}" title="{{item.account}}"

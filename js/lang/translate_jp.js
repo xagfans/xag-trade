@@ -112,6 +112,7 @@ var translate_jp = {
 
   /** Convert **/
   convert       : '兌換',
+  simple        : '速い',
   convert_title : '資産を別資産へ兌換します',
   convert_input : '兌換の情報を入力してください。',
   convert_nopath: '兌換のパスが見つかりませんでした。資金や与信が不足している可能性があります。',
@@ -284,6 +285,7 @@ var translate_jp = {
   merge_done     : 'あなたのアカウントは宛先アカウントと合併されました。',
 
   /** Deposit & withdrawl **/
+  cross_chain : '入出金',
   service : 'サービス',
   deposit_withdraw : '入出金',
   deposit  : '入金',

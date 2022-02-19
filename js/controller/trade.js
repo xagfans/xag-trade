@@ -440,7 +440,6 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
     }
 
     $scope.countdown = 30;
-    console.log('countdown');
     $scope.timer = setInterval(function() {
       $scope.$apply(function() {
         $scope.countdown = $scope.countdown - 1;
