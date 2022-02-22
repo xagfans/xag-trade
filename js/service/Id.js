@@ -64,7 +64,7 @@ myApp.factory('Id', function($window) {
     generateFilename : function() {
       var dt = new Date();
       var datestr = (''+dt.getFullYear()+(dt.getMonth()+1)+dt.getDate()+'_'+dt.getHours()+dt.getMinutes()+dt.getSeconds()).replace(/([-: ])(\d{1})(?!\d)/g,'$10$2');
-      return "Wallet" + datestr + ".txt";
+      return "XagWallet" + datestr + ".txt";
     }
   };
 });
