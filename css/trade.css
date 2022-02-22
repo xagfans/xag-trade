@@ -1085,7 +1085,7 @@ a.AssetPairRow:hover .AssetPair__separator {
 }
 
 .trustNew .trustNew__tips {
-  background: #FF7878;
+  background: #CD5C5C;
   box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.20000000298023224);
   border-radius: 6px;
   position: relative;
@@ -1316,7 +1316,7 @@ a.AssetPairRow:hover .AssetPair__separator {
 .trustNew .tokenCard .assetsCards{
   height: 140px;
   background: #52C3E1;
-  width: calc(33.33%);
+  width: 380px;
   box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.20000000298023224);
   border-radius: 6px 6px 6px 6px;
   margin-bottom: 17px;
