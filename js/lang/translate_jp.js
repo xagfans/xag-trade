@@ -286,13 +286,15 @@ var translate_jp = {
 
   /** Deposit & withdrawl **/
   cross_chain : '入出金',
+  coin : 'コイン',
   service : 'サービス',
   deposit_withdraw : '入出金',
   deposit  : '入金',
   withdraw : '出金',
-  dw_coin  : '入金と出金',
-  dw_desc_line1 : 'XRP以外の暗号資産と法定通貨を入出金する場合にはゲートウェイを使用する必要があります。',
-  dw_desc_line2 : '以下のゲートウェイを選択することができます。コミュニティから選出され、Federation Protocolが実現したゲートウェイです。',
+  generate : '生成',
+  deposit_desc : 'この通貨にストレージアドレスの生成を許可しました。',
+  deposit_noauth : 'この通貨を承認していません。この機能を使用するには、再承認してください。',
+  attention : '注意点',
   gateway   : 'ゲートウェイ',
   gateways  : 'ゲートウェイ',
   no_trust : '該当資産に与信してください',
@@ -320,10 +322,10 @@ var translate_jp = {
   NotConnectedError : 'サーバーに接続されていません。しばらくしてからもう一度お試しください。',
   NoRippleTXT: '該当サイトはripple.txtファイルを提供していません',
   NoFederationUrl: '該当サイトはFederation Protocolが適用されていません',
+  NoWTAA: '該当サイトはWTAA protocolが適用されていません',
   'Invalid Email' : 'メールアドレスが間違っています。',
 
-  ytf_address: 'エーテル坊アドレス',
-  ytf_address_span: '02+24ゼロを大文字セットにアタッチして生成します。',
+  relase_later: 'この機能は次のバージョンでリリースされます',
   lookmore: '追加のロード',
   power_text: '委任状の作成'
 }

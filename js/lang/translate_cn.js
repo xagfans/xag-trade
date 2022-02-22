@@ -59,8 +59,8 @@ var translate_cn = {
   no_balance  : '账户未找到，请检查与共识节点网络的连接。',
   trust_limit : '授权额度',
   add_trust : '对网关进行授权',
-  trust_src : '授权后才能充值或接收他人的转账。',
-  trust_note: '注意: 默认列表来源于社区，钱包不对网关进行可靠性调查。请不要信任自己不了解的网关。',
+  trust_src : '授权后才能进行存储或接收他人的转账。',
+  trust_note: '注意: 授权代表该币种对网关的充分信任，请不要信任自己不了解的网关。',
   trust_remove : '删除授权',
   trust_noremove_desc : '无需删除授权',
   trust_removeing : '正在删除……',
@@ -287,13 +287,15 @@ var translate_cn = {
 
   /** Deposit & withdrawl **/
   cross_chain : '跨链',
+  coin : '币种',
   service : '服务',
   deposit_withdraw : '充提',
-  deposit  : '充值',
-  withdraw : '提现',
-  dw_coin  : '充值和提现',
-  dw_desc_line1 : '如果你要充值或提现法币和其他链上的币，你需要挑选一个网关服务。',
-  dw_desc_line2 : '你可以从下面的下拉框里选择一个网关。它们是我们从社区挑选并实现了加强版联邦协议的网关。',
+  deposit  : '存储',
+  withdraw : '提取',
+  generate : '生成',
+  deposit_desc : '你已经授权了此币种，可利用WTAA自主协议功能生成存储地址。',
+  deposit_noauth : '你未授权此币种，请重新授权后再使用此功能。',
+  attention : '注意事项',
   gateway   : '网关',
   gateways  : '网关',
   no_trust : '请先授权此资产',
@@ -321,11 +323,10 @@ var translate_cn = {
   NotConnectedError : '未连接到服务器，请过一会儿再试。',
   NoRippleTXT: '网站未提供ripple.txt文件',
   NoFederationUrl: '网站未提供联邦协议服务',
+  NoWTAA: '网站未支持WTAA自主协议',
   'Invalid Email' : '电子邮箱地址不正确。',
 
-
-  ytf_address: '以太坊地址',
-  ytf_address_span: '将02+24零附加到大写字符集以生成。',
+  relase_later: '此功能将在下一版本发布',
   lookmore: '加载更多',
   power_text: '创建委托单'
 }

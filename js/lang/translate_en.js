@@ -287,13 +287,15 @@ var translate_en = {
 
   /** Deposit & withdrawl **/
   cross_chain : 'Cross Chains',
+  coin : 'Coin',
   service : 'Service',
   deposit_withdraw : 'Deposit/Withdraw',
   deposit  : 'Deposit',
   withdraw : 'Withdraw',
-  dw_coin  : 'Depositing or withdrawing coins',
-  dw_desc_line1 : 'If you want to deposit or withdraw funds, either in fiat or from other blockchains, you may use an gateway service to do so.',
-  dw_desc_line2 : 'You\'ll find a selection of service providers in the tabs below. Start by choosing a provider. ',
+  generate : 'Generate',
+  deposit_desc : 'You have authorized this currency, and you can generate a storage address.',
+  deposit_noauth : 'You have not authorized this currency, please re-authorize to use this feature.',
+  attention : 'Attention',
   gateway   : 'Gateway',
   gateways  : 'GATEWAYS',
   no_trust : 'Please create the trust line first.',
@@ -320,10 +322,10 @@ var translate_en = {
   NotConnectedError : 'Not connected, please retry later.',
   NoRippleTXT: 'Ripple.txt was not found.',
   NoFederationUrl: 'Federation service url was not provided.',
+  NoWTAA: 'WTAA protocol was not supported.',
   'Invalid Email' : 'Invalid Email address.',
 
-  ytf_address: 'Ethereum address',
-  ytf_address_span: 'Append 02 + 24 zeros to the uppercase character set to generate.',
+  relase_later: 'This feature will be released in the next version.',
   lookmore: 'Load more',
   power_text: 'Create delegation order'
 }

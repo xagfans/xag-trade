@@ -2,6 +2,7 @@
 myApp.controller("CrossChainCtrl", ['$scope', '$rootScope', '$routeParams', 'XrpApi', 'XrpPath', 'Id', 'SettingFactory', 'AuthenticationFactory', 'Federation', '$http',
   function($scope, $rootScope, $routeParams, XrpApi, XrpPath, Id, SettingFactory, AuthenticationFactory, Federation, $http) {
     var native = $rootScope.currentNetwork.coin;
+    $scope.page = "deposit";
 
     $scope.tokenList = [];
     for (var keystr in $rootScope.lines) {
@@ -20,6 +21,73 @@ myApp.controller("CrossChainCtrl", ['$scope', '$rootScope', '$routeParams', 'Xrp
     };
     $scope.pickToken('USDT', 'rnzcChVKabxh3JLvh7qGanzqTCDW6fUSDT');
 
+    $scope.deposit_error = "";
+    $scope.deposit_info = {};
+    $scope.deposit_msgs = [];
+    $scope.deposit_working = false;
+    $scope.resolveDeposit = function(code, issuer) {
+      $scope.deposit_error = "";
+      $scope.deposit_info = {};
+      $scope.deposit_msgs = [];
+
+      let api = getDepositApi(code, issuer);
+      if (!api) {
+        $scope.deposit_error = "NoWTAA";
+      } else {
+        let url = api + "?address=" + $rootScope.address + "&currency=" + code + "&network=xrpgen&lang=" + SettingFactory.getLang(); 
+        console.debug('resolve ' + url);
+        $scope.deposit_working = true;
+        $http({
+          method: 'GET',
+          url: url
+        }).then(res => {
+          if (res.data.error) {
+            $scope.deposit_error  = res.data.error_message || res.data.error;
+          } else if (!validateWtaaDeposit(res.data)) {
+            $scope.deposit_error = "NoWTAA";
+          } else {
+            $scope.deposit_info = res.data;
+            $scope.deposit_msgs = res.data.extra_info;
+          }
+          //console.log(res);      
+        }).catch(err => {
+          $scope.deposit_error = err.error_message || err.error || err.message;
+          console.error(err);
+        }).finally(() => {
+          $scope.deposit_working = false;
+        });
+      }
+    }
+
+
+    function getDepositApi(code, issuer) {
+      console.log($rootScope.getGateway(code, issuer));
+      let service = $rootScope.getGateway(code, issuer).service;
+      return service && service.deposit ? service.deposit : "";
+    }
+
+    function validateWtaaDeposit(data) {
+      if (typeof data !== "object") {
+        return false;
+      }
+      if (!data.extra_info && typeof data.extra_info !== "array") {
+        return false;
+      }
+      if (!data.address) {
+        return false;
+      }
+      return true;
+    }
+
+    $scope.hasLine = function(code, issuer) {      
+      let keystr = key(code, issuer);
+      if (!$rootScope.lines[keystr]) {
+        return false;
+      }
+      return $rootScope.lines[keystr].limit > 0;
+    };
+
+    //////////////////////////////////////////////////////////////////////
 
     $scope.currencies = [];
     $scope.asset = {code: native.code};
@@ -51,13 +119,6 @@ myApp.controller("CrossChainCtrl", ['$scope', '$rootScope', '$routeParams', 'Xrp
       $scope.$apply();
     });
 
-    $scope.runOnceWhenOpen = function(){
-      if (AuthenticationFactory.getContact($routeParams.name)) {
-        $scope.input_address = $routeParams.name;
-      }
-      $scope.init();
-    }
-    
     $scope.act_loading;
     $scope.is_federation;
     $scope.resetService = function(){
@@ -505,8 +566,6 @@ myApp.controller("CrossChainCtrl", ['$scope', '$rootScope', '$routeParams', 'Xrp
     $scope.$on("$destroy", function() {
       $scope.stopPath();
     });
-
-    $scope.runOnceWhenOpen();
 
 } ]);
 

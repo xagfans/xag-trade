@@ -5,7 +5,10 @@ myApp.factory('Gateways', ['$rootScope', function($rootScope) {
         "xagfans.com" : {
           name : 'xagfans.com',
           website : 'https://xagfans.com/',
-          service : [],
+          service : {
+            deposit : "https://xagfans.com/deposit",
+            withdraw : "https://xagfans.com/withdraw" 
+          },
           assets : [
             {code : 'USDT', issuer : 'rnzcChVKabxh3JLvh7qGanzqTCDW6fUSDT', list: true, name: "USDT", logo: "img/coin/usdt.svg"},
             {code : 'Ripple', issuer : 'rMeL8gHJifANAfVchSDkTUmUWjHMvCeXrp', list: true, name: "Ripple XRP", logo: "img/coin/xrp.png"},
@@ -35,12 +38,14 @@ myApp.factory('Gateways', ['$rootScope', function($rootScope) {
           _asset2gateway[key(asset.code, asset.issuer)] = {
               name : gateway.name,
               website : gateway.website,
+              service : gateway.service,
               logo : asset.logo
           };
         }
         _asset2gateway[asset.issuer] = {
             name : gateway.name,
             website : gateway.website,
+            service : gateway.service,
             logo : gateway.logo
         }
       });
