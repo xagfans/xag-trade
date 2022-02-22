@@ -46,5 +46,19 @@ myApp.controller("FooterCtrl", [ '$scope', '$rootScope', '$translate', 'SettingF
     };
 
     $scope.version = appinfo.version;
+    $scope.new_version = "";
+    $scope.diff = false;
+    
+    $http({
+      method: 'GET',
+      url: "https://trade.xag-labs.com/package.json"
+    }).then(function(res) {
+      console.log(res.data);
+      $scope.new_version = res.data.version;
+      $scope.diff = $scope.version != res.data.version && $scope.version != res.data.beta;
+    }).catch(err => {
+      console.log('ignore version check', err);
+    });
+
   }]);
 
