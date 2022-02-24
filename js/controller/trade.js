@@ -331,7 +331,7 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
     }
 
     $scope.resetState = function(type){
-      $scope['fatfinger' + type] = false; // hide the fatfinger warning
+      $scope.fatfingerbuy = $scope.fatfingersell = false // hide the fatfinger warning
       $scope[type + 'ing'] = true;
       $scope[type + '_hash'] = "";
       $scope[type + '_state'] = "";
