@@ -45,6 +45,9 @@ myApp.controller("HistoryCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Authenticat
         } else if (address == t.destination) {
           t.type = 'received';
         }
+        if (tx.outcome.result != "tesSUCCESS") {
+          t.type = "fail"
+        }
         t.delivered = tx.outcome.deliveredAmount;
         t.spent = tx.specification.source.maxAmount
       }

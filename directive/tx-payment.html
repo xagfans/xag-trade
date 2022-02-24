@@ -21,6 +21,9 @@
 					{{ 'you_convert_to' | translate }}
 					<strong>{{tx.transaction.delivered.value | fmtnum}} {{tx.transaction.delivered.currency | rpcurrency:native.code}}</strong>
 				</span>
+				<span ng-show="tx.transaction.type == 'fail'">
+					{{'failedtx' | translate}} {{tx.outcome.result}}
+				</span>
 				<span ng-show="tx.transaction.tag && tx.transaction.type">{{'tx_tag' | translate}} <strong>{{tx.transaction.tag}}</strong>)</span>
 
 				<effects></effects>

@@ -18,6 +18,10 @@ myApp.controller("CrossChainCtrl", ['$scope', '$rootScope', '$routeParams', 'Xrp
       $scope.token.issuer = issuer;
       $scope.token.logo = $rootScope.getGateway(code, issuer).logo;
       $scope.token.balance = $rootScope.getBalance(code, issuer);
+
+      $scope.deposit_error = "";
+      $scope.deposit_info = {};
+      $scope.deposit_msgs = [];
     };
     $scope.pickToken('USDT', 'rnzcChVKabxh3JLvh7qGanzqTCDW6fUSDT');
 
