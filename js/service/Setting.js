@@ -102,7 +102,7 @@ myApp.factory('SettingFactory', function($window) {
         return {
           base_code   : this.getCurrentNetwork().coin.code,
           base_issuer : '',
-          counter_code   : 'USD',
+          counter_code   : 'USDT',
           counter_issuer : 'rnzcChVKabxh3JLvh7qGanzqTCDW6fUSDT'
         }
       }
