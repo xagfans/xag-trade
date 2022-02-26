@@ -92,7 +92,8 @@ var translate_jp = {
   send_done    : '送金成功',
   not_funded   : 'アクティブ化されていません。20枚以上の{{code}}を発送してアカウントを作ってください。31枚以上がお勧めします。',
   no_send_path : 'あなたと相手アカウント間のパスが見つかりませんでした。',
-  you_sending : 'あなたは{{code}}を以下のアドレスへ発送します',
+  you_sending  : 'あなたは{{code}}を以下のアドレスへ発送します',
+  you_will_send: '送金します', 
 
   contacts : '連絡帳',
   contact  : '連絡者',
@@ -323,6 +324,7 @@ var translate_jp = {
   NoRippleTXT: '該当サイトはripple.txtファイルを提供していません',
   NoFederationUrl: '該当サイトはFederation Protocolが適用されていません',
   NoWTAA: '該当サイトはWTAA protocolが適用されていません',
+  NetworkError: 'Network error.',
   'Invalid Email' : 'メールアドレスが間違っています。',
 
   relase_later: 'この機能は次のバージョンでリリースされます',

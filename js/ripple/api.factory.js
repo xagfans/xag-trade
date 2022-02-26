@@ -12,7 +12,7 @@ myApp.factory('XrpApi', ['$rootScope', 'AuthenticationFactory', 'ServerManager',
     let _history = [];
     let _myHandleAccountEvent = undefined;
     let _remote;
-    let _client = ""; // foxlet version
+    let _client = ""; // client version
     
     function toTimestamp(rpepoch) {
       return (rpepoch + 0x386D4380) * 1000;
@@ -20,6 +20,7 @@ myApp.factory('XrpApi', ['$rootScope', 'AuthenticationFactory', 'ServerManager',
     
     function convertAmount(amount) {
       if ("object" === typeof amount) {
+        amount.currency = realCode(amount.currency);
         amount.value = new BigNumber(new BigNumber(amount.value).toPrecision(16)).toString();
         return amount;
       } else {
@@ -274,11 +275,8 @@ myApp.factory('XrpApi', ['$rootScope', 'AuthenticationFactory', 'ServerManager',
       },
       
       changeTrust(code, issuer, limit, ripplingDisabled = true) {
-        if (code.length > 3 && code.length <= 20) {
-          code = asciiToHex(code);
-        }
         const trustline = {
-          currency: code,
+          currency: realCode(code),
           counterparty: issuer,
           limit: limit.toString(),
           ripplingDisabled: ripplingDisabled

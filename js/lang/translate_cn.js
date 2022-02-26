@@ -93,7 +93,8 @@ var translate_cn = {
   send_done    : '发送成功',
   not_funded   : '未激活。请发送至少20个{{code}}创建该账号。建议发送50个或更多以方便后续使用。',
   no_send_path : '找不到你和目标账户之间的路径。',
-  you_sending : '你将把{{code}}发送到',
+  you_sending  : '你将把{{code}}发送到',
+  you_will_send: '你将发送',
 
   contacts : '联系人',
   contact  : '联系人',
@@ -324,6 +325,7 @@ var translate_cn = {
   NoRippleTXT: '网站未提供ripple.txt文件',
   NoFederationUrl: '网站未提供联邦协议服务',
   NoWTAA: '网站未支持WTAA自主协议',
+  NetworkError: '网络错误',
   'Invalid Email' : '电子邮箱地址不正确。',
 
   relase_later: '此功能将在下一版本发布',

@@ -441,6 +441,10 @@ code {
   text-align: center;
   color: #666;
 }
+.cards .cardsContent .l-msg{
+  text-align: left;
+  color: #666;
+}
 .cards .cardsContent .qrcodebox{
   margin: 15px 0 10px 0;
 }

@@ -54,10 +54,10 @@
 
 	<div class="cards" style="margin-top: 20px;">
 		<div class="cardsNav">
-			<div class="navItem col-md-6" ng-class="{active: page=='deposit'}" ng-click="page='deposit'">
+			<div class="navItem col-md-6" ng-class="{active: page=='deposit'}" ng-click="pickPage('deposit')">
 				<span  class="navTitle">{{'deposit' | translate}}</span>
 			</div>
-			<div class="navItem col-md-6" ng-class="{active: page=='withdraw'}" ng-click="page='withdraw'">
+			<div class="navItem col-md-6" ng-class="{active: page=='withdraw'}" ng-click="pickPage('withdraw')">
 				<span class="navTitle">{{'withdraw' | translate}}</span>
 			</div>
 		</div>
@@ -87,12 +87,125 @@
 		</div>
 		<div class="cardsContent" ng-show="page=='withdraw'">
 			<div class="row">
-				<div class="col-md-12 columnItem">					
-					<p class="l-tips">{{ 'relase_later' | translate }}</p>
+				<div class="col-md-12 sendContainer" style="padding: 35px;">
+					<form name="serviceForm" class="sendForm">
+						<div ng-repeat="field in extra_fields" ng-switch="field.type" class="row noborder">
+							<div ng-switch-when="label" class="col-xs-12 col-md-8">
+								<label ng-bind="field.label"></label>
+								<p ng-show="field.hint" ng-bind="field.hint" class="field-hint"></p>
+							</div>
+							<div ng-switch-when="text" class="col-xs-12 col-md-8">
+								<label ng-bind="field.label"></label>
+								<p ng-show="field.hint" ng-bind="field.hint" class="field-hint"></p>
+								<input type="text"
+									ng-model="field.value"
+									ng-model-options="{debounce:800}"
+									ng-required="{{field.required}}" class="form-control" />
+							</div>
+							<div ng-switch-when="select" class="col-xs-12 col-md-8">
+								<label ng-bind="field.label"></label>
+								<p ng-show="field.hint" ng-bind="field.hint" class="field-hint"></p>
+								<select type="text" ng-model="field.value"
+									ng-required="{{field.required}}" class="form-control">
+									<option ng-repeat="option in field.options"
+										ng-bind="option.label" value="{{option.value}}"
+										ng-selected="option.selected" ng-disabled="option.disabled"></option>
+								</select>
+							</div>
+						</div>
+						<div class="row noborder" ng-show="service_currency">
+							<div class="col-xs-12 col-md-4">
+								<label translate="will_recv">Recipient will receive</label>
+								<div class="input-group">
+									<input type="number" autocomplete="off" placeholder="0.00" class="form-control"
+										ng-model="service_amount" ng-model-options="{debounce:800}" required="true">
+									<div class="input-group-addon">{{service_currency}}</div>
+								</div>
+							</div>
+						</div>
+					</form>
+					<group ng-show="mode == 'input'">
+						<div class="row form-group alternatives" ng-show="found">
+							<div ng-show="asset.code == native.code" class="col-xs-12 col-sm-6 col-md-4">
+								<div class="am">
+									<span class="amnt">{{asset.amount}}</span>
+									<span class="currency">{{asset.code | rpcurrency}}</span>
+									<div class="ex">(<span class="rate">1</span><span class="pair">{{asset.code | rpcurrency}}/{{asset.code | rpcurrency}}</span>)</div>
+								</div>
+								<button type="submit" ng-click="pickPath(asset.code)" class="btn btn-block form-btn">{{'send' | translate}} {{asset.code | rpcurrency}}</button>
+							</div>
+
+							<div class="message" ng-show="!paths.length && asset.code != native.code">{{ 'no_send_path' | translate}}</div>
+
+							<div ng-repeat="alt in paths" class="col-xs-12 col-sm-6 col-md-4">
+								<div class="am">
+									<span class="amnt">{{alt.value}}</span>
+									<span class="currency">{{alt.code | rpcurrency}}</span>
+									<div class="ex">(<span class="rate">{{alt.rate}}</span><span class="pair">{{asset.code | rpcurrency}}/{{alt.code | rpcurrency}}</span>)</div>
+								</div>
+								<button type="submit" ng-click="pickPath(alt.code)" class="btn btn-block form-btn">{{'send' | translate}} {{alt.code | rpcurrency}}</button>
+							</div>
+						</div>
+						<div class="pathupdate" ng-show="found">
+							<div><span>{{'path_updated' | translate}} {{lastUpdate}} {{'seconds_ago' | translate}}</span></div>
+						</div>
+
+						<p class="l-msg" ng-show="act_loading"><i class="fa fa-spinner fa-pulse"></i> {{ 'analyzing' | translate }}</p>
+						<p class="l-msg" ng-show="quote_loading"><i class="fa fa-spinner fa-pulse"></i> {{ 'request_quote' | translate }}</p>
+						<p class="l-msg" ng-show="finding && !found"><i class="fa fa-spinner fa-pulse"></i> {{ 'calculating' | translate }}</p>
+						
+						<div style="margin-top: 30px;" ng-show="send_error || service_error || quote_error || (!serviceForm.$valid && service_currency)">
+							<div class="s-alert s-alert--info">
+								<div ng-show="send_error">{{send_error}}</div>
+								<div ng-show="service_error">{{service_error | translate}}</div>
+								<div ng-show="quote_error">{{quote_error | translate}}</div>
+								<div ng-show="!serviceForm.$valid && service_currency" translate="fill_form">Please fill the form correctly.</div>
+							</div>
+						</div>
+					</group>
+
+					<group ng-show="mode == 'confirm'">
+						<div class="mode-confirm" style="margin-top: 20px">
+							<label>{{ 'you_will_send' | translate }}</label>
+							<div class="dest_feedback">
+								<div class="value comfirm"><span>{{path.value}} </span><span style="font-size: 20px;">{{path.code | rpcurrency}}</span></div>
+							</div>
+						</div>
+
+						<div class="footer__btn">
+							<button ng-click="cancelConfirm()" class="trustBtn btn-default" style="margin-right: 20px;">{{'cancel' | translate}}</button>
+							<button ng-click="send_confirmed()" class="trustBtn">{{'confirm' | translate}}</button>
+						</div>
+					</group>
+
+					<group ng-show="mode == 'submit'">
+						<div class="form-group" ng-show="sending">
+							<div class="message"><i class="fa fa-spinner fa-pulse"></i> {{ 'submitting' | translate}}</div>
+						</div>
+						<div class="form-group block" ng-show="tx_state">
+							<div class="message" ng-show="tx_state == 'submitted'">
+								<h2 translate="submitted">Your transaction has been submitted.</h2>
+								<p translate="act_will_upd">Your account will update once the transaction has cleared.</p>
+							</div>
+							<div class="message" ng-show="tx_state == 'success'">
+								<h2 class="result-success" translate="cleared">Transaction cleared!</h2>
+							</div>
+							<div class="cardFooter" ng-show="tx_state == 'success'">
+								<div class="myBtn" ng-click="resetQuote()">{{'confirm' | translate}}</div>
+							</div>
+						</div>						
+						<div class="form-group block" ng-show="send_error || tx_state == 'fail'">
+							<div class="s-alert s-alert--error">{{send_error}}</div>
+							<div class="cardFooter">
+								<div class="myBtn" ng-click="resetQuote()">{{'confirm' | translate}}</div>
+							</div>
+						</div>
+					</group>
+
 				</div>
 				
 			</div>
 		</div>
 	</div>
-
+	
 </section>

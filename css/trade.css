@@ -509,7 +509,7 @@ a.AssetPairRow:hover .AssetPair__separator {
 .message .result-success {
   padding: 15px;
   color: #fff;
-  background-color: #8DC86A;
+  background-color: #4cb780;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -1503,6 +1503,9 @@ a.AssetPairRow:hover .AssetPair__separator {
 
 .sendContainer .mode-confirm .dest_feedback .value.other {
   border-radius: 40px 0 0 40px !important;
+}
+.sendContainer .mode-confirm .dest_feedback .value.comfirm {
+  border-radius: 40px !important;
 }
 
 .sendContainer .mode-confirm .dest_feedback .currency {

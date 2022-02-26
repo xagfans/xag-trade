@@ -93,7 +93,8 @@ var translate_en = {
   send_done    : 'Asset successfully sent.',
   not_funded   : 'Not funded. To create this account, send it at least 20 {{name}}s ({{code}}).',
   no_send_path : 'Unable to find a path between you and the destination account.',
-  you_sending : 'You are sending {{code}} to',
+  you_sending  : 'You are sending {{code}} to',
+  you_will_send: 'You will send',
 
   contacts : 'Contacts',
   contact  : 'Contact',
@@ -323,6 +324,7 @@ var translate_en = {
   NoRippleTXT: 'Ripple.txt was not found.',
   NoFederationUrl: 'Federation service url was not provided.',
   NoWTAA: 'WTAA protocol was not supported.',
+  NetworkError: 'Network error.',
   'Invalid Email' : 'Invalid Email address.',
 
   relase_later: 'This feature will be released in the next version.',

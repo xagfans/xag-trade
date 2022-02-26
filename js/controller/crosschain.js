@@ -2,7 +2,15 @@
 myApp.controller("CrossChainCtrl", ['$scope', '$rootScope', '$routeParams', 'XrpApi', 'XrpPath', 'Id', 'SettingFactory', 'AuthenticationFactory', 'Federation', '$http',
   function($scope, $rootScope, $routeParams, XrpApi, XrpPath, Id, SettingFactory, AuthenticationFactory, Federation, $http) {
     var native = $rootScope.currentNetwork.coin;
+    $scope.showTips = true;
+
     $scope.page = "deposit";
+    $scope.pickPage = function(page) {
+      $scope.page = page;
+      if (page == "withdraw") {
+        $scope.resolveWithdraw($scope.token.code, $scope.token.issuer);
+      }
+    }
 
     $scope.tokenList = [];
     for (var keystr in $rootScope.lines) {
@@ -22,6 +30,7 @@ myApp.controller("CrossChainCtrl", ['$scope', '$rootScope', '$routeParams', 'Xrp
       $scope.deposit_error = "";
       $scope.deposit_info = {};
       $scope.deposit_msgs = [];
+      $scope.pickPage($scope.page);
     };
     $scope.pickToken('USDT', 'rnzcChVKabxh3JLvh7qGanzqTCDW6fUSDT');
 
@@ -63,11 +72,20 @@ myApp.controller("CrossChainCtrl", ['$scope', '$rootScope', '$routeParams', 'Xrp
       }
     }
 
-
     function getDepositApi(code, issuer) {
       console.log($rootScope.getGateway(code, issuer));
       let service = $rootScope.getGateway(code, issuer).service;
       return service && service.deposit ? service.deposit : "";
+    }
+    function getWithdrawApi(code, issuer) {
+      console.log($rootScope.getGateway(code, issuer));
+      let service = $rootScope.getGateway(code, issuer).service;
+      return service && service.withdraw ? service.withdraw : "";
+    }
+    function getDomain(code, issuer) {
+      console.log($rootScope.getGateway(code, issuer));
+      let domain = $rootScope.getGateway(code, issuer).name;
+      return domain;
     }
 
     function validateWtaaDeposit(data) {
@@ -91,24 +109,20 @@ myApp.controller("CrossChainCtrl", ['$scope', '$rootScope', '$routeParams', 'Xrp
       return $rootScope.lines[keystr].limit > 0;
     };
 
-    //////////////////////////////////////////////////////////////////////
-
-    $scope.currencies = [];
     $scope.asset = {code: native.code};
-    $scope.init = function(){
+    $scope.mode = 'input';
+    $scope.asset.amount = 0;
+    $scope.send_error = "";
+    $scope.sending;
+
+    $scope.resetQuote= function(){
       $scope.mode = 'input';
+      $scope.service_amount = 0;
       $scope.asset.amount = 0;
+      $scope.send = [];
       $scope.send_error = "";
       $scope.stopPath(true);
-      $scope.resolve();
     }
-    
-    $scope.showTips = true;
-    $scope.input_address;
-    $scope.tag_require = false;
-    $scope.disallow_xrp = false;
-    $scope.tag_provided;
-    $scope.sending;
     
     $scope.hash = "";
     $scope.tx_state = "";
@@ -124,65 +138,24 @@ myApp.controller("CrossChainCtrl", ['$scope', '$rootScope', '$routeParams', 'Xrp
     });
 
     $scope.act_loading;
-    $scope.is_federation;
     $scope.resetService = function(){
       $scope.hash = "";
       $scope.tx_state = "";
       $scope.send_error = '';
-      $scope.tag_require = false;
-      $scope.tag_provided = false;
-
       $scope.real_address = '';
-      $scope.real_not_fund = false;
       $scope.send = [];
       $scope.extra_fields = [];
       $scope.invoice = "";
       $scope.memos = [];
+      $scope.mode = 'input';
 
       $scope.service_error = "";
       $scope.service_amount = 0;
       $scope.service_currency = null;
 
-      $scope.fed_url = "";
       $scope.quote_url = "";
       $scope.quote_error = "";
     }
-    
-    $scope.resolve = function() {
-      $scope.resetService();
-      $scope.stopPath(true);
-
-      if (AuthenticationFactory.getContact($scope.input_address)){
-        var contact = AuthenticationFactory.getContact($scope.input_address);
-        $scope.input_address = contact.name;
-        $scope.full_address = contact.address;
-        $scope.real_address = $scope.full_address;
-        if (contact.dt) {
-          $scope.tag = contact.dt;
-        }
-      } else {
-        $scope.full_address = autoCompleteURL($scope.input_address);
-      }
-
-      if ($scope.full_address.indexOf("@") < 0) {
-        $scope.act_loading = false;
-        $scope.is_federation = false;
-        if (ripple.RippleAPI.isValidXAddress($scope.full_address)) {
-          var decoded = ripple.RippleAPI.xAddressToClassicAddress($scope.full_address);
-          $scope.real_address = decoded.classicAddress;
-          $scope.tag = decoded.tag;
-          $scope.tag_provided = true;
-        } else {
-          $scope.real_address = $scope.full_address;
-          $scope.tag_provided = false;
-        }
-        $scope.resolveAccountInfo();
-      } else {
-        $scope.is_federation = true;
-        $scope.invalid_address = false;
-        $scope.resolveFederation($scope.full_address);
-      }
-    };
     
     $scope.pickCode = function(code) {
       console.log($scope.asset.code, '->', code);
@@ -212,7 +185,7 @@ myApp.controller("CrossChainCtrl", ['$scope', '$rootScope', '$routeParams', 'Xrp
         amount = round($scope.asset.amount * 1000000).toString();
       } else {
         amount = {
-            currency : $scope.asset.code,
+            currency : realCode($scope.asset.code),
             issuer : $scope.real_address,
             value : $scope.asset.amount.toString()
         }
@@ -271,65 +244,47 @@ myApp.controller("CrossChainCtrl", ['$scope', '$rootScope', '$routeParams', 'Xrp
       });
     };
 
-    $scope.resolveFederation = function(snapshot) {
-      console.debug('resolve', snapshot);
-      var i = snapshot.indexOf("@");
-      var prestr = snapshot.substring(0, i);
-      var domain = snapshot.substring(i+1);
+    $scope.resolveWithdraw = function(code, issuer) {
+      $scope.resetService();
+      $scope.stopPath(true);
 
+      let api = getWithdrawApi(code, issuer);
+      let domain = getDomain(code, issuer);
       $scope.act_loading = true;
       $scope.service_error = "";
-      Federation.get(domain).then(txt => {
-        $scope.fed_url = txt.federation_url ? txt.federation_url[0] : null;
-        console.log('resolve', txt, $scope.fed_url);
-        if (!$scope.fed_url) {
-          return Promise.reject(new Error("NoFederationUrl"));
+      $http({
+        method: 'GET',
+        url: api,
+        params: {
+          type : 'wtaa',
+          domain: domain,
+          destination: code,
+          address: $rootScope.address,
+          client : 'xagtrade-' + appinfo.version,
+          network: "xag",
+          lang: SettingFactory.getLang()
         }
-        return $http({
-          method: 'GET',
-          url: $scope.fed_url,
-          params: {
-            type : 'federation',
-            domain: domain,
-            destination: prestr,
-            address: $rootScope.address,
-            client : 'foxlet-' + appinfo.version,
-            network: $rootScope.currentNetwork.networkType == 'other' ? native.code : $rootScope.currentNetwork.networkType
-          }
-        });
       }).then(res => {
-        if (snapshot !== $scope.full_address) {
-          return;
-        }
         console.log(res.data);
         if (res.data.result === 'error') {
           $scope.service_error = res.data.error_message || res.data.error;
         } else {
-          var data = res.data.federation_json;
-          if (data.extra_fields) {
-            if (data.domain == domain) {
-              $scope.service_currency = (data.currencies || data.assets)[0].currency;
-              $scope.extra_fields = data.extra_fields;
-              $scope.quote_destination = data.destination;
-              $scope.quote_domain = data.domain;
-              $scope.quote_url = data.quote_url;
-            } else {
-              $scope.service_error = "The domain field in response must be " + domain;
-            }
+          let data = res.data.data;
+          if (data.domain == domain) {
+            $scope.service_currency = (data.currencies || data.assets)[0].currency;
+            $scope.extra_fields = data.extra_fields;
+            $scope.quote_destination = data.destination;
+            $scope.quote_domain = data.domain;
+            $scope.quote_url = data.quote_url;
           } else {
-            $scope.extra_fields = null;
-            $scope.real_address = data.destination_address;
-            $scope.resolveAccountInfo();
+            $scope.service_error = "The domain field in response must be " + domain;
           }
         }
         $scope.act_loading = false;
       }).catch(err => {
-        if (snapshot !== $scope.full_address) {
-          return;
-        }
-        $scope.service_error = err.message;
+        $scope.service_error = err.message || 'NetworkError';
         $scope.act_loading = false;
-        console.log(snapshot, err);
+        console.log("resolveWithdraw", err);
       });
     };
 
@@ -342,16 +297,17 @@ myApp.controller("CrossChainCtrl", ['$scope', '$rootScope', '$routeParams', 'Xrp
       if (!$scope.serviceForm || !$scope.serviceForm.$valid || !$scope.service_amount) {
         return;
       }
-      var data = {
+      let data = {
         type: "quote",
         amount       : $scope.service_amount + "/" + $scope.service_currency,
         destination  : $scope.quote_destination,
         domain       : $scope.quote_domain,
         address      : $rootScope.address,
-        client       : 'foxlet-' + appinfo.version,
-        network      : $rootScope.currentNetwork.networkType == 'other' ? native.code : $rootScope.currentNetwork.networkType
+        client       : 'xagtrade-' + appinfo.version,
+        network      : 'xag',
+        lang         : SettingFactory.getLang()
       };
-      $scope.extra_fields.forEach(function(field){
+      $scope.extra_fields.forEach(field => {
         if (field.name) {
           data[field.name] = field.value;
         }
@@ -370,7 +326,7 @@ myApp.controller("CrossChainCtrl", ['$scope', '$rootScope', '$routeParams', 'Xrp
           return;
         }
         console.log(res.data);
-        if (res.data.result === 'error') {
+        if (res.data.result === 'error' || res.data.error) {
           $scope.quote_error = res.data.error_message || res.data.error;
           $scope.send = [];
           $scope.stopPath(true);
@@ -395,57 +351,8 @@ myApp.controller("CrossChainCtrl", ['$scope', '$rootScope', '$routeParams', 'Xrp
         $scope.quote_loading = false;
       });
     };
-
-    $scope.resolveAccountInfo = function() {
-      $scope.invalid_address = !Id.isValidAddress($scope.real_address);
-      if ($scope.invalid_address) {
-        return;
-      }
-      var snapshot = $scope.real_address;
-      console.debug('resolve ' + snapshot);
-      $scope.act_loading = true;
-      XrpApi.checkSettings(snapshot).then(settings => {
-        console.log(snapshot, 'settings', settings);
-        $scope.tag_require = !!settings.requireDestinationTag || !!special_destinations[$scope.real_address];
-        $scope.disallow_xrp = !!settings.disallowIncomingXRP;
-        $scope.$apply();
-        return XrpApi.checkCurrencies(snapshot);
-      }).then(data => {
-        console.log(data);
-        $scope.act_loading = false;
-        $scope.currencies = data.receive_currencies;
-        if ($scope.currencies.indexOf($scope.asset.code) < 0) {
-          $scope.pickCode(native.code);
-        }
-        $scope.$apply();
-        $scope.updatePath();
-      }).catch(err => {
-        $scope.act_loading = false;
-        if (err.unfunded) {
-          $scope.real_not_fund = true;
-          $scope.currencies = [];
-          $scope.pickCode(native.code);
-        } else {
-          $scope.send_error.message = err.message;
-          console.error('resolveAccountInfo', err);
-        }
-        $scope.$apply();
-      });
-    };
-    
-    $scope.checkTag = function(){
-      if ($scope.tag) {
-        var tag = Number($scope.tag);
-        $scope.invalid_tag = !(Number.isInteger(tag) && tag > 0 && tag < Math.pow(256, 4));
-      } else {
-        $scope.invalid_tag = $scope.tag_require;
-      }
-    }
     
     $scope.pickPath = function(code) {
-      $scope.checkTag();
-      console.log('tag:', $scope.tag, $scope.invalid_tag, $scope.tag_require);
-      if ($scope.invalid_tag) return;
       $scope.path = $scope.paths.find(item => {return item.code == code});
       if (!$scope.path && code == native.code) {
         // send XRP/native
@@ -478,13 +385,13 @@ myApp.controller("CrossChainCtrl", ['$scope', '$rootScope', '$routeParams', 'Xrp
         if ("string" === typeof alt.source_amount) {
           srcAmount = {
               currency : 'drops',
-              value : round(alt.source_amount * 1.01).toString()
+              value : round(alt.source_amount * 1.001).toString()
           }
         } else {
           srcAmount = {
               currency : alt.source_amount.currency,
               counterparty : alt.source_amount.issuer,
-              value : new BigNumber(alt.source_amount.value).multipliedBy(1.01).toString()
+              value : new BigNumber(alt.source_amount.value).multipliedBy(1.001).toString()
           }
         }
       } else {

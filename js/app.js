@@ -259,12 +259,18 @@ var asciiToHex = function(str) {
   return (hex + "0000000000000000000000000000000000000000").substring(0, 40).toUpperCase();;
 };
 
+var realCode = function(input) {
+  return input && input.length > 3 && input.length <= 20 && input != "drops" ? asciiToHex(input) : input;
+};
+
+var fmtCode = function(input) {
+  return input && input.length == 40 ? hexToAscii(input) : input;
+};
+
 function key(code, issuer) {
   if (!code) {
     return "NONE";
   }
-  if (code.length > 3 && code.length <= 20) {
-    code = asciiToHex(code);
-  }
+  code = realCode(code);
   return code == 'XRP' || code == 'XAG' ? code : code + '.' + issuer;
 };

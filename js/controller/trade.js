@@ -116,7 +116,7 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
       let keystr = key(asset.code, asset.issuer);
       if (!$scope.tradeAssets[keystr]) {
         $scope.tradeAssets[keystr] = {
-          code : asset.code.length > 3 ? asciiToHex(asset.code) : asset.code,
+          code : realCode(asset.code),
           issuer : asset.issuer,
           balance : 0
         };
