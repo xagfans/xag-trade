@@ -83,6 +83,7 @@ var translate_cn = {
   recipient : '接受者',
   dest_tag  : '标签',
   tag_need  : '接受者要求发送时必须附带标签。如果你不知道，请先联系对方。',
+  msg : '消息',
   disallow_xrp: '对方不接受{{code}}转账！你确定你要强行发送{{code}}过去吗?',
   will_receive: '对方将收到',
   invalid_address : '必须是你的联系人或是有效的瑞波基因地址。',
@@ -308,7 +309,7 @@ var translate_cn = {
   can_send  : '你可以发送',
 
   ripple : '瑞波',
-  web_client : '瑞波基因网页钱包',
+  web_client : '瑞波基因智能终端',
   trade_volume : '24小时交易量',
   wallet : '钱包',
   version: '版本',

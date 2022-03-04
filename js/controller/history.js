@@ -73,7 +73,12 @@ myApp.controller("HistoryCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Authenticat
         t.seq = tx.specification.orderSequence;
       }
 
-      t.memos = tx.specification.memos;
+      t.memos = tx.specification.memos || [];
+      let msgObj = t.memos.find(memo => {
+        return memo.type == "msg";
+      })
+      t.msg = msgObj ? msgObj.data : "";
+
       t.date = tx.outcome.timestamp;
       tx.transaction = t;
       tx.effects = filterOrderbookChanges(tx.outcome.orderbookChanges, address, tx);

@@ -30,6 +30,7 @@
 		</div>
 		<div class="hash" ng-show="currentNetwork.networkType != 'xag'"> <a href="https://xrpscan.com/tx/{{tx.id}}" target="_blank">{{tx.id}}</a> </div>
 		<div class="hash" ng-show="currentNetwork.networkType == 'xag'"> <a href="https://scan.xrpgen.com/#!/tx?data={{tx.id}}" target="_blank">{{tx.id}}</a> </div>
+		<div ng-show="tx.transaction.msg"><pre style="margin: 5px 20px 0 0;">{{'msg' | translate}}: {{tx.transaction.msg}}</pre></div>
 	</div>
 </div>
               

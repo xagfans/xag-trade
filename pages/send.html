@@ -60,6 +60,14 @@
 						<div ng-show="invalid_tag" class="error msg" translate="error_invalid_tag">invalid tag</div>
 					</div>
 				</div>
+				<div class="send_flexRow" ng-hide="is_federation && extra_fields">
+					<div class="sendRow">
+						<div class="cinput-group">
+							<label translate="msg" class="send_title">消息</label>
+							<input name="msg" type="text" class="form-control" style="border-radius: 40px;" autocomplete="off" ng-model="msg">
+						</div>
+					</div>
+				</div>
 				<div class="footer__btn" ng-hide="is_federation && extra_fields">
 <!--					<div type="submit" class="trustBtn success" ng-click="pickPath(asset.code)" ng-disabled="invalid_address || invalid_amount || invalid_tag">{{'send' | translate}} {{asset.code}}</div>-->
 				</div>
@@ -162,6 +170,10 @@
 					<div class="dest_feedback">
 						<div class="value other">{{tag}} </div>
 						<div class="currency" translate="dest_tag">Destination tag</div>
+					</div>
+					<div class="dest_feedback" ng-show="msg">
+						<div class="value other">{{msg}} </div>
+						<div class="currency" translate="msg">Message</div>
 					</div>
 <!--					<p class="amount_feedback"><span class="value">{{path.value}} </span><span class="currency">{{path.code}}</span><span ng-show="path.origin">± 1%</span></p>-->
 <!--					<p translate="are_you_sure">Are you sure?</p>-->

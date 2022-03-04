@@ -394,13 +394,13 @@ myApp.controller("SendCtrl", ['$scope', '$rootScope', '$routeParams', 'XrpApi', 
         if ("string" === typeof alt.source_amount) {
           srcAmount = {
               currency : 'drops',
-              value : round(alt.source_amount * 1.01).toString()
+              value : round(alt.source_amount * 1.001).toString()
           }
         } else {
           srcAmount = {
               currency : alt.source_amount.currency,
               counterparty : alt.source_amount.issuer,
-              value : new BigNumber(alt.source_amount.value).multipliedBy(1.01).toString()
+              value : new BigNumber(alt.source_amount.value).multipliedBy(1.001).toString()
           }
         }
       } else {
@@ -420,6 +420,9 @@ myApp.controller("SendCtrl", ['$scope', '$rootScope', '$routeParams', 'XrpApi', 
             counterparty : $scope.real_address,
             value : $scope.asset.amount.toString()
         }
+      }
+      if ($scope.msg) {
+        $scope.memos.push({data: $scope.msg, type: 'msg', format: 'text'});
       }
       
       var payment = !alt ? XrpApi.payment($scope.real_address, srcAmount, dstAmount, $scope.tag, $scope.invoice, $scope.memos) :
