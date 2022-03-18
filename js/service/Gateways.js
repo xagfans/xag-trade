@@ -71,7 +71,7 @@ myApp.factory('Gateways', ['$rootScope', function($rootScope) {
           let issuer = lines[keystr].issuer;
           if (!inList(code, issuer)) {
             list["localhost"].assets.push({
-              code: code, 
+              code: fmtCode(code), 
               issuer: issuer,
               logo: 'img/unknown.png'
             });

@@ -72,6 +72,7 @@
 				<div class="col-md-6 columnItem" ng-show="objKeyLength(deposit_info)">
 					<label class="l-title" ng-show="deposit_info.network">{{deposit_info.network}}</label>
 					<p class="l-tips">{{ deposit_info.address }}</p>
+					<p class="l-tips" ng-show="deposit_info.memo">{{ deposit_info.memo }}</p>
 					<p class="qrcodebox">
 						<qrcode data="{{deposit_info.address}}" size=124></qrcode>
 					</p>

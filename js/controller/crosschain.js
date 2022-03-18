@@ -47,7 +47,7 @@ myApp.controller("CrossChainCtrl", ['$scope', '$rootScope', '$routeParams', 'Xrp
       if (!api) {
         $scope.deposit_error = "NoWTAA";
       } else {
-        let url = api + "?address=" + $rootScope.address + "&currency=" + code + "&network=xrpgen&lang=" + SettingFactory.getLang(); 
+        let url = api + "?address=" + $rootScope.address + "&currency=" + fmtCode(code) + "&network=xrpgen&lang=" + SettingFactory.getLang(); 
         console.debug('resolve ' + url);
         $scope.deposit_working = true;
         $http({
@@ -258,7 +258,7 @@ myApp.controller("CrossChainCtrl", ['$scope', '$rootScope', '$routeParams', 'Xrp
         params: {
           type : 'wtaa',
           domain: domain,
-          destination: code,
+          destination: fmtCode(code),
           address: $rootScope.address,
           client : 'xagtrade-' + appinfo.version,
           network: "xag",
