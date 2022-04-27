@@ -473,4 +473,19 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
       return obj;
     }
 
+    $scope.bClass = function (code) {
+      let result = Object.keys($rootScope.lines)
+      let index = result.findIndex(function(e){
+        return e === code
+      })
+      let className = code && code.length == 40 ? hexToAscii(code) : code;
+      // if (index === 0) {
+      //   className += ' noMarginRight addTo__top'
+      // }
+      // if (index === 1) {
+      //   className += ' absoluteClass'
+      // }
+      return className;
+    }
+
 } ]);

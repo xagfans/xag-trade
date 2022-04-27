@@ -654,8 +654,8 @@ a.AssetPairRow:hover .AssetPair__separator {
   background: #B6B6B6 !important;
 }
 
-.PairPicker__card.CNY {
-  background: #7092E3 !important;
+.PairPicker__card.XLM {
+  background: #7e48d4 !important;
 }
 
 .PairPicker__card.BTC {
@@ -667,7 +667,7 @@ a.AssetPairRow:hover .AssetPair__separator {
 }
 
 .PairPicker__card.XAG {
-  background: #7092E3 !important;
+  background: #52C3E1 !important;
 }
 
 .tradContainer .island_new .PairPicker__card .card__logo {
@@ -685,7 +685,7 @@ a.AssetPairRow:hover .AssetPair__separator {
 .tradContainer .island_new .PairPicker__card .card__logo .image {
   width: 60px;
   height: 60px;
-  object-fit: cover;
+  /*object-fit: cover;*/
   display: inline-block;
 }
 
@@ -1599,6 +1599,7 @@ a.AssetPairRow:hover .AssetPair__separator {
 
 .popubDialog .assetsCards .content__logo .logo__image {
   width: 40px;
+  height: 40px;
   margin: 4px;
 }
 

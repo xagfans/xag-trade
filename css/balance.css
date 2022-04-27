@@ -528,7 +528,7 @@ a.AssetCard__federation:hover {
 }
 
 .XLM{
-	background: #5EABDA !important;
+	background: #7e48d4 !important;
 }
 .Ripple,
 .XRP{
@@ -553,7 +553,10 @@ a.AssetCard__federation:hover {
 	background:#53ae94!important;
 }
 .XAG{
-	background:#7092E3!important;
+	background:#52C3E1!important;
+}
+.ETH{
+	background:#6c83dc!important;
 }
 .balanceContainer .balanceContainer__content .assetsCards.addCards .defaultIcon{
 	position: absolute;

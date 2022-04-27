@@ -4,7 +4,7 @@
 			<div class="flexRow">
 				<div class="column">
 					<div class="island_new flexRow">
-						<div class="PairPicker__card" ng-class="base_code" ng-click="choosePair('base')">
+						<div class="PairPicker__card" ng-class="bClass(base_code)" ng-click="choosePair('base')">
 							<div class="card__logo">
 								<img class="image" data-ng-src="{{base.logo}}">
 							</div>
@@ -21,7 +21,7 @@
 							</div>
 							<div class="iconTips">点击转换</div>
 						</div>
-						<div class="PairPicker__card" ng-class="counter_code" ng-click="choosePair('counter')">
+						<div class="PairPicker__card" ng-class="bClass(counter_code)" ng-click="choosePair('counter')">
 							<div class="card__logo">
 								<img class="image" data-ng-src="{{counter.logo}}">
 							</div>
@@ -131,7 +131,7 @@
 								</div>
 							</div>
 							<div class="assetsCards" ng-repeat="(keystr, line) in tradeAssets"
-								ng-click="pick(pairKey, line.code, line.issuer)" ng-class="line.code"
+								ng-click="pick(pairKey, line.code, line.issuer)" ng-class="bClass(line.code)"
 								ng-init="gateway=getGateway(line.code, line.issuer)">
 								<div class="assetsCards__content">
 									<div class="content__logo">
