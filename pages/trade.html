@@ -70,24 +70,20 @@
 							</div>
 							<div class="cardFooter" ng-hide="fatfingersell || fatfingerbuy">
 								<!--买入-->
-								<button class="btn myBtn" ng-click="offerWithCheck('buy')" ng-disabled="buying || !sell_amount || !sell_price">{{'buy' |
-									translate}} {{base_code  | rpcurrency}}</button>
+								<button class="btn myBtn" ng-click="offerWithCheck('buy')" ng-disabled="selling || !sell_amount || !sell_price">{{'buy' | translate}} {{base_code  | rpcurrency}}</button>
 								<!--卖出-->
-								<button class="btn myBtn" ng-click="offerWithCheck('sell')" ng-disabled="selling || !sell_amount || !sell_price">{{'sell' | translate}}
-									{{base_code  | rpcurrency}}</button>
+								<button class="btn myBtn" ng-click="offerWithCheck('sell')" ng-disabled="selling || !sell_amount || !sell_price">{{'sell' | translate}} {{base_code  | rpcurrency}}</button>
 							</div>
 							<div ng-show="fatfingersell || fatfingerbuy">
 								<div class="warning-buy-sell" translate="fatfinger"></div>
 							</div>
 							<div class="cardFooter" ng-show="fatfingerbuy" style="margin-top: 8px">
-								<button class="myBtn" ng-click="offer('buy')">{{'buy' | translate}}
-									{{base_code  | rpcurrency}}</button>
+								<button class="myBtn" ng-click="offer('buy')">{{'buy' | translate}} {{base_code  | rpcurrency}}</button>
 								<!-- <button class="btn btn-default marginleft" ng-click="fatfingerbuy=false">{{'cancel' |
 									translate}}</button> -->
 							</div>
 							<div class="cardFooter" ng-show="fatfingersell" style="margin-top: 8px">
-								<button class="myBtn" ng-click="offer('sell')">{{'sell' | translate}}
-									{{base_code  | rpcurrency}}</button>
+								<button class="myBtn" ng-click="offer('sell')">{{'sell' | translate}} {{base_code  | rpcurrency}}</button>
 								<!-- <button class="btn btn-default marginleft" ng-click="fatfingersell=false">{{'cancel' |
 									translate}}</button> -->
 							</div>
@@ -268,7 +264,7 @@
 								</div>
 								<div class="row body" ng-class="{my: item.account == address}" title="{{item.account}}"
 									ng-repeat="item in book.bids" ng-click="pickPrice('bid', item.price)">
-									<div class="col-xs-4">{{item.depth | number: value_precise}}</div>
+									<div class="col-xs-4">{{item.depth | number: precise}}</div>
 									<div class="col-xs-4">{{item.amount | number: precise}}</div>
 									<div class="col-xs-4">{{item.price | number: price_precise}}</div>
 								</div>
@@ -297,7 +293,7 @@
 									ng-repeat="item in book.asks" ng-click="pickPrice('ask', item.price)">
 									<div class="col-xs-4">{{item.price | number: price_precise}}</div>
 									<div class="col-xs-4">{{item.amount | number: precise}}</div>
-									<div class="col-xs-4">{{item.depth | number: value_precise}}</div>
+									<div class="col-xs-4">{{item.depth | number: precise}}</div>
 								</div>
 								<div ng-show="!book.asks.length" class="message" translate="no_asks">There are currently
 									no asks for this pair.</div>

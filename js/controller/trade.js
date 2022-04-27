@@ -126,27 +126,24 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
 
     $scope.precise = 2;
     $scope.price_precise = 4;
-    $scope.value_precise = 2;
     $scope.precise_jutify = function() {
-      if ($scope.base_code == 'BTC') {
+      base_code = fmtCode($scope.base_code);
+      counter_code = fmtCode($scope.counter_code);
+      if (['BTC', 'ETH'].indexOf(base_code) >= 0) {
         $scope.precise = 4;
       } else {
         $scope.precise = 2;
       }
 
-      if ($scope.counter_code == 'XLM') {
-        $scope.price_precise = 3;
-        $scope.value_precise = 3;
-      } else if (['BTC', 'ETH'].indexOf($scope.counter_code) >= 0) {
-        $scope.price_precise = 7;
-        $scope.value_precise = 4;
-      } else {
-        if ($scope.base_code == 'BTC') {
-          $scope.price_precise = 2;
-        } else {
-          $scope.price_precise = 4;
+      if (['USDT', 'XAG', 'Ripple', 'XLM'].indexOf(counter_code) >= 0) {
+        $scope.price_precise = 4;
+        if (['BTC', 'ETH'].indexOf(base_code) >= 0) {
+          $scope.price_precise = 0;
         }
-        $scope.value_precise = 2;
+      } else if (['BTC', 'ETH'].indexOf(counter_code) >= 0) {
+        $scope.price_precise = 6;
+      } else {
+        $scope.price_precise = 4;
       }
     }
     $scope.precise_jutify();
@@ -474,18 +471,7 @@ myApp.controller("TradeCtrl", [ '$scope', '$rootScope', 'XrpApi', 'XrpOrderbook'
     }
 
     $scope.bClass = function (code) {
-      let result = Object.keys($rootScope.lines)
-      let index = result.findIndex(function(e){
-        return e === code
-      })
-      let className = code && code.length == 40 ? hexToAscii(code) : code;
-      // if (index === 0) {
-      //   className += ' noMarginRight addTo__top'
-      // }
-      // if (index === 1) {
-      //   className += ' absoluteClass'
-      // }
-      return className;
+      return fmtCode(code);
     }
 
 } ]);
