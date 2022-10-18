@@ -558,6 +558,9 @@ a.AssetCard__federation:hover {
 .ETH{
 	background:#6c83dc!important;
 }
+.LAB{
+	background:#40a050!important;
+}
 .balanceContainer .balanceContainer__content .assetsCards.addCards .defaultIcon{
 	position: absolute;
 	left: 50%;

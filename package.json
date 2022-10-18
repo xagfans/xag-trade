@@ -1,7 +1,7 @@
 {
   "name": "XagTrade",
-  "version": "1.4.0",
-  "beta": "1.5.0",
+  "version": "1.6.0",
+  "beta": "1.6.0",
   "description": "Xrpalike Gene Smart Client",
   "main": "main.js",
   "chromium-args": "--disable-gpu",

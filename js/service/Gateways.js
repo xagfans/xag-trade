@@ -13,7 +13,8 @@ myApp.factory('Gateways', ['$rootScope', function($rootScope) {
             {code : 'USDT', issuer : 'rnzcChVKabxh3JLvh7qGanzqTCDW6fUSDT', list: true, name: "USDT", logo: "img/coin/usdt.svg"},
             {code : 'Ripple', issuer : 'rMeL8gHJifANAfVchSDkTUmUWjHMvCeXrp', list: true, name: "Ripple XRP", logo: "img/coin/xrp.png"},
             {code : 'XLM', issuer : 'rUWABeB63z3pq2L6Ke4BTQAPS6hbBtFXLM', list: true, name: "Stellar Lumens", logo: "img/coin/xlm.png"},
-            {code : 'ETH', issuer : 'rHJ6a42xxExCxyUJWQAKHdwarxVf6L9ETH', list: true, name: "Ethereum", logo: "img/coin/eth.png"}
+            {code : 'ETH', issuer : 'rHJ6a42xxExCxyUJWQAKHdwarxVf6L9ETH', list: true, name: "Ethereum", logo: "img/coin/eth.png"},
+            {code : 'LAB', issuer : 'rLcywMAiUdLj3GRgLGBRUs7DRNTUKzgXaG', list: true, name: "XAG Labs Contribution Token", logo: "img/coin/lab.png"},
           ],
           logo : "img/coin/xag.png"
         }

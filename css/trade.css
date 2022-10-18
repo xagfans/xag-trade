@@ -641,35 +641,6 @@ a.AssetPairRow:hover .AssetPair__separator {
   position: relative;
 }
 
-.PairPicker__card.Ripple,
-.PairPicker__card.XRP {
-  background: #4E9BDA !important;
-}
-
-.PairPicker__card.ABC {
-  background: #53AFC6 !important;
-}
-
-.PairPicker__card.BCD {
-  background: #B6B6B6 !important;
-}
-
-.PairPicker__card.XLM {
-  background: #7e48d4 !important;
-}
-
-.PairPicker__card.BTC {
-  background: #5CCC86 !important;
-}
-
-.PairPicker__card.USD {
-  background: #97CEFF !important;
-}
-
-.PairPicker__card.XAG {
-  background: #52C3E1 !important;
-}
-
 .tradContainer .island_new .PairPicker__card .card__logo {
   background: #fff;
   border-radius: 6px;

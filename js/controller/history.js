@@ -78,6 +78,10 @@ myApp.controller("HistoryCtrl", [ '$scope', '$rootScope', 'XrpApi', 'Authenticat
         return memo.type == "msg";
       })
       t.msg = msgObj ? msgObj.data : "";
+      msgObj = t.memos.find(memo => {
+        return memo.type == "address";
+      })
+      t.address = msgObj ? msgObj.data : "";
 
       t.date = tx.outcome.timestamp;
       tx.transaction = t;
