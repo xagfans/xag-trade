@@ -561,6 +561,9 @@ a.AssetCard__federation:hover {
 .LAB{
 	background:#40a050!important;
 }
+.ETF{
+	background:#f88b00!important;
+}
 .balanceContainer .balanceContainer__content .assetsCards.addCards .defaultIcon{
 	position: absolute;
 	left: 50%;
