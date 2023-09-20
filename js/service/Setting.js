@@ -10,8 +10,10 @@ myApp.factory('SettingFactory', function($window) {
         servers: [
           {server: 'g1.xrpgen.com', port: 443},
           {server: 'g2.xrpgen.com', port: 443},
-          {server: 'g3.xrpgen.com', port: 443},
-          {server: 'g4.xrpgen.com', port: 443}
+          {server: 'jp.xag-labs.com', port: 443},
+          {server: 'us.xag-labs.com', port: 443},
+          {server: 'eu.xag-labs.com', port: 443},
+          {server: 'sg.xag-labs.com', port: 443}
         ],
         coin: {
           name: "xrpgen",
